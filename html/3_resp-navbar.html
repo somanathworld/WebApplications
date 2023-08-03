@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Responsive Navigation bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        nav div {
+            background-color: tomato;
+            color: white;
+            border: 2px solid red;
+            padding: 10px;
+            width: 150px;
+            border-radius: 20px;
+        }
+
+        @media screen and (orientation : portrait) {
+            nav {
+                display: block;
+            }
+
+            nav div {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media screen and (orientation : landscape) {
+            nav {
+                display: flex;
+            }
+
+            nav div {
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div> Home</div>
+        <div>About</div>
+        <div>Contact</div>
+    </nav>
+</body>
+
+</html>
