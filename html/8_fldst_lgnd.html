@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fieldset and Legend</title>
+        <style>
+            dl {
+                display: grid;
+                grid-template-columns: 3fr 9fr;
+            }
+
+            dt {
+                background-color: aliceblue;
+                color: blueviolet;
+                padding : 4px;
+                margin-bottom: 10px;
+            }
+            legend {
+                background-color: yellowgreen;
+                color: rebeccapurple;
+                width: 150px;
+                text-align: center;
+                border: 2px solid black;
+                box-shadow: 4px 4px 3px black;
+            }
+            fieldset{
+                margin-bottom: 20px;
+                border: 1px solid red;
+                box-shadow: 4px 4px 3px black;
+            }
+            body{
+                border: 8px solid blue;
+                box-shadow: 4px 4px 5px black;
+                padding : 10px;
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Person Details</legend>
+            <dl>
+                <dt>First Name : </dt>
+                <dd>some name </dd>
+                <dt>Last Name : </dt>
+                <dd>some name </dd>
+                <dt>Father Name : </dt>
+                <dd>some name </dd>
+            </dl>
+        </fieldset>
+        <fieldset>
+            <legend>Address Details</legend>
+            <dl>
+                <dt>District Name : </dt>
+                <dd>some district </dd>
+                <dt>State Name : </dt>
+                <dd>some state </dd>
+                <dt>Pin code : </dt>
+                <dd>some code </dd>
+            </dl>
+        </fieldset>
+    </body>
+</html>
