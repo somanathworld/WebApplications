@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tutorials</title>
+        <style>
+            .topics {
+                background-color: gainsboro;
+                padding : 10px;
+                margin-bottom: 20px;
+            }
+
+            nav {
+                list-style: none;
+                background-color: black;
+                padding : 10px;
+                margin-bottom: 10px;
+            }
+
+            li{
+                display: inline;
+                margin-right: 30px;
+            }
+            a{
+                text-decoration: none;
+                color : azure;
+                font-size: 20px;
+            }
+            .topics:target{
+                background-color: aquamarine;
+                color: cadetblue;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="#html">HTML</a></li>
+                <li><a href="#css">CSS</a></li>
+                <li><a href="#javascript">JavaScript</a></li>
+            </ul>
+        </nav>
+        <main>
+            <div class="topics" id = "html">
+                <h2>HTML</h2>
+                <p>It is a markup language.</p>
+            </div>
+            <div class="topics" id = "css">
+                <h2>CSS</h2>
+                <p>It defines styles for HTML.</p>
+            </div>
+            <div class="topics" id = "javascript">
+                <h2>JavaScript</h2>
+                <p>It is a Programming language.</p>
+            </div>
+        </main>
+    </body>
+</html>
