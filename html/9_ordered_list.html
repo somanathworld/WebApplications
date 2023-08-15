@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ordered List</title>
+        <style>
+            #side {
+                display: flex;
+            }
+
+            #side li {
+                margin-right: 23px;
+            }
+
+            #col {
+                display: grid;
+                grid-template-columns: 6fr 6fr;
+                /* columns: 2; */
+            }
+
+            #col li {
+                margin-top: 10px;
+            }
+
+            #scrollable{
+                border: 1px solid blueviolet;
+                width : 150px;
+                height: 150px;
+                overflow: auto;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <ol>
+            <li>
+                HTML
+                <ol>
+                    <li>Ordered List</li>
+                    <li>Unordered List</li>
+                </ol>
+            </li>
+            <li>JavaScript
+                <ol>
+                    <li>Variable</li>
+                    <li>Data Type</li>
+                </ol>
+            </li>
+        </ol>
+
+        <hr>
+        <h2 align = "center">Designing List Side by Side</h2>
+        <ol>
+            <li>
+                Java is a _____.
+                <ol type = "a" id = "side">
+                    <li>Prog. Language</li>
+                    <li>Technology</li>
+                    <li>Data Type</li>
+                    <li>Compiler</li>
+                </ol>
+            </li>
+            <li>
+                JavaScript is a _____.
+                <ol type = "a" id = "side">
+                    <li>Prog. Language</li>
+                    <li>Technology</li>
+                    <li>Data Type</li>
+                    <li>Compiler</li>
+                </ol>
+            </li>            
+        </ol>
+
+        <hr>
+        <h2 align = "center">Designing List in Multiple Columns</h2>
+        <ol>
+            <li>
+                Java is a _____.
+                <ol type = "a" id = "col">
+                    <li>Prog. Language</li>
+                    <li>Technology</li>
+                    <li>Data Type</li>
+                    <li>Compiler</li>
+                </ol>
+            </li>
+            <li>
+                JavaScript is a _____.
+                <ol type = "a" id = "col">
+                    <li>Prog. Language</li>
+                    <li>Technology</li>
+                    <li>Data Type</li>
+                    <li>Compiler</li>
+                </ol>
+            </li>            
+        </ol>
+        <hr>
+        <h2 align = "center">Designing List in Multiple Columns</h2>
+        <ol id="scrollable" >
+            <li>Electronics</li>
+            <li>Footware</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
+            <li>Electronics</li>
+            <li>Footware</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
+            <li>Electronics</li>
+            <li>Footware</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
+            <li>Electronics</li>
+            <li>Footware</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
+            <li>Electronics</li>
+            <li>Footware</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
+            <li>Electronics</li>
+            <li>Footware</li>
+            <li>Men's Clothing</li>
+            <li>Women's Clothing</li>
+        </ol>
+    </body>
+</html>
