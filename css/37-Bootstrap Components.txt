@@ -1,0 +1,277 @@
+                            Bootstrap Buttons
+                             ==============
+
+.btn                        Base class
+.btn-{contextual}                Primary, Secondary, Warning, Danger..
+.btn-{sm, lg}                Size
+.btn-outline-{contextual}        Outline button
+.btn-group                        Group of buttons
+.btn-toolbar                Group of botton groups
+.btn-link                        Link like button
+.btn-close                        Close
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h3>Generic Buttons</h3>
+        <button class="btn-close"></button>
+        <button class="btn btn-link">Sign-in</button>
+        <h3>Button Toolbar</h3>
+        <div class="btn-toolbar bg-danger justify-content-between">
+            <div class="btn-group">
+                <button class="btn btn-danger">Home</button>
+                <button class="btn btn-danger">About</button>
+                <button class="btn btn-danger">Contact</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger">
+                    <span class="bi bi-search"></span>
+                    Search
+                </button>
+            </div>
+        </div>
+        <h3>Button Base</h3>
+        <button class="btn">Base Button</button>
+        <h3>Button Contextual</h3>
+        <button class="btn btn-success">Insert</button>
+        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-primary">Update</button>
+        <h3>Button Size</h3>
+        <button class="btn btn-primary btn-lg">Large</button>
+        <button class="btn btn-primary">Normal</button>
+        <button class="btn btn-primary btn-sm">Small</button>
+        <h3>Outline Button</h3>
+        <button class="btn btn-outline-success">Insert</button>
+        <button class="btn btn-outline-danger">Delete</button>
+        <button class="btn btn-outline-primary">Update</button>
+        <h3>Button Group</h3>
+        <div class="btn-group">
+            <button class="btn btn-success">Insert</button>
+            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-primary">Update</button>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+                       Bootstrap Cards
+                       =============
+.card
+.card-header
+.card-body
+.card-footer
+.card-title
+.card-subtitle
+.card-link
+.card-img-top
+.card-img-bottom
+.card-img-overlay
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Products Catalog</h2>
+        <div class="d-flex flex-wrap">
+            <div class="card p-2 m-2" style="width: 250px;">
+                <img class="card-img-top" src="../public/images/jacket.jpg" height="200">
+                <div class="card-header">
+                    <h3 class="card-title">Winter Jacket</h3>
+                    <p class="card-subtitle">50% Off on selected</p>
+                </div>
+                <div class="card-body">
+                    <dl>
+                        <dt>Price</dt>
+                        <dd>5600.55</dd>
+                        <dt>Stock</dt>
+                        <dd>Available</dd>
+                    </dl>
+                    <a class="card-link" href="#">more..</a>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger w-100">
+                      <span class="bi bi-cart4"></span> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="card p-2 m-2" style="width: 250px;">
+               
+                <div class="card-header">
+                    <h3 class="card-title">Men's Backpack</h3>
+                    <p class="card-subtitle">50% Off on selected</p>
+                </div>
+                <div class="card-body">
+                    <img class="card-img-top" src="../public/images/backpack.jpg" height="200">
+                    <dl>
+                        <dt>Price</dt>
+                        <dd>5600.55</dd>
+                        <dt>Stock</dt>
+                        <dd>Available</dd>
+                    </dl>
+                    <a class="card-link" href="#">more..</a>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger w-100">
+                      <span class="bi bi-cart4"></span> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+                      Bootstrap Carousel
+                      ===============
+Sliding and fading banners
+
+.carousel
+.carousel-inner
+.carousel-item
+
+Syntax:
+   <carousel>
+         <carousel-inner>
+              <carousel-item>
+              </carousel-item>
+         </carousel-inner>
+  </carousel>
+
+Note:
+1. One carousel item must be in active state.
+          <div class="carousel-item active"> </div>
+
+2. Animation starts with jQuery attribute  "data-bs-ride" given for carousel.
+
+3. Default animation is fade type, you can change to slide.
+
+         <div class="carousel slide"> </div>
+
+Ex: Basic Carousel
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <div class="carousel slide " data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../public/images/slide1.PNG" class="w-100 d-block">
+                </div>
+                <div class="carousel-item">
+                    <img src="../public/images/slide2.PNG" class="w-100 d-block">
+                </div>
+                <div class="carousel-item">
+                    <img src="../public/images/slide3.PNG" class="w-100 d-block">
+                </div>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+Carousel Controls
+- Use for navigation to previous and next
+
+.carousel-control-prev
+.carousel-control-prev-icon
+.carousel-control-next
+.carousel-control-next-icon
+
+data-bs-slide="prev"
+data-bs-slide="next"
+data-bs-target="#carouseId"
+
+
+Carousel Indicators
+- You can navigate to any item directly.
+
+.carousel-indicators
+.active
+
+data-bs-slide-to="index"
+data-bs-target="#carouselid"
+
+
+Carousel Timing Interval
+- You can set time interval for every item.
+
+data-bs-interval="milliseconds"     1000=1sec
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <div class="carousel slide carousel-dark" id="banner" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="../public/images/slide1.PNG" class="w-100 d-block">
+                </div>
+                <div class="carousel-item" data-bs-interval="1000">
+                    <img src="../public/images/slide2.PNG" class="w-100 d-block">
+                </div>
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="../public/images/slide3.PNG" class="w-100 d-block">
+                </div>
+            </div>
+            <div>
+                <button data-bs-target="#banner" data-bs-slide="prev" class="carousel-control-prev btn btn-dark ">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button data-bs-target="#banner" data-bs-slide="next" class="carousel-control-next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+            <div class="carousel-indicators">
+                 <button class="active" data-bs-slide-to="0" data-bs-target="#banner"></button>
+                 <button data-bs-slide-to="1" data-bs-target="#banner"></button>
+                 <button data-bs-slide-to="2" data-bs-target="#banner"></button>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

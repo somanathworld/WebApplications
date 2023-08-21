@@ -1,0 +1,204 @@
+Background Attributes
+
+background                : short hand for all options.
+background-color
+background-image
+background-size
+background-position
+background-attachment
+background-repeat
+
+
+background-color :        It sets a color as background.
+background-image:   It sets a background image
+
+        body {
+              background-image: url("path");
+        }
+
+background-repeat:        repeat, repeat-x, repeat-y, no-repeat
+
+background-size    :   width, height
+                contain        - according content - fits to content
+                cover        - fits to window.
+
+background-position :   x-axis, y-axis
+                   top-left, top-center, top-right
+                   center-left, center-center, center-right
+                   bottom-left, center-bottom, bottom-right
+
+background-attachment:   lock scrolling, scrolling
+                        fixed
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            body {
+                background-image: url("../public/images/shoe.jpg");
+                background-repeat: no-repeat;
+                background-size: 400px 400px;
+                background-position: center center;
+                height: 500px;
+                background-attachment: fixed;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Netflix</h2>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+       
+    </body>
+</html>
+
+FAQ: Can we make background image transparent?
+Ans:  No. You can't set transparent image.
+         You have to configure background with a cover that can be transparent using "rgba()"
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+           body {
+               background-image: url("../public/images/netflixback.jpg");
+               background-size: cover;
+           }
+           .body-cover {
+               width: 110%;
+               height: 700px;
+               background-color: rgba(0,0,0,0.6);
+               margin-top: -30px;
+               margin-left: -30px;
+
+           }
+        </style>
+    </head>
+    <body>
+       <div class="body-cover">
+
+       </div>
+    </body>
+</html>
+
+FAQ: Can we define multiple background colors?
+Ans : Yes. By using Gradient Colors
+          Background multiple colors are applied by using
+        "background-image"
+
+          Gradiants are 2 types
+        a) linear gradient        horizontal and vertical
+        b) radial gradient        from center
+
+     Syntax:
+        body {
+          background-image: linear-gradient(to right, red, yellow);
+        }
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+           .body-cover {
+               height: 600px;
+               width: 100%;
+               background-image:radial-gradient(black,rgba(255,255,255,0.8)) ;
+           }
+           body {
+               background-image: url("../public/images/netflixback.jpg");
+           }
+        </style>
+    </head>
+    <body>
+       <div class="body-cover">
+
+       </div>
+    </body>
+</html>
+
+FAQ: Can we change background image and color according to situation?
+Ans:  Yes. By using "@media()" queries
+
+
+Ex
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+           @media screen and (orientation:landscape){
+               body{
+                   background-image: url("../public/images/netflixback.jpg");
+                   background-size: cover;
+               }
+           }
+           @media screen and (orientation:portrait){
+               body{
+                   background-image: url("../public/images/netflixportrait.jfif");
+                   background-size: cover;
+               }
+           }
+        </style>
+    </head>
+    <body>
+       
+    </body>
+</html>
+
+FAQ: Can we display multiple background images?
+Ans: Yes.
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            body {
+                background-image: url("../public/images/shoe.jpg"), url("../public/images/netflixback.jpg");
+                background-repeat: no-repeat, repeat;
+                background-size: 200px 200px, cover;
+                background-position: center center;
+                height: 500px;
+            }
+        </style>
+    </head>
+    <body>
+       
+    </body>
+</html>

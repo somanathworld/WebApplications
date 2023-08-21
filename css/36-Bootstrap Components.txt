@@ -1,0 +1,316 @@
+We are learning Bootstrap-5
+Previous Version is Bootstrap-4
+
+
+                 Bootstrap Box Model Classes
+                 =======================
+
+Margins:
+        .m{sides}-{size}
+
+        sides        : s [left]   e [right]   t [top]   b [bottom]
+
+        size        : 1 to 4
+
+        ms-1
+        me-2
+        mt-3
+        mb-4
+
+
+Padding:
+        .p{sides}-{size}
+
+        .ps-1
+        .pe-2
+        .pt-3
+        .pb-4
+
+
+Border:
+        .border
+        .border-{size}   1 to 4
+        .border-{contextual}  [primary, secondary, danger, success
+                         warning, info, dark, light]
+       
+Rounded:
+        .rounded
+        .rounded-{size} 1 to 3
+        .rounded-pill
+        .rounded-circle
+
+Syntax:
+ <img class="border border-danger rounded rounded-pill" src="../public/images/banner.jpg" width="100%">
+
+
+Width and Height:
+        .w-{size}        25, 50, 75, 100
+        .h-{size}        25, 50, 75, 100
+
+Syntax:
+        <button  class="w-100">
+
+
+                          Position Classes
+                          ==============
+.position-static
+.position-relative
+.position-absolute
+.position-fixed
+.position-sticky
+
+.top-{0, 50, 100}
+.bottom-
+.end-
+.start-
+
+Syntax:
+<img class="position-fixed end-0 bottom-0" src="../public/images/jacket.jpg" width="50" height="50">
+
+
+                      Float Class
+                      =========
+.float-start
+.float-end
+
+                       
+<img class="float-end" src="../public/images/jacket.jpg" width="199" height="200">
+
+
+                     Display Class
+                     ===========
+.d-{option}
+.d-flex
+.d-none
+.d-inline
+.d-block
+
+Grid is defined by using
+.row
+.col {flexible}
+.col-{size}  1 to 12
+
+Flex Class
+.flex-wrap
+.flex-row
+.flex-column
+.flex-row-reverse
+.flex-column-reverse
+
+Flex Alignment
+.justify-content-center
+.justify-content-between
+.justify-content-around
+.align-items-center
+.align-items-top
+.align-items-bottom
+
+EX: Center Page
+
+<div style="height: 600px;" class="d-flex justify-content-center align-items-center">
+            <img src="../public/images/jacket.jpg" width="199" height="200">
+ </div>
+
+Ex: Grids in row and columns
+
+ <dl class="row">
+            <dt class="col-3">Name</dt>
+            <dd class="col-9">Samsung TV</dd>
+            <dt class="col-3">Price</dt>
+            <dd class="col-9">56000.44</dd>
+            <dt class="col-3">Stock</dt>
+            <dd class="col-9">Available</dd>
+        </dl>
+
+Ex: Grid Layout
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <header>
+            <h1>Amazon Shopping</h1>
+        </header>
+        <section class="row" style="height: 400px;">
+            <nav class="col-2">
+                navigation
+            </nav>
+            <main class="col-8">
+                main..
+            </main>
+            <aside class="col-2">
+                ads..
+            </aside>
+        </section>
+        <footer>
+            &copy; copyright 2022
+        </footer>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+Ex: Multiple Rows and Columns
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <div class="row border border-dark">
+            <div class="col text-center">Single Column</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col border border-dark">
+                even col-1
+            </div>
+            <div class="col border border-danger">
+                even col-2
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3 border border-danger">
+                 col-3
+            </div>
+            <div class="col-7 border border-danger">
+                col-7
+            </div>
+            <div class="col-2 border border-danger">
+                col-2
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+                     Text Colors
+                     =========
+.text-{contextual}  
+
+                      Background Colors
+                      ===============
+.bg-{contextual}
+
+                      Text Alignments
+                       ============
+.text-start
+.text-end
+.text-center
+.text-justify
+
+
+Ex:
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Register</h2>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text"></dd>
+            <dd class="text-danger">Name Required</dd>
+            <dt>Password</dt>
+            <dd><input type="password"></dd>
+            <dd class="text-warning"><span class="bi bi-exclamation-triangle-fill"></span>Warning - Caps ON</dd>
+        </dl>
+        <div class="border p-3 mt-2 bg-danger text-white">
+            <h2>Delete Record</h2>
+            <p>Record will be delete permanently</p>
+            <a href="#" class="text-white">Help?</a>
+        </div>
+        <div class="border p-3 mt-2 bg-success text-white">
+            <h2>Record Inserted</h2>
+            <p>Record Inserted Successfully..</p>
+            <a href="#" class="text-white">Help?</a>
+        </div>
+        <div class="border p-3 mt-2 bg-warning text-dark">
+            <h2>Are you sure?</h2>
+            <p>You want to modify?</p>
+            <a href="#" class="text-danger">Help?</a>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+                    Bootstrap Components
+                    ==================
+1. Alerts
+   - Alerts are embedded message box in a page.
+   - You can control them dynamically.
+   - Alert classess
+        .alert
+        .alert-{contextual}
+        .alert-title
+        .alert-subtitle
+        .alert-link
+        .btn-close        [close button]
+        .alert-dismissible
+
+jQuery Attributes:
+        data-bs-dismiss        : to close any component in page.
+        data-bs-dismiss="alert"
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Alerts</h2>
+        <div class="alert alert-danger alert-dismissible">
+            <h2 class="alert-title">Delete Record</h2>
+            <button data-bs-dismiss="alert" class="btn-close"></button>
+            <p class="alert-subtitle">Record will be deleted permanently</p>
+            <a class="alert-link" href="#">help?</a>
+            <button class="bg-danger text-white" data-bs-dismiss="alert">OK</button>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+2. Badge
+    - It is used to highlight any content in a container.
+    - Bade class
+        .badge
+        .bg-{contextual}
+        .rounded-circle
+        .rounded-pill
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Badge</h2>
+        <button><span class="badge bg-primary rounded rounded-circle"><span class="bi bi-bell"></span></span> Notifications <span class="badge rounded rounded-circle bg-primary" >5</span></button>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>

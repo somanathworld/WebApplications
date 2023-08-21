@@ -1,0 +1,362 @@
+- Box Model
+- Positions
+- Float
+                   Display Attributes
+- They are used to control the display of elements in page.
+
+        display        : none
+        display        : block
+        display        : inline
+        display        : grid
+        display        : flex
+
+
+none        : To hide any element in page.
+block        : To show element in block style. [below existing]
+inline        : To show element beside existing
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Float</title>
+        <style>
+            #UserName:valid+span {
+                display: none;
+            }
+            #UserName:invalid+span {
+                display: inline;
+            }
+        </style>
+    </head>
+    <body>
+        <dl>
+            <dt>User Name</dt>
+            <dd>
+                <input type="text" id="UserName" required>
+                <span>User Name Required</span>
+            </dd>
+        </dl>
+    </body>
+</html>
+
+grid:
+- It allows to arrange elements into specified row or column.
+- You can dynamically change the position.
+- Display Grid uses
+        grid-template-columns : 12 fractions maximum
+                              3fr
+                                       300px
+                              1200 pixels maximum
+- Display grid used following attributes to arrange into rows and columns
+        grid-row
+        grid-column
+        grid-gap
+       
+Download Mobile Simulator on Chrome
+- Goto Chrome://apps
+- Goto Webstore
+- Search for "Mobile Simulator"
+- Add to Chrome
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Float</title>
+        <style>
+           @media screen and (orientation:landscape)
+           {
+            .container {
+                display: grid;
+                grid-template-columns: 3fr 8fr 2fr;
+            }
+            header, footer, aside, main, nav {
+                border:1px solid black;
+                padding: 5px;
+                margin: 5px;
+            }
+            header {
+                grid-row: 1;
+                grid-column: 1/4;
+                text-align: center;
+            }
+            main {
+                grid-row: 2;
+                grid-column: 2;
+                height: 300px;
+            }
+            nav {
+                grid-row: 2;
+                grid-column: 1;
+            }
+            aside {
+                grid-row: 2;
+                grid-column: 3;
+            }
+            footer {
+                grid-row: 3;
+                grid-column: 1/4;
+            }
+           }
+           @media screen and (orientation: portrait) {
+               .container {
+                   display: grid;
+                   grid-template-columns: 12fr;
+               }
+               header, footer, aside, main, nav {
+                border:1px solid black;
+                padding: 5px;
+                margin: 5px;
+               }
+               header {
+                   grid-row: 1;
+                   grid-column: 1;
+               }
+               nav {
+                   grid-row: 2;
+                   grid-column: 1;
+               }
+               li {
+                   display: inline;
+                   margin-right: 10px;
+               }
+               main {
+                   grid-row: 3;
+                   grid-column: 1;
+                   height: 300px;
+               }
+               aside {
+                   grid-row: 4;
+                   grid-column: 1;
+               }
+           }
+        </style>
+    </head>
+    <body>
+      <div class="container">
+        <header>
+            <h2>Amazon Shopping</h2>
+        </header>
+        <main>
+            Main Content
+        </main>
+        <aside>
+            Ads..
+        </aside>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Electronics</li>
+                <li>Footwear</li>
+            </ul>
+        </nav>
+        <footer>
+            &copy; copyright 2022
+        </footer>
+      </div>
+    </body>
+</html>
+
+
+FAQ: What is difference between Display : Grid and Columns?
+- Grid allows to arrange content into specified row and column.
+- Columns will place continous content.
+
+                         Column Attributes
+                         ==============
+columns
+column-gap
+column-width
+column-rule
+column-span
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>News</title>
+        <style>
+            header {
+                font-size: 50px;
+                text-align: center;
+                background-color: black;
+                color:white;
+                margin-bottom: 10px;
+            }
+            section {
+                columns: 6;
+                text-align: justify;
+                column-gap: 20px;
+                column-rule: 2px dotted black;
+            }
+            h3 {
+                background-color: gray;
+                color:white;
+                font-style: italic;
+                text-align: center;
+                column-span: all;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            THE HINDU
+        </header>
+        <section>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+           
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <h3>Published from Hyderabad, Mumbai, Chennai, Delhi</h3>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        </section>
+    </body>
+</html>
+
+                       Display Flex
+- Inline is used for individual elements
+- Flex is used for container that contains elements.
+- Flexible display
+- It can Warp contents, set space between contents, align content to top, center, bottom [verticially] or  left, center, right. [horizontally]
+
+Attributes:
+display:flex
+flex:wrap
+flex-direction:row                ]
+flex-direction:row-reverse        ]        direction
+flex-direction:column                ]
+flex-direciton:column-reverse        ]
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cards</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <style>
+            .card {
+                width: 150px;
+                padding: 20px;
+                margin: 20px;
+                box-shadow: 3px 3px 3px gray;
+                text-align: center;
+                font-family: Arial;
+            }
+            .card-image {
+                width: 100%;
+                height: 120px;
+            }
+            .card-header {
+                margin-top: 20px;
+                font-weight: bold;
+            }
+            .card-body {
+                margin-top: 20px;
+                color:goldenrod;
+            }
+            .card-footer {
+                margin-top: 20px;
+                color:blueviolet;
+            }
+            .container {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column-reverse;
+                justify-content: space-evenly;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card">
+                <img class="card-image" src="../public/images/card1.jpg">
+                <div class="card-header">
+                    Digital Marketing Online Training
+                </div>
+                <div class="card-body">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                </div>
+                <div class="card-footer">
+                    View Course
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-image" src="../public/images/card2.jpg">
+                <div class="card-header">
+                    ASP.NET Online Training
+                </div>
+                <div class="card-body">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                </div>
+                <div class="card-footer">
+                    View Course
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-image" src="../public/images/card3.jpg">
+                <div class="card-header">
+                    Android Online Training
+                </div>
+                <div class="card-body">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                </div>
+                <div class="card-footer">
+                    View Course
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-image" src="../public/images/card4.jpg">
+                <div class="card-header">
+                    Automation Online Training
+                </div>
+                <div class="card-body">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                </div>
+                <div class="card-footer">
+                    View Course
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-image" src="../public/images/card5.jpg">
+                <div class="card-header">
+                    Linux|Unix Online Training
+                </div>
+                <div class="card-body">
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                    <span class="bi bi-star-fill"></span>
+                </div>
+                <div class="card-footer">
+                    View Course
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

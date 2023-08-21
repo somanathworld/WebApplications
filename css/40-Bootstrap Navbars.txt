@@ -1,0 +1,293 @@
+Bootstrap Pagination
+                 =================
+
+- It is required for displaying multiple pages information.
+
+.pagination
+.page-item
+.page-link
+
+
+                 Bootstrap Tables
+                ==============
+.table
+.table-hover
+.table-dark
+.table-primary [contextual]
+.table-responsive
+.table-bordered
+.table-stripped
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Products Table</h2>
+        <table class="table table-hover table-light table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Samsung TV</td>
+                    <td>56000.44</td>
+                </tr>
+                <tr>
+                    <td>Nike Casuals</td>
+                    <td>5399.44</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item"><a class="page-link">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link">1</a></li>
+                            <li class="page-item active"><a class="page-link">2</a></li>
+                            <li class="page-item"><a class="page-link">3</a></li>
+                            <li class="page-item"><a class="page-link">4</a></li>
+                            <li class="page-item"><a class="page-link">&raquo;</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+Ex: Responsive Table
+
+       <div class="table-responsive">
+           <table>
+
+          </table>
+      </div>
+
+                       Bootstrap Images
+                       ==============
+.img
+.img-thumbnail
+.img-fluid
+
+Syntax:
+ <img  src=""  class="img-fluid img-thumbnail">
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Images</h2>
+        <img class="img-fluid img-thumbnail" src="../public/images/jacket.jpg">
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+                         Bootstrap Progress
+                         ===============
+.progress
+.progress-bar
+.progress-bar-animated
+.progress-bar-stripped
+
+Syntax:
+ <div class="progress">
+    <div class="progress-bar progress-bar-stripped progress-bar-animated" style="width:40%">
+          40% Completed
+    </div>
+ </div>
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>HTML Progress</h2>
+        <progress min="1" max="100" value="30"></progress> 30%
+        <h2>Bootstrap Progress</h2>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 30%;">
+                30% Completed
+            </div>
+            <div class="progress-bar progress-bar-animated progress-bar-striped bg-danger" style="width:70%">
+                70% Remaining
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+                        Bootstrap Spinners
+                        ===============
+.spinner-border
+.spinner-grow
+.spinner-sm
+.spinner-lg
+.text-{contextual}
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Spinners</h2>
+        <button class="btn btn-primary">
+            <span class="spinner-border spinner-border-sm"></span>
+            Loading..
+        </button>
+        <button class="btn btn-primary">
+            <span class="spinner-grow spinner-grow-sm"></span>
+            Loading..
+        </button>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+                  Bootstrap Nav with Tabs
+                 ===================
+.nav
+.nav-item
+.nav-link
+.nav-text
+.nav-tabs
+.nav-pills
+
+.tab-content
+.tab-pane
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Tab Base Nav</h2>
+        <ul class="nav nav-pills">
+            <li class="nav-item active"><a data-bs-toggle="tab" href="#basic" class="nav-link">Basic Details</a></li>
+            <li class="nav-item"><a data-bs-toggle="tab" href="#preview" class="nav-link">Preview</a></li>
+            <li class="nav-item"><a data-bs-toggle="tab" href="#description" class="nav-link">Description</a></li>
+        </ul>
+        <div class="tab-content mt-4">
+            <div class="tab-pane active" id="basic">
+                <h3>Basic Details</h3>
+                <dl>
+                    <dt>Name</dt>
+                    <dd>Nike Casuals</dd>
+                    <dt>Price</dt>
+                    <dd>6700.44</dd>
+                </dl>
+            </div>
+            <div class="tab-pane" id="preview">
+                <h3>Preview</h3>
+                <img src="../public/images/shoe.jpg" width="200" height="200">
+            </div>
+            <div class="tab-pane" id="description">
+                <h3>Description</h3>
+                <p>something about nike casuals..</p>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+                 Bootstrap Navbar
+                 ==============
+- It creates a responsive navigation bar with nav items.
+
+.navbar
+.navbar-brand
+.navbar-toggler
+.navbar-toggler-icon
+.navbar-nav
+.navbar-expand-lg
+.navbar-dark
+.navbar-light
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <div class="navbar navbar-dark bg-dark navbar-expand-lg">
+           <div class="container-fluid">
+            <button data-bs-target="#menu" data-bs-toggle="collapse" class="navbar-toggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h2 class="navbar-brand">Amazon</h2>
+            <div class="navbar-nav collapse navbar-collapse" id="menu">
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link">Home</a></li>
+                    <li class="nav-item"><a class="nav-link">About</a></li>
+                    <li class="nav-item"><a class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link">Electronics</a></li>
+                    <li class="nav-item">
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <button class="btn btn-warning">
+                                <span class="bi bi-search"></span>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+           </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>

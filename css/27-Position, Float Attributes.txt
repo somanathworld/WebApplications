@@ -1,0 +1,207 @@
+1. Box Model Attributes
+        - width
+        - height
+        - margin
+        - padding
+        - border
+        - border-radius
+        - border-image
+2. Position Attributes
+- Allow to change the position of element in HTML page.
+- "position" uses following values
+        a) static
+        b) absolute
+        c) relative
+        d) fixed
+        e) sticky
+
+Static Position
+- It is the default position.
+- It will keep element according to normal flow of document.
+- It will not allow to change position with left, right, top or bottom attributes.
+
+Syntax:
+         element {
+            position: static;
+         }
+
+Absolute Position
+- It removes element from normal flow of document.
+- It can be controlled with left, right, top and bottom attributes.
+- But it is fixed with the relative content.
+- It will be along with the content.
+
+Syntax:
+           element {
+          position: absolute;
+          right: 10px;
+          top:20px;
+        }
+
+Fixed Position
+- It removes element from normal flow of document.
+- It can be controlled with left, right, top and bottom.
+- But it is fixed with relative to page not to the content.
+- It will not scroll along with content.
+
+Syntax:
+        element {
+           position:fixed;
+           right:10px;
+           top:20px;
+         }
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Selectors</title>
+        <style>
+           div {
+              border:2px solid red;
+           }
+           aside {
+              border:blue dotted 2px;
+              width: 100px;
+              background-color: yellow;
+              position: fixed;
+              right: 10px;
+              top: 30px;
+           }
+        </style>
+    </head>
+    <body>
+       <div>
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.
+         <aside>
+            Special Offer
+         </aside>
+       </div>
+    </body>
+</html>
+
+
+
+Sticky Position
+- It will keep element according to normal flow of document.
+- But it can fix relative to page after reaching specific position, which can be bottom, top, right, left.
+
+
+Syntax:
+        element {
+            position:sticky;
+            top:0px;
+        }
+
+Relative Position:
+- It keeps element according to normal flow of document.
+- It can change the position only with relative to its parent.
+- Relative position will change according to parent.
+
+Syntax:
+        element {
+          position:relative;
+          top:10px;
+          left:10px;
+        }
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Position</title>
+        <style>
+            .parent-box {
+                height: 300px;
+                width: 400px;
+                border:2px solid red;
+                margin-left: 50px;
+            }
+            .child-box {
+                width: 100px;
+                height: 60px;
+                border:2px dotted blue;
+                position: relative;
+                left: 10px;
+                top:100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent-box">
+            parent box
+            <div class="child-box">
+                child box
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+3. Float Attributes
+- Float allows to keep any element to absolute left or right.
+- Float will continue for next elements.
+- You have to clear float for next element.
+
+Syntax
+        element {
+          float : left
+         }
+
+        nextElement {
+          clear: left, right, both;
+        }
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Float</title>
+        <style>
+            div {
+                width: 200px;
+                border:2px solid red;
+            }
+            .box-1 {
+                float: left;
+            }
+            .box-2 {
+                float: left;
+            }
+            p {
+                clear: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box-1">
+            Box-1
+        </div>
+        <div class="box-2">
+            Box-2
+        </div>
+        <p>Some paragraph</p>
+    </body>
+</html>
+
+
+4. Display Attributes

@@ -1,0 +1,246 @@
+Bundling
+                        =======
+- It is the process of bundling all css into one file.
+- It will reduce the number of requests for page.
+- It will improve the page load time.
+
+Process:
+1. We create separate sass file for every set of effects.
+2. If sass file is designed for importing into another file then it must have the file name starting with "_".
+
+                file.scss           // not for exporting and importing
+                _file.scss          // intended to export and import
+
+3. You can import in any another sass document by using
+
+        @import   "file"
+
+
+Ex:
+1. Add following files
+
+        _variables.scss
+
+$border:1px solid red;
+$padding:5px;
+$shadow:2px 2px 3px black;
+
+        _buttons.scss
+
+@import "variables";
+
+button {
+    border:$border;
+    background-color: tomato;
+    color:white;
+    padding: 3px;
+    font-size: 19px;
+}
+
+        _lists.scss
+
+
+@import "variables";
+ol, ul {
+    list-style: none;
+}
+li {
+    display: inline;
+    border: $border;
+    padding:$padding;
+    background-color: yellow;
+}
+
+         theme.scss
+
+@import "variables";
+@import "buttons";
+@import "lists";
+body {
+    font-family: Arial;
+    box-shadow: $shadow;
+    height: 200px;
+    padding: $padding;
+    border:$border;
+}
+
+2. Trans compile  "theme.scss"
+
+   > sass   theme.scss   theme.css
+
+
+3. Link theme.css
+
+home.html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="./theme.css">
+    </head>
+    <body>
+        <div>
+            <button>Register</button>
+            <button>Cancel</button>
+        </div>
+        <div>
+            <ol>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ol>
+        </div>
+    </body>
+</html>
+
+
+                        theme.css
+
+button {
+  border: 1px solid red;
+  background-color: tomato;
+  color: white;
+  padding: 3px;
+  font-size: 19px;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+li {
+  display: inline;
+  border: 1px solid red;
+  padding: 5px;
+  background-color: yellow;
+}
+
+body {
+  font-family: Arial;
+  box-shadow: 2px 2px 3px black;
+  height: 200px;
+  padding: 5px;
+  border: 1px solid red;
+}
+
+/*# sourceMappingURL=theme.css.map */
+
+
+               Component Libraries for Web Design
+               =============================
+-  A component means  a web template that contains
+        a) presentation
+        b) styles
+        b) logic
+- Presentation is designed in HTML
+- Styles are defined with CSS.
+- Logic by using script [JavaScript, TypeScript]
+- There are various component libraries for web development
+
+        a) Bootstrap
+        b) Twitter Bootstrap
+        c)  React Material
+        d)  Angular Material
+        e) Telerik
+        f )  DevExpress
+        g)  jQuery UI  etc..
+
+
+                      Bootstrap
+                      =======
+- It is a component library.
+- It is free and open source.
+- It is cross platform
+- It also provide premium service.
+        "www.getbootstrap.com&quot;
+- It provides
+        a) HTML code snippets        [presentation]
+        b) CSS classes                [styles]
+        c) jQuery Attributes                [functionality]
+
+
+        <div class="btn btn-primary" data-bs-toggle="">
+       
+        </div>        
+
+
+Setup Environment for Bootstrap in Project
+=================================
+1. Install Bootstrap CSS
+        > npm install bootstrap  --save
+
+2. Install Bootstrap Icons
+        > npm install bootstrap-icons --save
+
+3. Install jQuery
+        > npm install jquery --save
+
+
+To use bootstrap and all its components in Web Page:
+ - Link the following style sheets in head section
+        - bootstrap.css
+        - bootstrap-icons.css
+
+ - Link the following scripts in body section
+        - jquery.js
+        - bootstrap.bundle.js
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    </head>
+    <body>
+
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+Note: CSS files have no order dependency.
+          JavaScript files have order dependency.
+          Bootstrap uses a font called "Roboto"
+
+
+                    Bootstrap Layout
+                   ==============
+1. Containers
+        .container
+        .container-sm
+        .container-lg
+        .container-xl
+        .container-md
+        .container-fluid
+
+2. Box Model
+
+        Margins
+        =======
+        .m        margin
+         {s}        left
+         {e}        right
+         {t}        top
+         {b}        bottom
+
+        .ms
+        .me
+        .mt
+        .mb
+
+        -{1 to 4}
+
+        .ms-4
+        .mt-4
+        .mb-3
+
+        Padding
+        ======
+        .p
+        .p{s,e,t,b}
+        .p{s,e,t,b}-{1 to 4}
+
+        .pt-2

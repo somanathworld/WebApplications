@@ -1,0 +1,184 @@
+Summary:
+- alerts
+- badge
+- button
+- forms
+- input group
+- carousel
+- modal
+
+FAQ: How to handle Link toggle?
+Ans:
+
+        button        :  data-bs-toggle
+                   data-bs-target
+
+        anchor        : href is target  [ no data-bs-target ]
+                  data-bs-toggle
+
+Syntax:
+        <a href="#details" data-bs-toggle="modal"> Text </a>
+
+
+                         Bootstrap Collapse
+                         ===============
+- It is used to show or hide any container dynamically.
+
+.collapse
+.show                always display
+.fade                animate with fading
+
+Syntax:
+        <div class="collapse fade show" id="preview">
+
+        </div>
+
+        <button data-bs-toggle="collapse" data-bs-target="#preview">
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Product Details</h2>
+        <dl>
+            <dt>Name</dt>
+            <dd>Nike Casuals</dd>
+            <dt><button class="btn btn-primary" data-bs-target="#preview" data-bs-toggle="collapse">Preview - Toggle</button></dt>
+            <dd>
+                <div class="collapse show fade" id="preview">
+                    <img src="../public/images/shoe.jpg" width="200" height="200">
+                </div>
+            </dd>
+        </dl>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+                        Bootstrap Accordion
+                        ================
+
+- Accordion uses collapse with MUTEX [Mutual Exclusion]
+- Only one container can display its content and others will hide.
+
+.accordion
+.accordion-item
+.accordion-header
+.accordion-body
+.accordion-collapse
+.accordion-button
+
+Note: "data-bs-parent" is used to bind all accordion collapse items to the parent
+           accordion.
+
+FAQ: What happens if "parent" is not defined?
+Ans : It will not exhibit mutex.
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Netflix FAQ's</h2>
+        <div class="accordion" id="faqs">
+            <div class="accordion-item" >
+                <div class="accordion-header">
+                    <a href="#q1" data-bs-toggle="collapse" class="btn btn-dark w-100">What is Netflix</a>
+                </div>
+                <div data-bs-parent="#faqs" class="accordion-body show collapse accordion-collapse" id="q1">
+                    <p>Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected devices.
+                    </p>
+                    <p>You can watch as much as you want, whenever you want, without a single ad – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-bs-parent="#faqs">
+                <div class="accordion-header">
+                    <a href="#q2" data-bs-toggle="collapse" class="btn btn-dark w-100">How much does Netflix Cost?</a>
+                </div>
+                <div data-bs-parent="#faqs" class="accordion-body collapse accordion-collapse" id="q2">
+                    <p>Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from ₹ 149 to ₹ 649 a month. No extra costs, no contracts.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+                             Bootstrap Dropdown
+                             ================
+- Dropdown allows to select any one option from a group of choices.
+- HTML provides <select> for dropdown.
+- HTML dropdown is RC data type, will not allow symbols.
+- HTML dropdown is good for dynamically adding and removing items.
+- Bootstrap dropdown can't add or remove items dynamically, but it can display rich content with icons, symbols, images etc..
+
+
+.dropdown
+.dropup
+.dropstart
+.dropend
+.dropdown-menu
+.dropdown-item
+.dropdown.toggle
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <style>
+            a:link {
+                color:white;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body class="container-fluid">
+        <h2 class="mt-4">DropDown</h2>
+        <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        <div class="dropend">
+            <button data-bs-toggle="dropdown" class="btn btn-dark dropdown-toggle">
+                <span class="bi bi-globe"></span>
+                Language
+            </button>
+            <div class="dropdown-menu bg-dark">
+                <div class="dropdown-item ">
+                    <a href="#" class="text-white">
+                      <span class="bi bi-alarm"></span>    English
+                    </a>
+                </div>
+                <div class="dropdown-item">
+                   <a href="#" class="text-white"> हिन्दी</a>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item">
+                    <a href="#" class="text-white">Help?</a>
+                </div>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+                        Navbar

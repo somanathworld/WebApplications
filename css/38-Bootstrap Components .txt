@@ -1,0 +1,286 @@
+- alerts
+- badge
+- button
+- card
+- carousel
+                              Forms in Bootstrap
+                             ===============
+
+.form-label        It is used for labels   <label>
+
+.form-control        Textbox, textarea, password, date, url, email, etc..
+                 [string, number input, file]
+
+.form-select        It is for dropdown
+
+.form-range        It is for <input type=range>
+
+.form-check-label        for labels with checkbox and radio
+
+.form-check-input        for checkbox and radio
+
+.form-switch        It is to display checkbox and radio in switch style
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <div class="d-flex justify-content-center align-items-center">
+           
+            <form class="w-25 p-2 border border-3 rounded rounded-2 border-primary">
+                <h2>Register User</h2>
+                <div class="mb-3">
+                    <label class="form-label" for="UserName">User Name</label>
+                    <div>
+                        <input type="text" class="form-control" name="UserName">
+                        <div>
+                            <span class="text-danger">User Name Required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="Password">Password</label>
+                    <div>
+                        <input type="password" class="form-control" name="Password">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select City</label>
+                    <div>
+                        <select class="form-select">
+                            <option>Choose Your City</option>
+                            <option>Delhi</option>
+                            <option>Hyderabad</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Date of Birth</label>
+                    <div>
+                        <input type="date" class="form-control">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select Price Range</label>
+                    <div>
+                        <input type="range" class="form-range">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Terms of Service</label>
+                    <div>
+                        <textarea rows="4" disabled class="form-control">Terms and conditions you have to accept.</textarea>
+                    </div>
+                    <div class="form-switch">
+                        <input type="checkbox" checked class="form-check-input"> <label class="form-check-label">I Accept</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary w-100">Register</button>
+                </div>
+            </form>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+                               Form Input Group
+                               ==============
+.input-group-{sm, lg}
+.input-group-text
+
+Syntax:
+        <div class="input-group">
+            <span class="input-group-text"> </span>
+                      <input type="text" class="form-control">
+                     <span class="input-group-text"> </span>
+        </div>
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h3>Password</h3>
+        <div class="input-group">
+            <span class="bi bi-key-fill input-group-text"></span>
+            <input type="password" class="form-control">
+            <span class="bi bi-check-circle-fill input-group-text"></span>
+        </div>
+        <h3>Amazon Search Bar</h3>
+        <div class="input-group">
+            <select class="input-group-text">
+                <option>All</option>
+            </select>
+            <input type="text" class="form-control">
+            <button class="btn btn-warning">
+                <span class="bi bi-search"></span>
+            </button>
+        </div>
+        <h3>Netflix Register</h3>
+        <div class="input-group input-group-lg">
+            <input type="email" class="form-control" placeholder="Your email address">
+            <button class="btn btn-danger">
+                Get Started
+                <span class="bi bi-chevron-right"></span>
+            </button>
+        </div>
+        <h3>Text Append</h3>
+        <div class="input-group">
+            <input type="email" class="form-control">
+            <span class="input-group-text">@gmail.com</span>
+        </div>
+        <h3>Prepend and Append</h3>
+        <div class="input-group">
+            <span class="input-group-text">&#8377;</span>
+            <input type="text" class="form-control">
+            <span class="input-group-text">.00</span>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+                         Bootstrap Modal
+                                  =============
+- It is used to display dialog box.
+- You can control dynamically.
+- Dialog box pops-up.
+
+.modal
+.modal-dialog
+.modal-content
+.modal-header
+.modal-footer
+.modal-body
+
+Syntax:
+        <div class="modal">
+          <div class="modal-dialog">
+           <div class="modal-content">
+                - header
+                - body
+                - footer
+           </div>
+         </div>
+        </div>
+
+Note: Bootstrap 5 disabled nested modals.
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bootstrap Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+   
+    </head>
+    <body class="container-fluid">
+        <h2>Modal</h2>
+        <button data-bs-target="#register" data-bs-toggle="modal" class="btn btn-primary">Register</button>
+        <button data-bs-target="#details" data-bs-toggle="modal" class="btn btn-danger">Product Details</button>
+        <div class="modal fade" id="details">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Product Details</h3>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="../public/images/jacket.jpg" width="200" height="200">
+                        <dl>
+                            <dt>Name</dt>
+                            <dd>Winter Jacket</dd>
+                            <dt>Price</dt>
+                            <dd>5600.44</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="register">
+            <div class="modal-dialog modal-fullscreen  modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Register User</h3>
+                        <button data-bs-dismiss="modal" class="btn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label" for="UserName">User Name</label>
+                            <div>
+                                <input type="text" class="form-control" name="UserName">
+                                <div>
+                                    <span class="text-danger">User Name Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Password">Password</label>
+                            <div>
+                                <input type="password" class="form-control" name="Password">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select City</label>
+                            <div>
+                                <select class="form-select">
+                                    <option>Choose Your City</option>
+                                    <option>Delhi</option>
+                                    <option>Hyderabad</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date of Birth</label>
+                            <div>
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Select Price Range</label>
+                            <div>
+                                <input type="range" class="form-range">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Terms of Service</label>
+                            <div>
+                                <textarea rows="4" disabled class="form-control">Terms and conditions you have to accept.</textarea>
+                            </div>
+                            <div class="form-switch">
+                                <input type="checkbox" checked class="form-check-input"> <label class="form-check-label">I Accept</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary">Register</button>
+                        <button data-bs-dismiss="modal" class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+                       Collapse, Dropdown, Navbar

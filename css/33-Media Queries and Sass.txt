@@ -1,0 +1,272 @@
+Media Queries
+
+@media  type  and (query)
+{
+
+}
+
+type        : screen, print, speech
+
+Syntax:
+        @media  print
+        {
+        }
+
+        @media screen
+        {
+        }
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyframes</title>
+        <style>
+            @media screen {
+                p {
+                    border:2px solid red;
+                    background-color: yellow;
+                    color:red;
+                    padding: 5px;
+                }
+            }
+            @media print {
+                p {
+                    border:none;
+                    background: none;
+                    color:black;
+                }
+                img {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+       
+            <p> <img src="../public/images/backpack.jpg" width="100" height="100"> Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+       
+    </body>
+</html>
+
+
+Queries
+======
+width                exact width of window.
+max-width                upto the width defined.  [upto 500px]
+                from starting to 500px
+
+min-width                from the width defined  [from 500px]
+                from 500px to end
+
+orientation                landscape or portrait
+
+
+Ex:
+ @media screen and (max-width:500px) {
+               body {
+                   background-color: yellow;
+               }
+           }
+           @media screen and (min-width:501px) {
+               body {
+                   background-color: lime;
+               }
+           }
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyframes</title>
+        <style>
+           li {
+               width: 130px;
+               padding: 10px;
+               font-size: 18px;
+               border:1px solid black;
+               background-color: tomato;
+               color:white;
+           }
+           ul {
+               list-style: none;
+           }
+           @media screen and (max-width:500px) {
+              li {
+                  display: block;
+                  margin-bottom: 20px;
+              }
+           }
+           @media screen and (min-width:500px) {
+              li {
+                  display: inline;
+                  margin-right: 20px;
+                  width: 140px;
+              }
+           }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyframes</title>
+        <style>
+           li {
+               width: 130px;
+               padding: 10px;
+               font-size: 18px;
+               border:1px solid black;
+               background-color: tomato;
+               color:white;
+           }
+           ul {
+               list-style: none;
+           }
+           @media screen and (orientation:portrait) and (max-width:500px) {
+              li {
+                  display: block;
+                  margin-bottom: 20px;
+              }
+           }
+           @media screen and (orientation:landscape) and (min-width:500px) {
+              li {
+                  display: inline;
+                  margin-right: 20px;
+                  width: 140px;
+              }
+           }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </body>
+</html>
+
+Meta for Responsive:
+
+<meta name="viewport"  content="width=device-width, initial-scale=1">
+
+viewport        :  defines the media type and size
+content        :  width fits to device width.
+initial-scale:  Initial zoom level   1 = 100%
+            starts with 0 and increase fraction  0.5, 1, 1.5, 2 ..
+
+
+                CSS Pre-Compilers
+                ===============
+- Pre compilers will provide all features for reducing the complexity in CSS.
+- They improve code reusability, code extensibility.
+- They improve minification of code and bundling.
+- Minification is reducing file size.
+- Bundling is reducing the number of requests.
+- Popular Pre-Compilers
+        a) Saas
+        b) Less
+- Pre Compilers are not understandable to browser, you have to transcompile into CSS.
+
+       Developer => Sass => Compile => CSS => Browser
+
+
+                  Syntactically Awesome Style Sheet
+                  ------------------------------------------------
+- Sass is a pre-compiler
+- code reusability
+- code extensibility
+- minification
+- bundling
+
+Download and Install Sass on your PC:
+==============================
+1. Open Command Prompt
+
+2. Type the following
+
+        >npm install  -g  sass  
+
+
+Using Sass in Web Project
+=====================
+1. Create a sass file with extention  ".scss"
+
+.container {
+    border:2px solid red;
+    padding: 10px;
+    h2 {
+        text-align: center;
+        color:red;
+    }
+    p {
+        color:blue;
+    }
+}
+
+2. Trans compile scss into css.
+
+    > sass  effects.scss   effects.css
+
+
+3. Link the CSS file to web page
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyframes</title>
+        <link rel="stylesheet" href="../sass/effects.css">
+    </head>
+    <body>
+       <div class="container">
+          <h2>HTML</h2>
+          <p>It is a markup language</p>
+       </div>
+       <h2>Web Technologies</h2>
+       <p>Building apps for web.</p>
+    </body>
+</html>
+
+                           Variables
+                           =======
+- Variables are storage locations in memory, where you can store a value and use as a part of any expression from any location and any number of times.
+
+- Sass variables are declared by using
+        "$variableName: value"
+
+         selector {
+           attribute : $variableName;
+         }
+
+Ex:
+$shadow : 5px 5px 2px red;
+$border : 2px solid black;
+
+.container {
+    border:$border;
+    padding: 10px;
+    box-shadow: $shadow;
+    h2 {
+        text-align: center;
+        color:red;
+        background-color: yellow;
+        box-shadow: $shadow;
+    }
+    p {
+        color:blue;
+        border:$border;
+        padding: 5px;
+    }
+}

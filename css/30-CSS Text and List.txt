@@ -1,0 +1,265 @@
+CSS Text Attributes
+                      ===============
+
+font-family                : It defines the font name.
+                  sans-serif, serif, monospace
+
+font-weight        : It defines bold
+
+font-style                : It defines italic
+
+font-size                : It defines char size.
+
+font-variant        : It changes the capitalization
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            p {
+                font-size: 30px;
+                font-weight: bold;
+                font-style: italic;
+                font-family: Arial;
+                font-variant: small-caps;
+            }
+        </style>
+    </head>
+    <body>
+       <p>CSS Text Attributes</p>
+    </body>
+</html>
+
+text-decoration        :  It can set text decoration as underline,
+                   overline, line through etc..
+                 
+                   text-decoration : style, color, size
+                 
+Syntax:
+        p {
+            text-decoration-style  : wavy, double, dotted, solid;
+            text-decoration-line    : underline, overline,
+            text-decoration-color  : colorname, code
+                     text-decoration-thickness: size;
+         }
+
+        p{
+           text-decoration: 2px dotted underline red;
+         }
+
+FAQ: How to remove underline for HyperLink?
+Ans :  text-decoration:none
+
+text-align                : Alignment  left, center, right, justify
+
+color                : Text color
+
+text-shadow        : Sets shadow for text
+
+                 
+Ex:
+  p {
+                font-size: 60px;
+                font-weight: bold;
+                text-shadow: 2px 3px 3px red;
+                color:yellow;
+            }
+
+text-transform        : Converts into lower case, uppercase,
+                  titlecase etc..
+       
+p {
+     text-transform : uppercase;
+   }
+
+
+word-spacing        : sets space between words
+
+letter-spacing        : sets space between letters
+
+line-height                : sets space between lines
+
+       
+Syntax:
+        p {
+            word-spacing : 10px;
+            letter-spacing : 15px;
+            line-height: 30px;
+         }
+
+word-break        : It controls the larger words at right margin.
+
+       
+Syntax:
+
+ p {
+              font-size: 30px;
+              word-break: break-all;
+            }
+
+white-space        :  It controls wrapping of text in container
+                   wrap, no-wrap.
+
+text-overflow        : It is used to display overflowing text with
+                  clip or ellipsis.
+
+overflow                : It controls overflowing content
+                  [auto, hidden, scroll]
+
+
+Ex:
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            p {
+              width: 300px;
+              border:2px solid red;
+              height: 45px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+        </style>
+    </head>
+    <body>
+       <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+    </body>
+</html>
+
+FAQ: How to design a drop cap?
+Ans:  By using
+        Selector         ::first-letter
+        Float         : left
+        Font-size
+
+Ex:
+<style>
+           p::first-letter{
+              font-size: 40px;
+              font-family: Arial;
+              font-weight: bold;
+              float: left;
+              color:red;
+              margin-right: 5px;
+              margin-bottom: -5px;
+           }
+        </style>
+
+
+                          CSS List Attributes
+                          ===============
+- List attributes are used for displaying ordered list and unordered list.
+
+list-style                : short hand for list items
+                  none - to remove numbering or bullets.
+
+Syntax:
+        ol, ul {
+           list-style: none;
+        }
+
+list-style-type        : numbered, lower-alpha, disc, etc..
+
+list-style-image        : custom image for list item.
+
+list-style-position        : Inside or outside
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            ol {
+                list-style-image: url("../public/images/tick.gif");
+                list-style-position: inside;
+            }
+            li {
+                border: 2px solid red;
+                padding: 5px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+       <ol>
+           <li>HTML</li>
+           <li>CSS</li>
+           <li>JavaScript</li>
+           <li>JQuery</li>
+       </ol>
+    </body>
+</html>
+
+FAQ: How to display side by side?
+FAQ: How to display in multiple columns?
+        Grid, columns
+
+                             CSS Z-Index
+                             ==========
+z-index    : It is used to bring forward or send backward.
+
+Syntax:
+        z-index : 0                - bottom [behind]
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            div {
+                border:2px solid black;
+                padding: 5px;
+            }
+            .red-box {
+                width: 200px;
+                height: 500px;
+                background-color: red;
+                position: absolute;
+                left: 150px;
+                z-index: 0;
+            }
+            .blue-box {
+                width: 500px;
+                height: 50px;
+                background-color: blue;
+                position: absolute;
+                top:100px;
+                z-index: 2;
+            }
+            .yellow-box {
+                width: 500px;
+                height: 400px;
+                background-color: yellow;
+                position: absolute;
+                left: 30px;
+                top:50px;
+                z-index: 1;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="red-box">
+           Red Box
+       </div>
+       <div class="blue-box">
+           Blue Box
+       </div>
+       <div class="yellow-box">
+           Yellow Box
+       </div>
+    </body>
+</html>
+                       
+Transparent
+2D
+3D
+Animations
+Keyframes

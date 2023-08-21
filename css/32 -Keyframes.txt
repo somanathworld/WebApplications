@@ -1,0 +1,165 @@
+@keyframes
+
+- Animations are designed by using frames.
+- In every frame object moves, resize or rotate etc.
+- CSS uses keyframe with tweening animation.
+
+Syntax:
+        @keyframes    animationName
+        {
+                    from {  }
+           50% {  }
+                    70% {  }
+                    to { }
+        }
+
+        element {
+                   
+         }
+
+- To apply keyframes you need animation attributes
+        animation-name
+        animation-duration
+        animation-delay
+        animation-iteration-count
+        animation-direction
+        animation-timing-function
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyframes</title>
+        <style>
+            .container {
+                overflow: hidden;
+            }
+            @keyframes slideIn
+            {
+                from {
+                    margin-left: 120%;
+                    margin-top: 50%;
+                    width: 400px;
+                    height: 400px;
+                    transform: rotate(360deg);
+                }
+                80% {
+                    transform: skew(30deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                    width: 50px;
+                    height: 50px;
+                }
+                to {
+                    margin-left: 0%;
+                    width: 300px;
+                    height: 300px;
+                    transform: rotate(0deg);
+                }
+            }
+            @keyframes zoomin {
+                from {
+                    font-size: 100px;
+                }
+                to {
+                    font-size: 20px;
+                }
+            }
+            img {
+                animation-name: slideIn;
+                animation-duration: 5s;
+                animation-direction: alternate;
+                animation-iteration-count: infinite;
+            }
+            h2 {
+                animation-name: zoomin;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Welcome</h2>
+            <img src="../public/images/jacket.jpg" width="100" height="100">
+        </div>
+    </body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyframes</title>
+        <style>
+            .container {
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 800px;
+            }
+            @keyframes zoom {
+                from {
+                    width: 1000px;
+                    height: 1000px;
+                }
+                to {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            @keyframes zoomText {
+                from {
+                    font-size: 100px;
+                }
+                to {
+                    font-size: 20px;
+                }
+            }
+            img {
+                animation-name: zoom;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+            p {
+                animation-name: zoomText;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img src="../public/images/jacket.jpg" width="100" height="100">
+            <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+        </div>
+    </body>
+</html>
+
+                     Responsive Design
+                    =================
+- Page should fit according to screen and device.
+- To create responsive design you need
+
+        a) Fluid Images
+        b) Fluid Containers
+        c) Display Grid | Flex | Flex Wrap | Flex Direction
+        d) Columns
+        e) Media Queries
+
+Fluid Images: Size in percentage  
+
+        <img width="40%"  height="40%">
+
+Fluid Container:  Container width, height in percent
+                   Position relative
+                   Margins and padding in percent.
+
+
+                    @media Queries

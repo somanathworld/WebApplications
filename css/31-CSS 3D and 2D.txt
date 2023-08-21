@@ -1,0 +1,339 @@
+Text Direction - Orientation
+
+- Changes the orientation of text in container
+
+text-orientation
+writing-mode
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+           div {
+               width: 200px;
+               height: 400px;
+               border:2px solid red;
+               font-size: 40px;
+               text-orientation: sideways;
+               writing-mode:vertical-lr;
+           }
+        </style>
+    </head>
+    <body>
+       <div>
+           Welcome
+       </div>
+    </body>
+</html>
+
+                           CSS 2D
+               
+- 2D is 2 Dimensional Effects
+- Along X and Y axis.
+- It allows to change position, size, orientation of text.
+- We have to use "transform" attribute for 2D.
+- Transform attribute have browser dependency issues, hence we have to use with the help of browser plugins
+
+        transform : effect;
+        webkit-transform         chrome, safari, edge, opera
+        moz-transform         firefox
+        o-transform         opera
+        ms-transform         internet explorer
+
+- CSS 2D Transforms are
+        translate()
+        scale()
+        rotate()
+        skew()
+        matrix()
+
+
+                           CSS Translate
+                          ============
+- It is used to change the position of element in page.
+- You can move element along x and y axis.
+
+        translate(200px)        x 200, y 200
+        translate(200px, 300px)
+        translateX(200px)
+        translateY(300px)
+
+- You can control the transform time by using "transition".
+
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            img:hover {
+                transform: translate(200px, 200px);
+                transition: 5s;
+            }
+            img {
+                transition: 2s;
+            }
+        </style>
+    </head>
+    <body>
+       <img src="../public/images/jacket.jpg" width="100" height="100">
+    </body>
+</html>
+
+                            Scale()
+                           =======
+- It is used to change the size of element
+- It uses the width and height
+- It used the value 1 = 100
+
+                scale()        width and height
+                scaleX()        width
+                scaleY()        height
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            img:hover {
+                transform: scale(2,3);
+                transition: 5s;
+            }
+            img {
+                transition: 2s;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 500px;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="container">
+        <img src="../public/images/jacket.jpg" width="100" height="100">
+       </div>
+    </body>
+</html>
+                           Rotate()
+                          =======
+- It rotate element by specified angle. [value in deg]
+- You can give -ve angle for counter-clock-wise
+
+                roate()
+                rotateX()
+                rotateY()
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            img:hover {
+                transform: rotate(360deg);
+                transition: 2s;
+            }
+            img {
+                transition: 2s;
+                width: 200px;
+                height: 200px;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 500px;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="container">
+        <img src="../public/images/jacket.jpg" width="100" height="100">
+       </div>
+    </body>
+</html>
+
+                                 Skew()
+- It is used to tilt element by specified angle.
+
+                skew()
+                skewX()
+                skewY()
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            img:hover {
+                transform: skewY(-60deg);
+                transition: 2s;
+            }
+            img {
+                transition: 2s;
+                width: 300px;
+                height: 400px;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 500px;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="container">
+        <img src="../public/images/jacket.jpg" width="100" height="100">
+       </div>
+    </body>
+</html>
+
+                        matrix()
+- Can apply multiple transforms
+
+matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY())
+
+
+- Values can be in interger or fraction.
+        1         = 100
+        1.5         = 150
+        2         = 20deg [Skew]
+        2         = 200 [translate, scale]
+
+Ex:
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            img:hover {
+                transform: matrix(2,-2,2,2,100,200);
+                transition: 2s;
+            }
+            img {
+                transition: 2s;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="../public/images/jacket.jpg" width="100" height="100">
+     
+    </body>
+</html>
+
+                        CSS 3D
+- 3D is 3 Dimensions
+        x
+        y
+        z
+- You can transform in 3 dimensions using
+               
+                translate3D()
+                translateX()        
+                translateY()
+                translateZ()
+                scale3D()
+                rotate3D()
+                skew3D()
+                matriz3D()
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+            img:hover {
+                transform: scale3d(1.2,1.2,2);
+                transition: 2s;
+                box-shadow: 20px 20px 2px gray;
+                margin-left: -20px;
+             
+            }
+            img {
+                transition: 2s;
+                width: 120px;
+                height: 120px;
+                border:2px solid black;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 500px;
+            }
+            .box {
+                width: 150px;
+                height: 150px;
+                border:2px solid black;
+                padding: 3px;
+                margin-right: 30px;
+            }
+        </style>
+    </head>
+    <body>
+       <div class="container">
+         <div class="box">
+            <img src="../public/images/jacket.jpg" width="100" height="100">
+         </div>
+         <div class="box">
+            <img src="../public/images/shoe.jpg" width="100" height="100">
+         </div>
+         <div class="box">
+            <img src="../public/images/shoe1.jpg" width="100" height="100">
+         </div>
+         <div class="box">
+            <img src="../public/images/neckband.PNG" width="100" height="100">
+         </div>
+       </div>
+    </body>
+</html>
+
+                   CSS Transition Attributes
+- transition
+- transition-duration                : total time interval
+- transition-delay                : start time
+- transition-property                : properties to used transition
+- transition-timing-function        : ready made functions [animations]
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Background</title>
+        <style>
+           .box {
+               width: 100px;
+               height: 100px;
+               background-color: red;
+               transition-duration: 5s;
+               transition-timing-function: steps(5);
+           }
+           .box:hover {
+              width: 800px;
+              background-color: yellow;
+              transition-duration: 2s;
+              transition-timing-function: steps(10);
+           }
+        </style>
+    </head>
+    <body>
+       <div class="box">
+
+       </div>
+    </body>
+</html>
+
+
+                         @keyframes
