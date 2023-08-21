@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Element Classes and Behavioural</title>
+        <style>
+            ul{
+                display: flex;
+                list-style: none;
+            }
+            li::after{
+                content: "/";
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+            li:last-child::after{
+                content: "";
+            }
+            li:last-child{
+                color: grey;
+            }
+
+            li::selection{
+                color: green;
+                background-color: bisque;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>Home</li>
+            <li>Categories</li>
+            <li>Electronics</li>
+            <li>Mobiles</li>
+            <li>Samsung</li>
+        </ul>
+    </body>
+</html>

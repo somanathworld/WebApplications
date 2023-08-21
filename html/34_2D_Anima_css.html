@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2D Animations</title>
+        <style>
+            img{
+                width: 200px;
+                height: 200px;
+                transition: 3s;
+            }
+
+            .translate-container img:hover{
+                transform: translate(100px, 200px);
+                transition-duration: 3s;
+            }
+
+            .rotate-container img:hover{
+                transform: rotate(360deg);
+                transition-duration: 3s;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="translate-container">
+            <img src = "../public/images/speaker.jpg"/>
+        </div>
+        <div class="rotate-container">
+            <img src = "../public/images/speaker.jpg"/>
+        </div>
+        <div class="translate-container">
+            <img src = "../public/images/speaker.jpg"/>
+        </div>
+    </body>
+</html>
+

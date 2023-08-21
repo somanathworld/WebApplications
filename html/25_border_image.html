@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Border image</title>
+        <style>
+            .container{
+                border : 20px solid transparent;
+                border-image: url("../public/images/border.png");
+                padding: 10px;
+                color : red;
+            }
+
+            .container-border{
+                border: 10px solid red;
+                border-top-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class = "container">
+            This is a container
+        </div>
+        <img class = "container-border" src = "../public/images/pic4.jpg" width="500" height="200"/>
+    </body>
+</html>

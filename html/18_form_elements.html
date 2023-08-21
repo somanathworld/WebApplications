@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Demo</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+<style>
+    #box{
+        display: flex;
+        height: 500px;
+        justify-content: center;
+        align-items: center;
+    }
+    body{
+        background-color: black;
+        color: aliceblue;
+    }
+</style>
+</head>
+
+<body class="container-fluid">
+    <div id="box">
+        <div>
+            <div class="input-group">
+                <select class="input-group-text">
+                    <option>All</option>
+                    <option>Electronics</option>
+                    <option>Footware</option>
+                    <option>Fashion</option>
+                </select>
+                <input type="text" placeholder="amazon search" name="searchbox" class="form-control"/>
+                <button class="btn btn-warning"><span class="bi bi-search"></span></button>
+            </div>
+            <br><br>
+            <p>Ready to watch? Enter your email to create or restart your membership.
+            <div class="input-group input-group-lg">
+                <input type = "email" placeholder="your email address" class="form-control">
+                <button class="btn btn-danger">Get started<span class = "bi bi-chevron-right"></span></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign On Page</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        #box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+        }
+
+        form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid grey;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <body class="container-fluid">
+        <div id="box">
+            <form>
+                <h2>Sign On</h2>
+                <div class="mb-2">
+                    <label class="form-label"><b>Email or mobile phone number</b></label>
+                    <div>
+                        <input type="email" class="form-control" />
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <button class="btn btn-warning w-100">Continue</button>
+                </div>
+                <div class="mb-2">
+                    <p>By continuing, you agree to Amazon's conditions of </p>
+                </div>
+                <div class="mb-2">
+                    <details>
+                        <summary><a href="#">Need help?</a></summary>
+                        <dd><a href="#">Forgot password</a></dd>
+                        <dd><a href="#">Other issue with signin</a></dd>
+                    </details>
+                </div>
+                <div>
+                    <hr/>
+                </div>
+                <div>
+                    <button class="btn btn-dark w-100">
+                        Create your Amazon account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </body>
+</body>
+
+</html>

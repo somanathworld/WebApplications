@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Css selector</title>
+        <style>
+            #username:invalid + span{
+                display: inline;
+            }
+            #username:valid + span {
+                display: none;
+            }
+
+            #mobile:valid + span{
+                display: none;
+            }
+            #mobile:invalid + span{
+                display: inline;    
+            }
+            #age:valid + span {
+                display: none;
+            }
+            #age:invalid + span {
+                display: inline;
+            }
+            #age:valid{
+                border: 1px solid green;
+            }
+            #age:invalid{
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <dl>
+            <dt>Username : </dt>
+            <dd><input type = "text" id = "username" required>
+                <span style="color: red">Username required</span></dd>
+            <dt>Mobile : </dt>
+            <dd><input type = "text" id = "mobile" pattern="\+91\d{10}">
+                <span style="color: red">Mobile required / invalid : +91 and 10 digits required</span></dd>
+            <dt>Age : </dt>
+            <dd><input type = "number" id = "age" min="15" max="25">
+                <span style="color:red">Age 15 to 30 only </span></dd>
+        </dl>
+    </body>
+</html>
