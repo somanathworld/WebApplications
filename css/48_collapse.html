@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Collapse Demo</title>
+    <link rel = "stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <link rel = "stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+</head>
+
+<body class="container-fluid">
+    <h2>Product Details</h2>
+    <dl>
+        <dt>Name : </dt>
+        <dd>Nike Casuals</dd>
+        <dt><button class="btn btn-primary" data-bs-target="#preview" data-bs-toggle="collapse">Preview-Toggle</button>
+        </dt>
+        <dd>
+            <div class="collapse fade" id="preview">
+                <img src="../public/images/shoe.jpg" width="200px" height="200px" />
+            </div>
+        </dd>
+        <dt><a class = "text-decoration-none" href="#prod-details" data-bs-toggle="collapse">Product details</a>
+        </dt>
+        <dd>
+            <div class="collapse fade" id="prod-details">
+                <dl>
+                    <dt>Price : </dt>
+                    <dd>1299.00</dd>
+                    <dt>Stock : </dt>
+                    <dd>Available</dd>
+                </dl>
+            </div>
+        </dd>        
+    </dl>
+
+    <script type = "text/javascript" src = "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type = "text/javascript" src = "../node_modules/jquery/dist/jquery.js"></script>
+</body>
+
+</html>

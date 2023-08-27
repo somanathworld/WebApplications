@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cards Demo</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body class="container-fluid">
+    <h2> Product Catalogue </h2>
+    <div class="d-flex flex-wrap">
+        <div class="card p-2 m-2" style="width: 250px;">
+            <img class="card-img-top" src="../public/images/shoe.jpg" height="200px">
+            <div class="card-header">
+                <h3 class="card-title">Nick Shoe</h3>
+                <p class="card-subtitle">50% Off</p>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-4">Price</dt>
+                    <dd class="col-8">1999.00</dd>
+                    <dt class="col-4">Stock</dt>
+                    <dd class="col-8">Available</dd>
+                </dl>
+                <a class="card-link">more...</a>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-danger w-100"><span class="bi bi-cart4"></span>Add to cart</button>
+            </div>
+        </div>
+ 
+        <div class="card p-2 m-2" style="width: 250px;">
+            <div class="card-header">
+                <h3 class="card-title">Boat Speaker</h3>
+                <p class="card-subtitle">50% Off</p>
+            </div>            
+            <div class="card-body">
+                <img class="card-img-top" src="../public/images/speaker.jpg" height="200px">
+                <dl class="row">
+                    <dt class="col-4">Price</dt>
+                    <dd class="col-8">1499.00</dd>
+                    <dt class="col-4">Stock</dt>
+                    <dd class="col-8">Unavailable</dd>
+                </dl>
+                <a class="card-link">more...</a>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-danger w-100"><span class="bi bi-cart4"></span>Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>

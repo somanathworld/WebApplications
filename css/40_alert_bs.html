@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alert Component</title>
+        <link rel = "stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel = "stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <h2>Alert</h2>
+        <div class="alert alert-danger alert-dismissible">
+            <h2 class="alert-title">Delete Record</h2>
+            <button data-bs-dismiss="alert" class="btn-close"></button>
+            <p class="alert-subtitle">Record will be deleted permanently</p>
+            <a class="alert-link" href="#">help?</a>
+            <button class="bg-danger text-white" data-bs-dismiss="alert">OK</button>
+        </div>
+
+        <div class="alert alert-success alert-dismissible">
+            <h2 class="alert-title">Insert Record</h2>
+            <button data-bs-dismiss="alert" class="btn-close"></button>
+            <p class = "alert-subtitle">Record inserted successfully</p>
+            <a href="#" class="alert-link">help?</a>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>

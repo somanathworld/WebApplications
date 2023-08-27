@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accordion Demo</title>
+        <link rel = "stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <link rel = "stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+    </head>
+    <body class="container-fluid">
+        <h2>Netflix FAQs?</h2>
+        <div class="accordion" id = "faqs">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <a class="btn btn-dark w-100" href="#q1" data-bs-toggle="collapse">What is Netflix?</a>
+                </div>
+                <div class="accordion-body collapse accordion-collapse" id = "q1" data-bs-parent="#faqs">
+                    <p>Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected devices.</p>
+                    <p>You can watch as much as you want, whenever you want, without a single ad – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <a class="btn btn-dark w-100" href = "#q2" data-bs-toggle = "collapse">How much does Netflix cost?</a>
+                </div>
+                <div class="accordion-body collapse" id = "q2" data-bs-parent="#faqs">
+                    <p>Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from ₹ 149 to ₹ 649 a month. No extra costs, no contracts.</p>
+                </div>
+            </div>
+        </div>
+
+        <script type = "text/javascript" src = "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script type = "text/javascript" src = "../node_modules/jquery/dist/jquery.js"></script>
+    </body>
+</html>

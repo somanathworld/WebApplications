@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nav-Bar Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    </head>
+    <body class="container-fluid">
+        <h2>Tab Base Nav</h2>
+        <ul class="nav nav-pills">
+            <li class="nav-item active"><a data-bs-toggle = "tab" href = "#basic" class="nav-link">Basic Details</a></li>
+            <li class="nav-item"><a data-bs-toggle = "tab" href = "#preview" class="nav-link">Preview</a></li>
+            <li class="nav-item"><a data-bs-toggle = "tab" href = "#description" class="nav-link">Description</a></li>
+        </ul>
+        <div class = "tab-content">
+            <div class="tab-pane active" id = "basic">
+                <h3>Basic Details</h3>
+                <dl>
+                    <dt>Name : </dt>
+                    <dd>Nike Casuals</dd>
+                    <dt>Price : </dt>
+                    <dd>12999.00 </dd>
+                </dl>
+            </div>
+            <div class="tab-pane" id = "preview">
+                <h3>Preview</h3>
+                <img class = "img img-thumbnail" src = "../public/images/shoe.jpg" width="200" height="200">
+            </div>
+            <div class="tab-pane" id = "description">
+                <h3>Description</h3>
+                <p>Something about Nike casuals...</p>
+            </div>
+        </div>
+
+        <hr/><br/>
+
+        <h2>Pill Base Nav</h2>
+        <ul class="nav nav-pills">
+            <li class="nav-item active me-2"><button data-bs-toggle = "tab" data-bs-target = "#bbasic" class="btn btn-danger">Basic Details</button></li>
+            <li class="nav-item me-2"><button data-bs-toggle = "tab" data-bs-target = "#bpreview" class="btn btn-danger">Preview</button></li>
+            <li class="nav-item me-2"><button data-bs-toggle = "tab" data-bs-target = "#bdescription" class="btn btn-danger">Description</button></li>
+        </ul>
+        <div class = "tab-content">
+            <div class="tab-pane active" id = "bbasic">
+                <h3>Basic Details</h3>
+                <dl>
+                    <dt>Name : </dt>
+                    <dd>Nike Casuals</dd>
+                    <dt>Price : </dt>
+                    <dd>12999.00 </dd>
+                </dl>
+            </div>
+            <div class="tab-pane" id = "bpreview">
+                <h3>Preview</h3>
+                <img class = "img img-thumbnail" src = "../public/images/shoe.jpg" width="200" height="200">
+            </div>
+            <div class="tab-pane" id = "bdescription">
+                <h3>Description</h3>
+                <p>Something about Nike casuals...</p>
+            </div>
+        </div>        
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
