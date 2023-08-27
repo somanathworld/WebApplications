@@ -1,0 +1,393 @@
+Polymorphism
+- Poly means many
+- Morphos means forms
+- It is technique that allows a component to work for various situations.
+- Creating an object that can work for various situations.
+- You can overload the memory for object and you can configure various functionalities for object.
+
+Ex:
+<script>
+    class Employee
+    {
+        FirstName;
+        LastName;
+        Designation;
+        Print(){
+            document.write(`${this.FirstName} ${this.LastName} - ${this.Designation}<br>`);
+        }
+    }
+    class Developer extends Employee
+    {
+        FirstName = "Raj";
+        LastName = "Kumar";
+        Designation = "Developer";
+        Role = "Developer Role : Build, Debug, Test, Deploy";
+        Print(){
+            super.Print();
+            document.write(this.Role);
+        }
+    }
+    class Admin extends Employee
+    {
+        FirstName = "Kiran";
+        LastName = "Rao";
+        Designation = "Admin";
+        Role = "Admin Role : Authorization, Authentication";
+        Print(){
+            super.Print();
+            document.write(this.Role);
+        }
+    }
+    class Manager extends Employee
+    {
+        FirstName = "Tom";
+        LastName = "Hanks";
+        Designation = "Manager";
+        Role = "Manager Role : Approvals";
+        Print(){
+            super.Print();
+            document.write(this.Role);
+        }
+    }
+    let designation = prompt("Enter Designation");
+    let employees = new Array();
+    employees[0] = new Developer();
+    employees[1] = new Admin();
+    employees[2] = new Manager();
+
+    for(var employee of employees)
+    {
+        if(employee.Designation==designation)
+        {
+            employee.Print();
+        }
+    }
+</script>
+
+
+Summary
+- Modules
+- Class
+- Properties
+- Accessors
+- Methods
+- Constructor
+- Inheritance
+- Polymorphism
+
+        JavaScript Browser Objects
+1. window
+2. location
+3. navigator
+4. history
+5. document
+
+window: It provides a set of properties and methods that are used
+              control browser window.
+
+    open()
+    close()
+    print()
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Browser Object</title>
+    </head>
+    <body>
+        <a href="javascript:window.open('../public/images/shoe.jpg','Nike','width=400 height=400')">
+            <img src="../public/images/shoe.jpg" width="50" height="50">
+            <p>Click to open in new window</p>
+        </a>
+        <button onclick="window.close()">Close</button>
+        <button onclick="window.print()">Print Page</button>
+    </body>
+</html>
+
+
+Location Object:
+- It provides properties and methods to get client location details
+
+    host        : returns server name or IP
+    protocol        : returns protocol, http:, file:
+    port        : returns port number
+    href        : get and set complete url
+    pathName        : returns only path
+    hash        : returns current hash "#" location
+    search        : returns query string
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Browser Object</title>
+        <script>
+            function GetDetails(){
+                if(location.protocol=="http:"){
+                    document.write("<h1>You are accessing page from Web Server</h1>");
+                } else {
+                    document.write("<h1>You are not using Web Server - It is a File Server </h1>");
+                }
+                document.write(`
+                    Server Name / IP : ${location.host} <br>
+                    Protocol         : ${location.protocol} <br>
+                    Port Number      : ${location.port} <br>
+                    URL              : ${location.href} <br>
+                    Path Name        : ${location.pathname}
+                `);
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="GetDetails()">Get Location Details</button>
+    </body>
+</html>
+
+Ex: Href can get and set
+    location.href    // getter
+    location.href=path    // setter
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <style>
+            dd {
+                margin-bottom: 10px;
+            }
+        </style>
+        <script>
+            function Captcha(){
+                var a = Math.random() * 10;
+                var b = Math.random() * 10;
+                var c = Math.random() * 10;
+                var d = Math.random() * 10;
+                var e = Math.random() * 10;
+                var f = Math.random() * 10;
+                return `${Math.round(a)} ${Math.round(b)} ${Math.round(c)} ${Math.round(d)} ${Math.round(e)} ${Math.round(f)}`;
+            }
+            function LoginClick(){
+                var username = document.getElementById("UserName").value;
+                var password = document.getElementById("Password").value;
+                var msg = document.getElementById("msg");
+
+                fetch("../data/users.json")
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(users){
+                    for(var user of users)
+                    {
+                        if(user.UserName==username && user.Password==password) {
+                            location.href="kfconline.html";
+                        } else {
+                            msg.innerHTML= "Invalid User Name / Password";
+                        }
+                    }
+                })
+            }
+            function bodyload(){
+                document.getElementById("code").innerHTML = Captcha();
+            }
+            function GetNewCode(){
+                document.getElementById("code").innerHTML = Captcha();
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <fieldset>
+            <legend>User Login</legend>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" id="UserName"></dd>
+                <dt>Password</dt>
+                <dd><input type="password" id="Password"></dd>
+                <dt>Verify Code <button onclick="GetNewCode()"><span class="bi bi-arrow-clockwise"></span></button> </dt>
+                <dd id="code"></dd>
+                <dd><input type="text" size="6"></dd>
+            </dl>
+            <button onclick="LoginClick()">Login</button>
+        </fieldset>
+        <h2 id="msg" align="center"></h2>
+    </body>
+</html>
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+Ex: Hash location
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shopping</title>
+        <style>
+            header {
+                background-color: black;
+                color:white;
+                text-align: center;
+                font-size: 30px;
+                padding: 10px;
+            }
+            section {
+                display: grid;
+                grid-template-columns: 3fr 9fr;
+            }
+            ul {
+                list-style: none;
+                margin-left: -40px;
+            }
+            li {
+                background-color: black;
+                color:white;
+                padding: 5px;
+                margin-bottom: 20px;
+                width: 140px;
+            }
+            main {
+                height: 400px;
+                overflow: auto;
+            }
+            nav a {
+                color:white;
+                text-decoration: none;
+            }
+            span a {
+                text-decoration: none;
+                color:green;
+                font-weight: bold;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            function RecentClicked(){
+                var recent = location.hash;
+                document.getElementById("result").innerHTML += recent.substring(1) + "<br>";
+            }
+        </script>
+    </head>
+    <body>
+        <header>Shopping Online</header>
+        <section>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#electronics">Electronics</a></li>
+                    <li><a href="#footwear">Footwear</a></li>
+                    <li><a href="#fashion">Fashion</a></li>
+                    <li>
+                        <a href="javascript:RecentClicked()">Recently Viewed</a>
+                        <p id="result"></p>
+                    </li>
+                   
+                </ul>
+            </nav>
+            <main>
+                <h2 id="home">Home</h2>
+                <p>Your use of this software <span><a href="#mobile">Visit Mobiles</a></span> is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <h2 id="electronics">Electronics</h2>
+                <img src="../public/images/neckband.PNG" width="100" height="100">
+                <img src="../public/images/speaker.jpg" width="100" height="100">
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                 <figure>
+                     <figcaption id="mobile">Mobile</figcaption>
+                     <img src="../public/images/mobile1.jpeg" width="150" height="200">
+                     <div>
+                         <a href="#home">Back to Home</a>
+                     </div>
+                 </figure>
+                 
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <h2 id="footwear">Footwear</h2>
+                <img src="../public/images/shoe.jpg" width="100" height="100">
+                <img src="../public/images/shoe1.jpg" width="100" height="100">
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <h2 id="fashion">Fashion</h2>
+                <img src="../public/images/backpack.jpg" width="100" height="100">
+                <img src="../public/images/jacket.jpg" width="100" height="100">
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+                <p>Your use of this software is subject to the terms and conditions of the license agreement by which you acquired this software.  If you are a volume license customer, use of this software is subject to your volume license agreement.  You may not use this software if you have not validly acquired a license for the software from Microsoft or its licensed distributors.</p>
+            </main>
+        </section>
+    </body>
+</html>
+
+FAQ: How to transport data from one page to another?
+Ans: Query String
+
+1. search.html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search</title>
+    </head>
+    <body>
+        <form method="get" action="result.html">
+            <div align="center">
+                <h1>Google</h1>
+                <input type="text" name="search" size="40">
+                <p>
+                    <button>Search</button>
+                </p>
+            </div>
+        </form>
+    </body>
+</html>
+
+
+2. result.html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Result</title>
+        <script>
+            function bodyload(){
+                var str = location.search;
+                var word = str.substring(str.indexOf("=") + 1);
+                document.getElementById("msg").innerHTML = "Searching for :" + word;
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <h2>Result Page</h2>
+        <div id="msg"></div>
+    </body>
+</html>

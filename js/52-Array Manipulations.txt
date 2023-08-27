@@ -1,0 +1,312 @@
+FAQ: How to create a new HTML element dynamically?
+Ans : By using the method
+      document.createElement("name");
+      document.createElement("img");
+      document.createElement("p");
+
+FAQ: How to configure element?
+
+         var  img = document.createElement("img");
+         img.width = "200";
+         img.height="100";
+         img.src="../public/images/shoe.jpg";
+
+FAQ: How to add new element into page?
+Ans:  By using method "appendChild()"
+          <div> </div>
+
+          document.querySelector("div").appendChild(img);
+
+Ex:
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo</title>
+    <script>
+      function CreateClick(){
+         var pic = document.createElement("img");
+         pic.width = "100";
+         pic.height = "100";
+         pic.border = "1";
+         pic.src = "../public/images/jacket.jpg";
+         pic.style.marginTop = "50px";
+         document.getElementById("container").appendChild(pic);
+      }
+    </script>
+  </head>
+  <body>
+     <div>
+       <button onclick="CreateClick()">Create Image</button>
+     </div>
+     <div id="container">
+       
+     </div>
+  </body>
+</html>
+
+                Presenting Array Content Dynamically
+                =============================
+- Create Element
+- Set Properties
+- Append to Parent
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Array Demo</title>
+        <script>
+            var categories = ["All", "Electronics", "Footwear", "Fashion", "Men's Clothing"];
+            function bodyload(){
+                for(var item of categories)
+                {
+                    var li = document.createElement("li");
+                    li.innerHTML = item;
+                    document.querySelector("ol").appendChild(li);
+
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+
+                    document.querySelector("select").appendChild(option);
+
+
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    td.innerHTML = item;
+                    tr.appendChild(td);
+
+                    document.querySelector("tbody").appendChild(tr);
+
+                    var checkLi = document.createElement("li");
+                    checkLi.innerHTML=`<input type="checkbox"> ${item}`;
+
+                    document.querySelector("ul").appendChild(checkLi);
+
+                    var div = document.createElement("div");
+                    div.innerHTML = `<button style="width:200px; margin-top:20px">${item}</button>`;
+
+                    document.querySelector("nav").appendChild(div);
+
+                }
+            }
+        </script>
+
+        <style>
+           .container {
+               display: flex;
+           }
+           .box {
+             margin-right: 20px;  
+           }
+           ul {
+               list-style: none;
+               height: 50px;
+               border: 2px solid black;
+               padding: 10px;
+               overflow: auto;
+           }
+        </style>
+    </head>
+    <body onload="bodyload()">
+       <div class="container">
+        <div class="box">
+            <h3>Categories List</h3>
+            <ol>
+
+            </ol>
+         </div>
+         <div class="box">
+             <h3>Select Category</h3>
+            <select>
+
+            </select>
+         </div>
+         <div class="box">
+            <h3>Categories Menu</h3>
+            <table border="1" width="200">
+              <thead>
+                  <tr>
+                      <th>Select Category</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+         </div>
+         <div class="box">
+             <h3>Categories CheckList</h3>
+             <ul>
+
+             </ul>
+         </div>
+         <div class="box">
+             <h3>Nav Buttons</h3>
+             <nav>
+
+             </nav>
+         </div>
+       </div>
+    </body>
+</html>
+
+
+
+        Array Manipulations
+1. Adding Elements into Array
+ 
+    push()        : It will add new items as last item.
+    unshift()    : It will add new items as first item.
+    splice()        : It will add new items at specific position.
+
+ Syntax:
+    arrayName.push("item1", "item2");
+    arrayName.unshift("item1", "item2");
+    arrayName.splice(startIndex, deleteCount, "item1", "item2")
+
+2. Removing Elements form Array
+
+     pop()        removes and returns last item
+     shift()        removes and returns first item
+     splice()        removes specific item
+
+ Syntax:
+    splice(indexNumber, deleteCount)
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Array Demo</title>
+        <script>
+            var categories = ["All", "Electronics", "Footwear", "Fashion", "Men's Clothing"];
+            function LoadCategories(){
+                document.querySelector("ol").innerHTML = "";
+                document.querySelector("select").innerHTML = "";
+                document.querySelector("tbody").innerHTML = "";
+                document.querySelector("ul").innerHTML = "";
+                document.querySelector("nav").innerHTML="";
+                for(var item of categories)
+                {
+                    var li = document.createElement("li");
+                    li.innerHTML = item;
+                    document.querySelector("ol").appendChild(li);
+
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item;
+
+                    document.querySelector("select").appendChild(option);
+
+
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    td.innerHTML = item;
+                    tr.appendChild(td);
+
+                    document.querySelector("tbody").appendChild(tr);
+
+                    var checkLi = document.createElement("li");
+                    checkLi.innerHTML=`<input type="checkbox"> ${item}`;
+
+                    document.querySelector("ul").appendChild(checkLi);
+
+                    var div = document.createElement("div");
+                    div.innerHTML = `<button style="width:200px; margin-top:20px">${item}</button>`;
+
+                    document.querySelector("nav").appendChild(div);
+
+                }
+            }
+            function bodyload(){
+               LoadCategories();
+            }
+            function AddClick(){
+                var categoryname = document.getElementById("txtCategory").value;
+                if(categories.indexOf(categoryname)==-1)
+                {
+                    categories.push(categoryname);
+                    alert(`${categoryname} Add to List`);
+                    LoadCategories();
+                    document.getElementById("txtCategory").value="";
+                } else {
+                    alert(`${categoryname} Exists`);
+                }
+            }
+            function RemoveClick(){
+                var categoryname = document.querySelector("select").value;
+                var index = categories.indexOf(categoryname);
+                var flag = confirm(`Are you sure, whant to delete : ${categoryname}`);
+                if(flag==true) {
+                    categories.splice(index,1);
+                    LoadCategories();
+                }
+            }
+        </script>
+
+        <style>
+           .container {
+               display: flex;
+           }
+           .box {
+             margin-right: 20px;  
+           }
+           ul {
+               list-style: none;
+               height: 50px;
+               border: 2px solid black;
+               padding: 10px;
+               overflow: auto;
+           }
+        </style>
+    </head>
+    <body onload="bodyload()">
+        <div style="margin-bottom: 20px;">
+             New Category :
+            <input type="text" id="txtCategory">
+            <button onclick="AddClick()">Add</button>
+        </div>
+       <div class="container">
+        <div class="box">
+            <h3>Categories List</h3>
+            <ol>
+
+            </ol>
+         </div>
+         <div class="box">
+             <h3>Select Category</h3>
+            <select>
+
+            </select>
+            <br><br>
+            <button onclick="RemoveClick()">Remove</button>
+         </div>
+         <div class="box">
+            <h3>Categories Menu</h3>
+            <table border="1" width="200">
+              <thead>
+                  <tr>
+                      <th>Select Category</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+         </div>
+         <div class="box">
+             <h3>Categories CheckList</h3>
+             <ul>
+
+             </ul>
+         </div>
+         <div class="box">
+             <h3>Nav Buttons</h3>
+             <nav>
+
+             </nav>
+         </div>
+       </div>
+    </body>
+</html>

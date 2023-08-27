@@ -1,0 +1,226 @@
+	
+NEW MATERIAL
+Array Declaration and Manipulation
+Declaring Array:
+==============
+- It is same like declaring any another variable.
+
+    var  arrayName;
+
+- Array must be initialized or assigned with memory.
+
+    var arrayName = [ ];
+    var arrayName = new Array();
+
+    var arrayName;
+    arrayName = [ ];
+    arrayName = new Array();
+
+FAQ: What is difference between array [ ] and  Array()?
+Ans:  Array [ ] character can take value.
+         Array() can define size for value.
+
+         arrayName = [ ];        static memory
+         arrayName = new Array();       dynamic memory
+
+         [ ]     contineous memory
+         Array()  discreet memory
+
+Ex:
+    var categories = [ "Electronics", "Footwear" ];
+    var categories = new Array("Electronics", "Footwear");
+
+Storing Values into Array:
+===================
+- Array comprises of index and property.
+- Data is stored in the reference of memory index.
+- Data is accessed by using property reference.
+- You can use property for storing and accessing data.
+- Property name will be the same as index.
+- Property type is string.
+
+ Syntax:
+    var  categories = [ ];
+    categories[0] = "Electronics";
+    categories["1"] = 10;
+    categories["2"] = true;
+
+Ex:
+<script>
+   var categories = [];
+   categories["0"] = "Electronics";
+   categories[1] = 10;
+   categories["2"] = true;
+   for(var property in categories)
+   {
+     document.write(`[${property}] - ${typeof property} : ${categories[property]}(${typeof categories[property]})<br>`);
+   }
+</script>
+
+FAQ:What type of value can be stored in array?
+Ans: You can store any type of value.
+    - primitive
+    - non primitive
+    - function
+
+Ex:
+<script>
+   var values = [10, "John", true, ["Hyd", "Delhi"], function(){document.write("function in array..")}];
+
+   document.write(values[3][1] + "<br>");
+
+   values[4]();
+</script>
+
+Note: If you are defining a function in array then it must be anonymous type i.e without name. You can access the function using property.
+
+
+FAQ: What is array destruction?
+Ans: It is a technique used to extract the values from array and store
+        in various references.
+
+Ex:
+<script>
+   var values = [10, "John", true, ["Hyd", "Delhi"], function(){document.write("function in array..")}];
+   
+   var [id, name, stock, cities, print] = values;
+   print();
+   document.write(cities);
+</script>
+
+Reading Values from Array:
+=====================
+1. You can read by using property name
+
+Ex:
+<script>
+   var categories = ["Electronics", "Footwear"];
+   document.write(categories["1"]);
+</script>
+
+2. You can use "toString()" , which returns all elements separated with delimeter ", "
+
+Ex:
+<script>
+   var categories = ["Electronics", "Footwear", "Fashion"];
+   document.write(categories.toString());
+</script>
+
+3. You can use "join()", which used custom delimeter.
+
+Ex:
+<script>
+   var categories = ["Electronics", "Footwear", "Fashion"];
+   document.write(categories.join("/"));
+</script>
+
+4. You can read by using map(), It is an iterator that reads every element from array and presents in the UI.
+
+Ex:
+<script>
+   var categories = ["Electronics", "Footwear", "Fashion"];
+   categories.map(function(category){
+      document.write(`<h2>${category}</h2>`);
+   })
+</script>
+
+5. You can read by using for..in  statement, which returns all properties
+
+Syntax:
+    for(var property in collection)
+    {
+    }
+
+Ex:
+<script>
+   var categories = ["Electronics", "Footwear", "Fashion"];
+   for(var property in categories)
+   {
+     document.write(property + "<br>");
+   }
+</script>
+
+6. You can read all values by using "for..of"
+
+Syntax:
+    for(var value of collection)
+    {
+    }
+EX:
+<script>
+   var categories = ["Electronics", "Footwear", "Fashion"];
+   for(var value of categories)
+   {
+     document.write(value + "<br>");
+   }
+</script>
+
+7. You can read both properties and values by using for..in
+
+Ex:
+<script>
+   var categories = ["Electronics", "Footwear", "Fashion"];
+   for(var property in categories)
+   {
+     document.write(`[${property}] : ${categories[property]}<br>`);
+   }
+</script>
+
+8. You can use "find()" method, which can search and return only the value that matches your condition. It returns single value.
+
+
+Ex:
+<script>
+   var sales = [45000, 66000, 62000, 24000, 56300];
+   var result = sales.find(function(value){
+      return value<=50000;
+   });
+   document.write(result);
+</script>
+
+
+9. You can use "filter()" method, which returns all values that match the given condition.
+
+Ex:
+<script>
+   var sales = [45000, 66000, 62000, 24000, 56300];
+   var result = sales.filter(function(value){
+      return value>=50000;
+   });
+   document.write(result);
+</script>
+
+10. You can use "for" loop for reading values
+
+  Syntax:
+    for(var  i = 0; i<collection.length; i++)
+    {
+    }
+
+Ex:
+<script>
+   var sales = [45000, 66000, 62000, 24000, 56300];
+   for(var i=0; i<sales.length; i++)
+   {
+    document.write(sales[i] + "<br>");
+   }
+</script>
+
+
+Ex: Presenting Buttons with Map
+
+<script>
+   var categories = ["Electronics", "Footwear", "Fashion"];
+   categories.map(function(category){
+      document.write(`<button>${category}</button>`);
+   })
+</script>
+
+Ex: Presenting Images
+
+<script>
+   var products = ["../public/images/speaker.jpg", "../public/images/jacket.jpg", "../public/images/shoe.jpg"];
+   products.map(function(path) {
+     document.write(`<div><img src=${path} width="100" height="100"></div>`);
+   })
+</script>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <style>
+            form {
+                border:2px solid gray;
+                padding: 20px;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 400px;
+            }
+        </style>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            function ChangeMode(){
+                var theme = document.getElementById("theme");
+                if(theme.checked) {
+                    document.querySelector("form").className = "bg-dark p-3 text-white";
+                    document.querySelector("button").className = "btn btn-light w-100";
+                } else {
+                    document.querySelector("form").className = "bg-light p-3 text-dark";
+                    document.querySelector("button").className = "btn btn-dark w-100";
+                }
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+       <div class="container">
+        <form>
+            <div class="form-switch">
+                <input id="theme" onchange="ChangeMode()" class="form-check-input" type="checkbox"> Dark Mode
+            </div>
+            <h2>Register</h2>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text"></dd>
+                <dt>Password</dt>
+                <dd><input type="password"></dd>
+                <dt>Email</dt>
+                <dd><input type="email"></dd>
+            </dl>
+            <button class="btn btn-dark w-100">Register</button>
+        </form>
+       </div>
+    </body>
+</html>
+
+
+            String Manipulations
+            ================
+1. charAt()    :  It returns the character at specified index.
+
+        Syntax:
+          string.charAt(0)
+
+2. charCodeAt()    : It returns the character code instead of char.
+          A = 65,  Z=90
+
+        Syntax:
+        string.charCodeAt(0)
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>String</title>
+        <script>
+            function VerifyUserName(){
+                var username = document.getElementById("UserName").value;
+                var userError = document.getElementById("UserError");
+                var firstCharCode = username.charCodeAt(0);
+                if(firstCharCode>=65 && firstCharCode<=90) {
+                    userError.innerHTML = "";
+                } else {
+                    userError.innerHTML = "Name must start with Uppercase Letter".fontcolor('red');
+                }
+            }
+        </script>
+    </head>
+    <body>
+        User Name :
+        <input type="text" onblur="VerifyUserName()" id="UserName">
+        <div id="UserError"></div>
+    </body>
+</html>
+
+3. slice()        : It can extract the chars between specified index.              It uses start and end index.
+          End index must be a number after start index.
+
+        Syntax:
+            slice(startIndex, endIndex)
+
+4. substr()        : It can extract specified number of chars from
+          given index.
+
+        Syntax:
+            substr(startIndex, howManyChars)
+             substr(0,7)
+            substr(7,3)
+
+5. substring()    : It can read the chars from specified index to
+          either directions [start or end]
+
+          Syntax:
+            substring(startIndex, noOfChars)
+            substring(7)    7 to end
+            substring(7,0)    7 to start
+
+
+Ex:
+<script>
+    function SentenceCase(string){
+        var firstChar = string.charAt(0);
+        var restChar = string.substring(1);
+       var sentence = firstChar.toUpperCase() + restChar.toLowerCase();
+        return sentence;
+    }
+    var message = "welCOMe TO JAVascript";
+    document.write(message + "<br>");
+    document.write(SentenceCase(message));
+</script>
+
+
+6. startsWith()    : It returns true if string is starting with specified
+          char(s).
+
+7. endsWith()    : It returns true if string is ending with specified
+          char(s).
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>String Demo</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            function VerifyCard(){
+                var txtCard = document.getElementById("txtCard").value;
+                var pic = document.getElementById("pic");
+                if(txtCard.startsWith("4444")) {
+                    pic.src="../public/images/visa.png";
+                } else if(txtCard.startsWith("5555")) {
+                    pic.src="../public/images/master.png";
+                } else {
+                    pic.src="";
+                    pic.alt="Invalid";
+                }
+            }
+            function VerifyEmail(){
+                var email = document.getElementById("txtEmail").value;
+                var error = document.getElementById("error");
+                if(email.endsWith("gmail.com")) {
+                    error.innerHTML = "";
+                } else {
+                    error.innerHTML = "Please enter a valid gmail account";
+                    error.className = "text-danger";
+                }
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <h2>Verify Card</h2>
+        <div class="input-group">
+            <input type="text" onkeyup="VerifyCard()" class="form-control" id="txtCard">
+            <span class="input-group-text">
+                <img width="80" id="pic" height="50">
+            </span>
+        </div>
+        <h2>Verify Gmail</h2>
+        <div>
+            <input type="text" onblur="VerifyEmail()" id="txtEmail" class="form-control">
+            <div id="error"></div>
+        </div>
+    </body>
+</html>
+
+8. match():  It is used to verify a string against a pattern. In Javascript
+      pattern is a regular expression enclosed in "/ /".
+
+
+9. length    :  It returns the total count of chars in string.
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Password</title>
+        <script>
+            function VerifyPassword(){
+                var password = document.getElementById("Password").value;
+                var regExp = /(?=.*[A-Z])\w{4,15}/;
+                var msg = document.getElementById("msg");
+
+                function SetMeter(min, max, value, low, high){
+                    var statusMeter = document.getElementById("statusMeter");
+                    statusMeter.min = min;
+                    statusMeter.max = max;
+                    statusMeter.value = value;
+                    statusMeter.low= low;
+                    statusMeter.high = high;
+                }
+
+                if(password.match(regExp)) {
+                    msg.innerHTML = "Strong Password";
+                    SetMeter(1,100,100,0,0);
+                } else {
+                    if(password.length<4) {
+                        msg.innerHTML = "Poor Password";
+                        SetMeter(1,100,100,60,80);
+                    } else {
+                        msg.innerHTML = "Weak Password";
+                        SetMeter(1,100,100,40,80);
+                    }
+                }
+            }
+        </script>
+        <style>
+            meter, input {
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Verify Password</legend>
+            <div>
+                <input type="password" onkeyup="VerifyPassword()" id="Password">
+                <div>
+                    <meter id="statusMeter" min="1" max="100"></meter>
+                </div>
+                <div id="msg"></div>
+            </div>
+        </fieldset>
+    </body>
+</html>
+
+Ex: match with bootstrap progress
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Password</title>
+        <script>
+            function VerifyPassword(){
+                var password = document.getElementById("Password").value;
+                var regExp = /(?=.*[A-Z])\w{4,15}/;
+               
+                var statusBar = document.getElementById("statusBar");
+
+                function SetStatus(bgClass, width, message){
+                    statusBar.style.width=width;
+                    statusBar.className=`${bgClass} progress-bar progress-bar-animated progress-bar-striped`;
+                    statusBar.innerHTML = message;
+                }
+
+                if(password.match(regExp)) {
+                    SetStatus('bg-success','100%', 'Strong Password');
+                } else {
+                    if(password.length<4) {
+                        SetStatus('bg-danger','30%', 'Poor Password');
+                    } else {
+                       SetStatus('bg-warning', '70%', 'Weak Password');
+                    }
+                }
+            }
+        </script>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    </head>
+    <body class="container-fluid">
+        <fieldset>
+            <legend>Verify Password</legend>
+            <div>
+                <input type="password" class="form-control" onkeyup="VerifyPassword()" id="Password">
+                <div class="progress mt-3">
+                    <div id="statusBar" class="progress-bar progress-bar-animated progress-bar-striped">
+
+                    </div>
+                </div>
+                <div id="msg"></div>
+            </div>
+        </fieldset>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>

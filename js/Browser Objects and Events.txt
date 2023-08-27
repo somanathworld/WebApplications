@@ -1,0 +1,155 @@
+navigator object
+        ------------------------
+- It provides set of properties and methods that can access client browser details.
+     appName        : Browser Family Name
+     appVersion    : Browser Version
+     platform        : Current platform [Win]
+     language        : Browser language [en-in]
+     geolocation    : Get geo location of client [city]
+     cookieEnabled    : cookie status
+
+Ex:
+<script>
+   document.write(`
+         Browser Family :  ${navigator.appName} <br>
+         Language       :  ${navigator.language} <br>
+         Platform       :  ${navigator.platform} <br>
+         Cookies        :  ${(navigator.cookieEnabled==true)?"Enabled":"Please Enable Cookies on Your Browser"}
+   `);
+</script>
+
+Ex: Get Geo Location
+
+<script>
+    navigator.geolocation.getCurrentPosition(function(position){
+        document.write(`
+            Latitude :  ${position.coords.latitude}  <br>
+            Longitude : ${position.coords.longitude}
+        `);
+    })
+</script>
+
+
+                 history object
+                 ------------------
+- It provides set of properties and methods to access current browsing history.
+    length    : returns total count of pages in current history.
+    back()    : moves to previous page in history
+    forward()    : moves to next page in history
+    go()    : moves to specific page.
+
+Syntax:
+    history.length
+    history.back()
+    history.go(-1)    // one level back
+    history.go(2)    // 2 levels forward
+    history.go('home.html')
+
+<script>
+    if(history.length>3) {
+        alert("Login For More Details");
+        location.href="login.html";
+    } else {
+        document.write("You can watch 3 pages for free..");
+    }
+</script>
+
+Summary:
+- window
+- location
+- navigator
+- history
+- document
+
+FAQ: How to know about plugin installed in browser?
+Ans. navigator.plugins[]
+
+Ex:
+<script>
+    for(var item of navigator.plugins)
+    {
+        document.write(item.name + "<br>");
+    }
+    if(navigator.plugins['Chrome PDF Viewer']==undefined) {
+        document.write("Please Install PDF viewer");
+    } else {
+        document.write("You can watch PDF documents");
+    }
+</script>
+
+
+FAQ: How to know about MIME types?
+Ans:
+<script>
+    for(var item of navigator.mimeTypes)
+    {
+        document.write(item.type + "<br>");
+    }
+   
+</script>
+
+FAQ: How to check JavaScript enabled or not?
+Ans:  <noscript>
+
+
+             Browser Events
+             ----------------------
+- Event is a message sent by sender to its subscriber in order to notify the change.
+- Event follows a software design pattern called "Observer".
+- Event uses delegate mechanism. [function pointer]
+- It is a communication pattern.
+
+Syntax:
+    function InsertClick()
+    {
+    }
+
+    <button  onclick="InsertClick()">
+
+    onclick         : Event
+    onclick="InsertClick"    : Event Handler
+
+- Every event handler can have 2 arguments
+    1. this     : sends information about object
+    2. event    : sends information about event
+
+Ex:
+<head>
+    <script>
+        function InsertClick(obj,e){
+            document.write(`
+               Button Id    : ${obj.id} <br>
+               Button Name  : ${obj.name} <br>
+               Class Name   : ${obj.className} <br>
+               X Position   : ${e.clientX}  <br>
+               Ctrl Key     : ${e.ctrlKey}
+            `);
+        }
+    </script>
+</head>
+<body>
+    <button id="btnSubmit" name="SubmitButton" class="btn btn-primary" onclick="InsertClick(this,event)">Insert</button>
+</body>
+
+- You can send your own arguments
+
+<head>
+    <script>
+        function InsertClick(obj){
+            document.write(obj.Name + "<br>" + obj.Price);
+        }
+    </script>
+</head>
+<body>
+    <button id="btnSubmit" name="SubmitButton" class="btn btn-primary" onclick="InsertClick({Name:'TV', Price:56000.33})">Insert</button>
+</body>
+
+
+Various Browser Events
+1. Mouse Events
+2. Keyboard Events
+3. Clip Board Events
+4. Touch Events
+5. Form Events
+6. Timer Events
+7. Element State Events etc..

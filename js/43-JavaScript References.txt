@@ -1,0 +1,341 @@
+How JavaScript refers HTML elements in Page?
+1. By using DOM hierarchy
+    - You can refer HTML elements by using their hierarchy in DOM.
+    - You have to access with reference of index number and
+       parent and child hierarchy.
+
+Syntax:
+     window.document.images[index].src= "path";
+     window.document.forms[index].elements[index].value=""
+
+Good:
+    - Accessing with position is easy.
+    - Accessing in sequential order is easy
+    - Good for testing.
+
+Bad:
+    - If you change the position of any element in page, then you have to update its index in code.
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Hierarchy</title>
+        <script type="text/javascript">
+            function bodyload(){
+                window.document.images[0].src="../public/images/speaker.jpg";
+                window.document.images[0].width = "200";
+                window.document.forms[0].elements[0].value="Register";
+                window.document.forms[1].elements[1].value="Login";
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <div>
+            <img width="100" height="100" border="1">
+        </div>
+        <div>
+            <form>
+                <h2>Register</h2>
+                <input type="button">
+                <input type="email">
+               
+            </form>
+        </div>
+        <div>
+            <form>
+                <h2>Login</h2>
+                <input type="text">
+                <input type="button">
+            </form>
+        </div>
+    </body>
+</html>
+
+
+2. You can refer by using name
+ - Every element can have a reference name.
+ - You can access element by using the reference name.
+ 
+Good:
+ - Easy to access
+ - Faster in access
+ - Even you change the position it will have the same values.
+
+Bad
+ - Name can be common for multiple elements.
+ - If name is common then attributes are not applied.
+ - You can't refer child element directly.
+ - If child element is defined in a parent, you have to refer parent and child.
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Hierarchy</title>
+        <script type="text/javascript">
+            function bodyload(){
+                pic.src="../public/images/shoe.jpg";
+                frmRegister.btnRegister.value="Register";
+                window.document.forms[1].btnLogin.value="Login";
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <div>
+            <img width="100" name="pic" height="100" border="1">
+        </div>
+        <div>
+            <form name="frmRegister">
+                <h2>Register</h2>
+               
+                <input type="email">
+                <input type="button" name="btnRegister">
+               
+            </form>
+        </div>
+        <div>
+            <form>
+                <h2>Login</h2>
+                <input type="text">
+                <input type="button" name="btnLogin">
+            </form>
+        </div>
+    </body>
+</html>
+
+3. Refer by using ID
+  - Every element can be defined with ID.
+  - ID is unique for JavaScript but not for CSS.
+ 
+Good:
+  - You can refer any HTML element directly
+      document.getElementById("id")
+  - No more hierarchy issues
+ 
+Bad:
+  - ID can be used by CSS and JavaScript
+  - CSS Id can be common for multiple elements
+ 
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Hierarchy</title>
+        <script type="text/javascript">
+            function bodyload(){
+               document.getElementById("pic").src="../public/images/speaker.jpg";
+               document.getElementById("btnRegister").value = "Register";
+               document.getElementById("btnLogin").value = "Login";
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <div>
+            <img width="100" id="pic" name="pic" height="100" border="1">
+        </div>
+        <div>
+            <form name="frmRegister">
+                <h2>Register</h2>
+               
+                <input type="email">
+                <input type="button" id="btnRegister" name="btnRegister">
+               
+            </form>
+        </div>
+        <div>
+            <form>
+                <h2>Login</h2>
+                <input type="text">
+                <input type="button" id="btnLogin" name="btnLogin">
+            </form>
+        </div>
+    </body>
+</html>
+
+4. Refer by using CSS selectors
+   - CSS provides selectors like
+        a) Id
+        b) Type
+        c) class
+        d) pseudo selector
+        e) decendent
+        f) attribute selectors etc..
+   - JavaScript uses
+        document.querySelector()
+
+Good:
+   - Various technique to refer HTML elements
+   - You can access by name, id, class etc..
+   - You can also access by using attribute, pseudo classes..
+
+Bad:
+  - Common name issues
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Hierarchy</title>
+        <script type="text/javascript">
+            function bodyload(){
+               document.querySelector("img").src="../public/images/jacket.jpg";
+               document.querySelector("#btnRegister").value = "Register";
+               document.querySelector(".btn-login").value = "Login";
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <div>
+            <img width="100" id="pic" name="pic" height="100" border="1">
+        </div>
+        <div>
+            <form name="frmRegister">
+                <h2>Register</h2>
+               
+                <input type="email">
+                <input type="button" id="btnRegister" name="btnRegister">
+               
+            </form>
+        </div>
+        <div>
+            <form>
+                <h2>Login</h2>
+                <input type="text">
+                <input type="button" id="btnLogin" class="btn-login" name="btnLogin">
+            </form>
+        </div>
+    </body>
+</html>
+
+
+5. You can refer multiple elements by using
+        getElementsByTagName()
+        getElementsByClassName()
+        getElementsByName()
+
+Ex: Tag Name
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Hierarchy</title>
+        <script type="text/javascript">
+            function bodyload(){
+               x = document.getElementsByTagName("form");
+               alert("Total Number of Forms : " + x.length);
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <div>
+            <img width="100" id="pic" name="pic" height="100" border="1">
+        </div>
+        <div>
+            <form name="frmRegister">
+                <h2>Register</h2>
+               
+                <input type="email">
+                <input type="button" id="btnRegister" name="btnRegister">
+               
+            </form>
+        </div>
+        <div>
+            <form>
+                <h2>Login</h2>
+                <input type="text">
+                <input type="button" id="btnLogin" class="btn-login" name="btnLogin">
+            </form>
+        </div>
+    </body>
+</html>
+
+Ex: Class Name
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Hierarchy</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script type="text/javascript">
+            function bodyload(){
+               x = document.getElementsByClassName("btn-primary");
+               alert("Total Number of elements using btn-primary: " + x.length);
+
+            }
+        </script>
+    </head>
+    <body class="container-fluid" onload="bodyload()">
+        <div>
+            <img width="100" id="pic" name="pic" height="100" border="1">
+        </div>
+        <div>
+            <form name="frmRegister">
+                <h2>Register</h2>
+               
+                <input type="email">
+                <input type="button" class="btn btn-primary" id="btnRegister" name="btnRegister">
+               
+            </form>
+        </div>
+        <div>
+            <form>
+                <h2>Login</h2>
+                <input type="text">
+                <input type="button" id="btnLogin" class="btn btn-primary" name="btnLogin">
+            </form>
+        </div>
+    </body>
+</html>
+
+Ex: Same Name
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Hierarchy</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script type="text/javascript">
+            function bodyload(){
+               x = document.getElementsByName("pic");
+               alert("Total Number of elements using pic name: " + x.length);
+
+            }
+        </script>
+    </head>
+    <body class="container-fluid" onload="bodyload()">
+        <div>
+            <img width="100" id="pic" name="pic" height="100" border="1">
+        </div>
+        <div>
+            <form name="frmRegister">
+                <h2>Register</h2>
+               
+                <input type="email" name="pic">
+                <input type="button" class="btn btn-primary" id="btnRegister" name="btnRegister">
+               
+            </form>
+        </div>
+        <div>
+            <form>
+                <h2>Login</h2>
+                <input type="text">
+                <input type="button" id="btnLogin" class="btn btn-primary" name="btnLogin">
+            </form>
+        </div>
+    </body>
+</html>
+
+
+
+Summary
+1. DOM Hierarchy
+2. By Name
+3. By ID
+4. QuerySelector [CSS Selectors]
+5. Multiple        
+        - TagName
+        - ClassName
+        - Name
+
+
+Output and Input

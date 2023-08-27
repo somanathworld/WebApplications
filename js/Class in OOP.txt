@@ -1,0 +1,197 @@
+Class in OOP
+- Class is program template.
+- Template comprises of sample data and logic, which you can implement and customize according to requirements.
+- class can have the behaviour of
+    a) Model
+    b) Entity
+    c) Blue Print
+- In JavaScript class can be defined in 2 ways
+    a) Class Declaration
+    b) Class Expression
+
+Ex:
+<script>
+    //declaration
+    class Product
+    {
+
+    }
+    // expression
+    let Employee = class {
+
+    }
+</script>
+
+              Class Members
+- Class can contain only
+    a) Property
+    b) Method
+    c) Accessor
+    d) Constructor
+
+FAQ: Can we declare a variable in class?
+Ans: No.
+
+FAQ: Can we declare a function in class?
+Ans: No.
+
+FAQ: Why variable and function not allowed in class?
+Ans: Variable and Funciton are Immutable. Class can contain only Mutable members.
+
+         Property
+        ========
+- In a class data is stored in properties
+- Property is mutable
+- It can change according to state and situation.
+
+Syntax:
+    class  className
+    {
+      Property = Value;
+    }
+
+                   Accessors
+                  =========
+- Accessors are use to control properties dynamically.
+- Class will have 2 accessors
+    a) get()     - getter
+    b) set()     - setter
+
+- get() is used to read value from property
+
+    get PropertyName()
+    {
+       return  propertyValue;
+    }
+
+- set() is used to write value into property
+
+    set  PropertyName(newValue)
+    {
+        property = newValue;
+    }
+- The members of class are accessible within the class by using
+  "this" keyword and outside class  by using an instance of class.
+
+          let  instanceName  = new className;
+
+          instanceName.Property = value;    - write
+          instanceName.Property;        - read
+
+Ex:
+<script>
+    var username = prompt("Enter User Name");
+    var password = prompt("Enter Password");
+    var productname = prompt("Enter Product Name");
+
+    class Product
+    {
+        _productName;
+       
+        get ProductName(){
+            return this._productName;
+        }
+        set ProductName(newName){
+            if(username=="john" && password=="john@11")
+            {
+                this._productName = newName;
+            } else {
+                document.write("Unauthorized: You are not allowed to set Product Name");
+            }
+        }
+    }
+    let obj = new Product;
+    obj.ProductName = productname;
+    if(obj.ProductName){
+        document.write("Product Name : " + obj.ProductName);
+    }
+</script>
+
+- Accessors allow to access any child property form a hierarchy of properties.
+
+Ex:
+<script>
+    class Product
+    {
+        Name = "Samsung TV";
+        Price = 56000.44;
+        Rating = {
+            Rate : 3.4,
+            Count: 4600,
+            Status: {
+                Details: "Out of Stock"
+            }
+        }
+        get Rate(){
+            return this.Rating.Rate;
+        }
+        get StockDetails(){
+            return this.Rating.Status.Details;
+        }
+    }
+    let obj = new Product;
+    document.write(obj.Rate + "<br>" + obj.StockDetails);
+</script>
+
+
+                  Methods
+                 ========
+- Method is mutable
+- Method may or may not return value.
+- All methods features are same like functions.
+
+
+Syntax:
+    class className
+    {
+        method() {
+
+        }
+    }
+
+Ex:
+<script>
+    class Product
+    {
+        Name = "Samsung TV";
+        Price = 56000.44;
+        Qty = 2;
+        Total(){
+            return this.Qty * this.Price;
+        }
+        Print(){
+            document.write(`Name=${this.Name}<br>Price=${this.Price}<br>Qty=${this.Qty}<br>Total=${this.Total()}`);
+        }
+    }
+    let tv = new Product;
+    tv.Name = "Samsung LED TV";
+    tv.Print();
+</script>
+
+                 Constructor
+- It is used for instantiation - creating of object.
+- It is a special type of method in class that executes automatically for every object.
+- Every class will have a constructor inside, which is known as "Default" constructor.
+- You can create an explicit constructor.
+
+Syntax:
+    class className
+    {
+       constructor(){
+       }
+    }
+ 
+Ex:
+<script>
+    class Database
+    {
+        constructor(){
+            document.write("Connected..<br>");
+        }
+        Insert(){
+            document.write("Record Inserted");
+        }
+    }
+    let oracle = new Database;
+    oracle.Insert();
+</script>

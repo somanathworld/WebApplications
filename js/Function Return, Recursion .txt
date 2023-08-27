@@ -1,0 +1,190 @@
+Function Parameters
+        Function with Return Value
+         ====================
+
+- A function with return value is used to configure function memory that can handle the operation and result.
+
+Syntax:
+    function Name(param)
+    {
+                      return param;
+    }
+
+- A function can return any type of value, primitive or non-primitive
+
+Ex:
+<script>
+   function Addition(a,b){
+       return a + b;
+   }
+   function GetProduct(){
+       return {Name:"TV", Price:56000.44};
+   }
+   document.write("Addition=" + Addition(20,40) + "<br>");
+   for(var property in GetProduct())
+   {
+       document.write(`${property} : ${GetProduct()[property]}<br>`);
+   }
+</script>
+
+- Function can return various values and change the return value according to situation.
+
+Ex:
+<script>
+   function Print(val){
+      if(isNaN(val)){
+          return `Hello ! ${val}`;
+      } else {
+          val++;
+          return val;
+      }
+   }
+   document.write(Print(22));
+</script>
+
+- Functions with return value are mostly used in designing services.
+
+toUpperCase()
+toLowerCase()
+SentenceCase()
+
+Ex:
+<script>
+   function SentenceCase(str)
+   {
+       var firstChar = str.charAt(0);
+       var restChars = str.substring(1);
+       return firstChar.toUpperCase() + restChars.toLowerCase();
+   }
+   var msg = "weLCOMe tO javaScriPt";
+   document.write(SentenceCase(msg));
+</script>
+
+
+Ex: Captcha
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <style>
+            dd {
+                margin-bottom: 10px;
+            }
+        </style>
+        <script>
+            function Captcha(){
+                var a = Math.random() * 10;
+                var b = Math.random() * 10;
+                var c = Math.random() * 10;
+                var d = Math.random() * 10;
+                var e = Math.random() * 10;
+                var f = Math.random() * 10;
+                return `${Math.round(a)} ${Math.round(b)} ${Math.round(c)} ${Math.round(d)} ${Math.round(e)} ${Math.round(f)}`;
+            }
+            function LoginClick(){
+                var username = document.getElementById("UserName").value;
+                var password = document.getElementById("Password").value;
+                var msg = document.getElementById("msg");
+
+                fetch("../data/users.json")
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(users){
+                    for(var user of users)
+                    {
+                        if(user.UserName==username && user.Password==password) {
+                            document.write("<h2>Login Success</h2>");
+                        } else {
+                            msg.innerHTML= "Invalid User Name / Password";
+                        }
+                    }
+                })
+            }
+            function bodyload(){
+                document.getElementById("code").innerHTML = Captcha();
+            }
+            function GetNewCode(){
+                document.getElementById("code").innerHTML = Captcha();
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <fieldset>
+            <legend>User Login</legend>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" id="UserName"></dd>
+                <dt>Password</dt>
+                <dd><input type="password" id="Password"></dd>
+                <dt>Verify Code <button onclick="GetNewCode()"><span class="bi bi-arrow-clockwise"></span></button> </dt>
+                <dd id="code"></dd>
+                <dd><input type="text" size="6"></dd>
+            </dl>
+            <button onclick="LoginClick()">Login</button>
+        </fieldset>
+        <h2 id="msg" align="center"></h2>
+    </body>
+</html>
+
+               Function Closure
+- A function can be defined in another function.
+- The members of outer function are accessible to inner function.
+- But the members of inner function are not accessible to outer.
+- Closure is a technique where inner function can share its members to outer function.
+
+
+Ex:
+<script>
+   function Outer(){
+       var msgOuter = "<b>Message from Outer Function<b>";
+       function Inner(){
+           return "Message from Innner" + "<br>" + msgOuter;
+       }
+      return Inner();
+   }
+   document.write(Outer());
+</script>
+
+
+         Function Recurrsion
+        ----------------------------
+- Recurrion is a technique of calling a function with in the function.
+- It is used to create macros and batch jobs.
+
+Ex:
+<script>
+    function Factorial(n){
+        if(n<=1)
+        {
+            return 1;
+        } else {
+            return n * Factorial(n-1);
+        }
+    }
+    document.write(`6 Factorial is ${Factorial(6)}`);
+</script>
+
+          Anonymous Function
+- Function without name is known as anonymous function.
+- Anonymous functions are used in "Call Back".
+
+Ex:
+<script>
+   (function(){
+       document.write("Welcome to JavaScript");
+   })();
+</script>
+
+Ex:
+<script>
+  var product = function(){
+       return {Name:"TV", Price: 4600}
+   }
+  document.write(product().Name);
+</script>
+
+           Arrow Functions
+          ----------------------

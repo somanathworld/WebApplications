@@ -1,0 +1,191 @@
+Issues with JavaScript:
+=====================
+
+1. It is not a strongly typed language.
+       
+2. It will not support all OOP features.
+
+3. Hard to Extend
+
+4. Hard to Maintain and Test
+
+5. Less Secured
+
+6. Lot of compatibility Issues
+
+7. Lot of DOM manipulations
+
+8. Lot of coding
+
+9. Heavy on application
+
+10. Slow
+
+                   
+FAQ: Is JavaScript OOP Language?
+Ans: No. It supports only few features of OOP.
+
+FAQ: Why it is called as Scripting Language?
+Ans:  Scripting happend on the top of existing technologies.
+         Scripting can't be inidividual.
+         It can't build application, It can only support application.
+
+
+FAQ: How JavaScript is integrated into Web Application?
+Ans: JavaScript can be
+        a) Inline
+        b) Embedded
+        c) External File
+
+
+Inline JavaScript
+=============
+- JavaScript functions are written with in the HTML tag.
+- Faster in execution.
+- But can't reuse.
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inline JavaScript</title>
+    </head>
+    <body>
+        <h2>Your Ticket - Click Print Button</h2>
+        <button onclick="window.print()">Print</button>
+     
+    </body>
+</html>
+
+
+2. Embedded Script
+- In this technique the script is defined in head or body section by using <script> element.
+- You can reuse across various elements.
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inline JavaScript</title>
+        <script>
+            function PrintPage(){
+                window.print();
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Your Ticket - Click Print Button</h2>
+        <button onclick="PrintPage()">Print</button>
+        <button onclick="PrintPage()">Print Page</button>
+     
+    </body>
+</html>
+
+FAQ: What is the MIME type for JavaScript?
+Ans:  "text/javascript"   or   language="javascript"
+
+      <script  type="text/javascript">
+      </script>
+
+      <script language="javascript">
+      </script>
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inline JavaScript</title>
+        <script type="text/javascript">
+            function PrintPage(){
+                window.print();
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Your Ticket - Click Print Button</h2>
+        <button onclick="PrintPage()">Print</button>
+    </body>
+</html>
+
+FAQ: What is JavaScript strict mode?
+Ans:  JavaScript strict mode allows only good code. It restricts bad
+         code. [no according to standards]
+
+FAQ: How to enable JavaScript mode?
+Ans:  By using
+        "use strict";
+
+Ex:
+ <script>
+    "use strict";
+     x = 10;                        // invalid - x is not defined
+     document.write("x=" + x);
+ </script>
+
+   "use strict";
+    var x ;
+    x = 10;                 // good
+
+
+FAQ: How to target JavaScript for Legacy Browsers?
+Ans:  By enclosing JavaScript in HTML comments.
+
+          <!--
+                your code
+          -->
+
+Ex:
+<script>
+    "use strict";
+   <!--
+    var x;
+    x = 20;
+    document.write("x=" +x );
+   -->
+</script>
+       
+3. JavaScript from External File
+
+- JavaScript code is written in separate JavaScript file with extention ".js"
+- Link to HTML page by using <script> </script>
+
+                       print.js
+  <script src="print.js"> </script>
+
+
+Ex:
+1. Create a new folder "scripts"
+2. Add a file into scripts
+        "print.js"
+
+"use strict";
+function PrintPage(){
+    window.print();
+}
+
+3. Goto HTML and link
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inline JavaScript</title>
+        <script type="text/javascript" src="../scripts/print.js">
+           
+        </script>
+    </head>
+    <body>
+        <h2>Your Ticket - Click Print Button</h2>
+        <button onclick="PrintPage()">Print</button>
+    </body>
+</html>
+
+Note: Using external file will increase the number of requests
+          and page load time.
+
+FAQ: How to verify the status of JavaScript in HTML Page?
+Ans: By using HTML element <noscript>
+
+Syntax:
+ <body>
+   <noscript> Please Enable JavaScript </noscript>
+ </body>

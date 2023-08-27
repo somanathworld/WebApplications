@@ -1,0 +1,126 @@
+JavaScript Language Basics
+1. Variables
+2. DataTypes
+3. Operators
+4. Statements
+5. Functions
+
+                          Variables
+             =======
+- Variables are storage locations in memory where you can store a value and use it as a part of any expression.
+
+- JavaScript can directly use variables and store value if it is not in strict mode.
+
+- If JavaScript is in strict mode, it is mandatory to declare variables.
+
+- Variables are declared by using 3 keywords
+    a) var
+    b) let
+    c) const
+
+- Variable configuration comprises of 3 phases
+    a) Declaring
+    b) Initialization
+    c) Assigning
+
+Syntax:
+    var x ;        declaring
+    x = 20;        assigning
+    var y = 40;    initialization
+
+FAQ: If you don't initialize or assign any value into variable, what it contains?
+Ans:  "undefined"
+
+
+FAQ: What is difference between var, let and const?
+Ans:
+            var
+            -----
+- It is used to define function scope variable.
+- A function scope variable can be declared in any block and can be access from any another block in the same function.
+- Var allows declaring, assigning, initialization.
+- var allows shadowing.
+- Shadowing is the process of re-declaring or initializing the same name variable within the scope.
+
+Ex:
+<script>
+   "use strict";
+   function f1(){
+       var x;           // declaring
+       x = 10;          // assigning
+       if(x==10)
+       {
+           var y = 30;  // initialization
+           var y = 50;  // shadowing
+       }
+       document.write("X=" + x + "<br>" + "Y=" + y);
+       
+   }
+   f1();
+</script>
+
+- var allows hoisting.
+- Hoisting is a technique used to inidicate the location of variable to compiler.
+- In this mechanism variable can be declared at any location,
+    a) before using variable
+    b) after using variable
+
+<script>
+   "use strict";
+   function f1(){
+       x = 10;
+       document.write("x=" + x);
+       var x;           // hoisting
+   }
+   f1();
+</script>
+
+            let
+            ==
+- It is used to define block scope variable.
+- A block scope variable can be accessed within the block or with in its innerblock.
+- Inner block variable is not accessible to outer block.
+- Allows declaring, initialization, assigning.
+
+Ex:
+<script>
+   "use strict";
+   function f1(){
+      let x;        //declaring
+      x = 10;       // assigning
+      if(x==10)
+      {
+          let y = 20;   // initialization
+          document.write("x=" + x + "<br>" + "y=" + y);
+      }
+   }
+   f1();
+</script>
+
+- let will not allow shadowing.
+- let will not allow hoisting.
+
+Ex:
+<script>
+   "use strict";
+   function f1(){
+     x = 10;
+     document.write("x=" + x);
+     let x;     // invalid
+   }
+   f1();
+</script>
+
+            const
+            -------
+- It is also block scope.
+- It allows only initialization.
+- No declaring, no assigning.
+
+    const x ;    // invalid
+    x = 10;    // invalid
+
+    const x= 10;   // valid
+    x = 20;         //  invalid
+- It will not allow shadowing.
+- It will not allow hosting.

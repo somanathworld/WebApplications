@@ -1,0 +1,238 @@
+            Arrow Functions
+                =============
+
+- It defines short hand technique of configuring a function.
+
+     function   Print(a, b)
+     {
+       return a + b;
+     }
+
+    var Print = (a,b) => a + b;
+
+    ( )    function parameters
+    =>    definition and return
+    { }    multiple statements
+
+
+Ex: Function without parameters
+
+<script>
+   /*
+    function Hello(){
+      document.write("Welcome to JavaScript");
+    }
+   */
+    var Hello = () => document.write("Welcome to JavaScript");
+    Hello();
+</script>
+
+Ex: Function with single parameter
+
+<script>
+   /*
+    function Hello(userName){
+      document.write(`Hello !  ${userName}`);
+    }
+   */
+    var Hello = userName => document.write(`Hello ! ${userName}`);
+    Hello("John");
+</script>
+
+Ex: function with multiple parameters
+
+<script>
+   /*
+    function Hello(userName, age){
+      document.write(`Hello !  ${userName} your age is ${age}`);
+    }
+   */
+    var Hello = (userName, age) => document.write(`Hello ! ${userName} your age is ${age}`);
+    Hello("John", 22);
+</script>
+
+Ex: function with return value
+
+<script>
+   /*
+     function Add(a,b)
+     {
+       return a + b;
+     }
+   */
+    var Add = (a,b) => a + b;
+    document.write("Addition=" + Add(20,30));
+</script>
+   
+Ex: CallBacks using Arrow function
+
+<script>
+    function LoadProducts(){
+       fetch("http://fakestoreapi.com/products")
+       .then(response=> response.json())
+       .then(data=>{
+          for(var item of data){
+            document.write(item.title + "<br>");
+          }
+       })
+    }
+    LoadProducts();
+</script>
+
+Ex:
+<script>
+     var products = [
+       {Name:"TV", Category:"Electronics"},
+       {Name:"Mobile", Category: "Electronics"},
+       {Name:"Nike Casuals", Category: "Footwear"}
+     ];
+     var electronics = products.filter(product=>product.Category=="Electronics");
+     console.log(electronics);
+</script>
+
+Without Arrow:
+      products.filter(function(product){
+            return product.Category=="Electronics";
+      })
+
+
+Summary
+- Function
+- Function Parameters
+- Function Return Value
+- Function Recurrions
+- Function Closure
+- Function Arrow
+
+              JavaScript OOP
+              ---------------------
+- In real time application development we use 3 types of programming systems
+    a) POPS
+    b) OBPS
+    c) OOPS
+
+POPS
+- Process Oriented Programming System.
+- Can directly interact with Hardware services.
+- They are fast
+- Less Memory
+
+Ex: C, Pascal, COBOL etc..
+
+- Reusability issues
+- Separation issues
+- Extensibility issues
+- No dynamic memory allocation
+- No code security
+
+OBPS:
+- Object Based Programming System.
+- It supports reusability, separation, extensibility
+- Dynamic memory allocation.
+
+Ex JavaScript, VB
+- No code security
+- Limited extensibility
+- No dynamic polymorphism
+- No contract
+- No Templates
+
+OOPS:
+- Object Oriented Programming System
+- Reusability, Separation, Extensibility, Mantainability
+- Security
+- Contracts
+- Templates
+
+Ex: C++, Java, .NET Languages
+
+- Heavy
+- use more memory
+- slow
+- can't directly interact with hardware.
+
+OOP Evolution
+- First OOP language is "SIMULA 67"  1960's by
+    Johan Olay, Kristian Nygaard
+- 1970's Trygve introduced
+    "Small Talk"
+    [ M V C ]
+- 1975   C++
+- 1990   Java
+- 2003   .NET Languages
+
+
+JavaScript OOP Characterstics:
+
+1. Modules
+2. Class
+3. Inheritance
+4. Polymorphism
+5. Encapsulation
+
+
+
+                   Modules in OOP
+- Module is a collection of
+    - functions
+    - variables
+    - classes
+- JavaScript modules are required to build a library.
+- Library is required for building application.
+- JavaScript modules requires module system to run in browser.
+- JavaScript module systems are
+    a) CommonJS
+    b) RequireJS
+    c) UMD (Universal Module Distribution)
+    d) AMD (Asynchronous Module Distribution)
+
+- Every JavaScript file is considered as a Module.
+- Every member in module is private in access, which means it is accessible with in the module.
+- To access outside module you have to mark it as "export".
+
+          export function f1() { }
+          export class className { }
+
+- You can import function in any page
+
+       import   functionName   from  "../path";     //valid when function is
+                        default.
+
+      import  { functionName } from "../path";    // valid when function is
+                       not default.
+
+Ex:
+1. Create a new folder "library"
+2. Add a new file
+    HomeModule.js
+
+var username = "John";
+export  function PrintName(){
+    return "Hello ! " + username;
+}
+export default function PrintMessage(msg) {
+    return msg;
+}
+
+3. Goto your JavaScript Examples add a new file
+     OOP.html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OOP</title>
+        <script src="../library/HomeModule.js"></script>
+        <script type="module">
+            import PrintMessage, {PrintName} from '../library/HomeModule.js';
+            document.getElementById("root").innerHTML = PrintName() + "<br>" + PrintMessage("Welcome to JavaScript OOP");
+        </script>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>
+
+FAQ: What is declare?
+Ans :  It is used to configure variable that will not allow initialization.
+
+                    Classes

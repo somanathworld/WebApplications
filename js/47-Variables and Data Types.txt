@@ -1,0 +1,347 @@
+JavaScript Language Basics
+1. Variables
+2. DataTypes
+3. Operators
+4. Statements
+5. Functions
+
+                          Variables
+             =======
+- Variables are storage locations in memory where you can store a value and use it as a part of any expression.
+
+- JavaScript can directly use variables and store value if it is not in strict mode.
+
+- If JavaScript is in strict mode, it is mandatory to declare variables.
+
+- Variables are declared by using 3 keywords
+    a) var
+    b) let
+    c) const
+
+- Variable configuration comprises of 3 phases
+    a) Declaring
+    b) Initialization
+    c) Assigning
+
+Syntax:
+    var x ;        declaring
+    x = 20;        assigning
+    var y = 40;    initialization
+
+FAQ: If you don't initialize or assign any value into variable, what it contains?
+Ans:  "undefined"
+
+
+FAQ: What is difference between var, let and const?
+Ans:
+            var
+            -----
+- It is used to define function scope variable.
+- A function scope variable can be declared in any block and can be access from any another block in the same function.
+- Var allows declaring, assigning, initialization.
+- var allows shadowing.
+- Shadowing is the process of re-declaring or initializing the same name variable within the scope.
+
+Ex:
+<script>
+   "use strict";
+   function f1(){
+       var x;           // declaring
+       x = 10;          // assigning
+       if(x==10)
+       {
+           var y = 30;  // initialization
+           var y = 50;  // shadowing
+       }
+       document.write("X=" + x + "<br>" + "Y=" + y);
+       
+   }
+   f1();
+</script>
+
+- var allows hoisting.
+- Hoisting is a technique used to inidicate the location of variable to compiler.
+- In this mechanism variable can be declared at any location,
+    a) before using variable
+    b) after using variable
+
+<script>
+   "use strict";
+   function f1(){
+       x = 10;
+       document.write("x=" + x);
+       var x;           // hoisting
+   }
+   f1();
+</script>
+
+            let
+            ==
+- It is used to define block scope variable.
+- A block scope variable can be accessed within the block or with in its innerblock.
+- Inner block variable is not accessible to outer block.
+- Allows declaring, initialization, assigning.
+
+Ex:
+<script>
+   "use strict";
+   function f1(){
+      let x;        //declaring
+      x = 10;       // assigning
+      if(x==10)
+      {
+          let y = 20;   // initialization
+          document.write("x=" + x + "<br>" + "y=" + y);
+      }
+   }
+   f1();
+</script>
+
+- let will not allow shadowing.
+- let will not allow hoisting.
+
+Ex:
+<script>
+   "use strict";
+   function f1(){
+     x = 10;
+     document.write("x=" + x);
+     let x;     // invalid
+   }
+   f1();
+</script>
+
+            const
+            -------
+- It is also block scope.
+- It allows only initialization.
+- No declaring, no assigning.
+
+    const x ;    // invalid
+    x = 10;    // invalid
+
+    const x= 10;   // valid
+    x = 20;         //  invalid
+- It will not allow shadowing.
+- It will not allow hosting.
+
+
+JavaScript Variables
+- Configuration
+    a) Declaring
+    b) Assigning
+    c) Initialization
+- Var, Let, Const
+- What is shadowing
+- What is hoisting
+
+Global Scope for Variable:
+====================
+- Variables are function or block scope
+- To define a global scope for variable, you have to declare at module level.
+
+Ex:
+<script>
+   // module scope
+   var x = 10;
+   let y = 20;
+   const z = 30;
+   function f1(){
+      document.write("Function 1<br> x=" + x + "<br> y=" + y + "<br>z=" + z + "<br>");
+   }
+   function f2(){
+      document.write("Function 2<br> x=" + x + "<br> y=" + y + "<br>z=" + z + "<br>");
+   }
+   f1();
+   f2();
+</script>
+
+FAQ: Can we declare a variable in side function and access as Global?
+Ans: Yes.  By using "window" object you can declare a global variable inside function.
+
+Ex:
+<script>
+   // module scope
+   var x = 10;
+   let y = 20;
+   const z = 30;
+   function f1(){
+      window.username = "John";
+      document.write("Function 1<br> x=" + x + "<br> y=" + y + "<br>z=" + z + "<br>");
+   }
+   function f2(){
+      document.write("Function 2<br> x=" + x + "<br> y=" + y + "<br>z=" + z + "<br>");
+      document.write("Function 2 : Hello ! " + username);
+   }
+   f1();
+   f2();
+</script>
+
+Variable Naming Conventions:
+=======================
+- Variable name must start with alphabet or underscore.
+    var _name;
+    var name;
+    var 2022;        //invalid
+    var 2022year;     //invalid
+    var $name;       // invalid
+- Variable name can be alpha numeric
+
+    var year2022;    // valid
+    var year_2022;    // valid
+    var year.2022;    // invalid
+   
+- Don't use any special chars other than _
+- Don't use blank spaces.
+- Always use camel case for naming
+
+    var userName;
+   
+- Variable name can't be more that 255 chars long.
+- Variable name must speak what it is.
+
+FAQ: Why and When to use "underscore"?
+Ans : It is not used in any compiling process.
+         It is used for separation of name.
+         It is used for implementation of name.
+
+    var year_2022;
+    var _productName;   // marked for implementation
+
+
+        JavaScript Data Types
+        -------------------------------
+- Data Type defines the data structure.
+- Data structure defines the type, range and behaviour.
+- JavaScript is not strongly typed.
+- You can store any type of value in a variable.
+- It will not restrict implicitly.
+- The JavaScript data types are classified into 2 types
+    a) Primitive Types
+    b) Non Primitive Types
+
+Primitive Types:
+- They are immutable types.
+- They can't change the structure.
+- They have fixed range for values.
+- They are stored in memory stack. [LIFO]
+- JavaScript Primitive types are
+    a) number
+    b) string
+    c) boolean
+    d) null
+    e) undefined
+
+number:
+- signed integer     -8
+- unsigned      8
+- floating        34.32
+- double        340.320,  44.678
+- decimal        4562.45   [29 places]
+- exponent    2e3     2x10[3] = 2000
+- binary        0b1010   = 10
+- hexa        0f
+- octa        0o743
+
+Note: Every HTML element value is string, you have to explicitly convert into number by using
+    a) parseInt()
+    b) parseFloat()
+
+         var age = "22";
+         document.write(age + 1);      // 221
+         document.write(parseInt(age) + 1);   23
+
+Ex:
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Number</title>
+      <script>
+         function CalculateClick(){
+            var age = document.getElementById("Age").value;
+            document.getElementById("msg").innerHTML = (parseInt(age)+1);
+         }
+      </script>
+   </head>
+   <body>
+      Age: <input type="number" id="Age" min="15" max="30">
+           <button onclick="CalculateClick()">Calculate</button>
+           <span id="msg"></span>
+   </body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Number</title>
+      <script>
+         function CalculateClick(){
+            var age = document.getElementById("Age").value;
+            document.getElementById("msg").innerHTML = (parseFloat(age)+1);
+         }
+      </script>
+   </head>
+   <body>
+      Age: <input type="number" id="Age" step="0.1" min="15" max="30">
+           <button onclick="CalculateClick()">Calculate</button>
+           <span id="msg"></span>
+   </body>
+</html>
+
+FAQ: How to check the number type input?
+Ans : By using "isNaN()"
+          It returns boolean true if value is not a number type.
+
+Ex:
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Number</title>
+      <script>
+         function CalculateClick(){
+            var age = document.getElementById("Age").value;
+            var msg = document.getElementById("msg");
+
+            if(isNaN(age)){
+               msg.innerHTML = "Please Enter a Number";  
+            } else {
+               msg.innerHTML = "Your Age : " + age;
+            }
+         }
+      </script>
+   </head>
+   <body>
+      Age: <input type="text" id="Age">
+           <button onclick="CalculateClick()">Calculate</button>
+           <span id="msg"></span>
+   </body>
+</html>
+
+Ex-1:
+
+var x = "10";
+var y = 20;
+var z = x + y ;          // 1020
+
+var z = parseInt(x) + y;    // 30
+
+
+Ex:2
+var x = "AB";
+var y = 20;
+var z = x + y ;          // 1020
+
+var z = parseInt(x) + y;    // NaN
+
+
+Ex:3
+var x = "20AB40XY";
+var y = 20;
+var z = x + y ;          // 1020
+
+var z = parseInt(x) + y;    // 40
+
+
+Note: Parsing can be done from string to number if value starts
+          with number. You can parse even it is having a string.

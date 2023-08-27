@@ -1,0 +1,287 @@
+Mouse Events
+- onmouseover
+- onmouseout
+- onmousedown
+- onmouseup
+- onmousemove
+
+Ex: over an out
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mouse Event</title>
+    </head>
+    <body>
+        <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="15">
+            <img src="../public/images/shoe.jpg" width="100" height="100">
+            <img src="../public/images/shoe1.jpg" width="100" height="100">
+            <img src="../public/images/speaker.jpg" width="100" height="100">
+            <img src="../public/images/neckband.PNG" width="100" height="100">
+
+        </marquee>
+    </body>
+</html>
+
+Ex: down and up
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mouse Event</title>
+        <script>
+            function ShowOffer(){
+                document.getElementById("offer").src="../public/images/speakeroffer.png";
+            }
+            function HideOffer(){
+                document.getElementById("offer").src="../public/images/offer.png";
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <img onmousedown="ShowOffer()" onmouseup="HideOffer()" id="offer" src="../public/images/offer.png" width="200" height="200">
+        </div>
+        <p>Press hold down mouse button to view offer</p>
+    </body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mouse Event</title>
+        <script>
+            function SetColor(color){
+                document.querySelector("h1").style.color = color;
+            }
+        </script>
+    </head>
+    <body>
+        <div style="display: flex;">
+            <div id="red" onmouseover="SetColor(this.id)" style="background-color: red; width: 200px;">
+                Red
+            </div>
+            <div id="green" onmouseover="SetColor(this.id)" style="background-color: green ; width: 200px;">
+                Green
+            </div>
+            <div id="blue" onmouseover="SetColor(this.id)" style="background-color: blue; width: 200px;">
+                Blue
+            </div>
+        </div>
+        <h1 align="center">Sample Text</h1>
+    </body>
+</html>
+
+
+Mouse Event Properties
+clientX
+clientY
+screenX
+screenY
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mouse Event</title>
+        <script>
+           function GetPosition(e){
+               var flag = document.getElementById("flag");
+               flag.style.position = "fixed";
+               flag.style.left = e.clientX + "px";
+               flag.style.top = e.clientY + "px";
+               console.log(`x=${e.clientX} y=${e.clientY}`);
+           }
+        </script>
+    </head>
+    <body onmousemove="GetPosition(event)">
+       <div style="height: 1000px ;">
+
+       </div>
+       <img id="flag" src="../public/images/flag.gif" width="50" height="50">
+    </body>
+</html>
+
+
+Keyborad Events:
+- onkeyup
+- onkeydown
+- onkeypress
+
+Event Properties
+- keyCode
+- charCode
+- which
+- shiftKey
+- ctrlKey
+- altKey
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KeyEvents</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            function VerifyCaps(e){
+                var warning = document.getElementById("warning");
+                if(e.keyCode>=65 && e.keyCode<=90)
+                {
+                    warning.style.display = "block";
+                } else {
+                    warning.style.display = "none";
+                }
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <h3>Verify Password</h3>
+        <dl>
+            <dt>Password</dt>
+            <dd>
+                <input type="password" onkeypress="VerifyCaps(event)" class="form-control">
+            </dd>
+            <dd id="warning" style="display: none;" class="text-warning">
+                <span class="bi bi-exclamation-triangle-fill"></span> Caps ON
+            </dd>
+        </dl>
+    </body>
+</html>
+           
+
+Clipboard Events:
+- oncut
+- oncopy
+- onpaste
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KeyEvents</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            function Cut(){
+                document.querySelector("h3").innerHTML = "Removed and Copied to Clipboard";
+            }
+            function Copy(){
+                document.querySelector("h3").innerHTML = "Copied to Clipboard";
+            }
+            function Paste(){
+                document.querySelector("h3").innerHTML = "Inserted from Clipboard";
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+       <h2>Your comments</h2>
+       <textarea rows="4" oncut="Cut()" oncopy="Copy()" onpaste="Paste()" cols="40"></textarea>
+
+       <h3></h3>
+    </body>
+</html>
+
+FAQ: How to disable cut, copy, paste ?
+FAQ: How to disable right click in page?
+Ans:  Return False for function.
+
+Button Events:
+- onclick
+- ondblclick
+- oncontextmenu
+- onselectstart
+- onselect
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KeyEvents</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            document.oncontextmenu = function(){
+                alert("Right Click Disabled on this page");
+                return false;
+            }
+            document.onselectstart = function(){
+                return false;
+            }
+            document.oncut = function(){
+                return false;
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <h2>Right Click not allowed</h2>
+    </body>
+</html>
+
+Ex: DblClick
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KeyEvents</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            document.oncontextmenu = function(){
+                alert("Right Click Disabled on this page");
+                return false;
+            }
+            document.onselectstart = function(){
+                return false;
+            }
+            document.oncut = function(){
+                return false;
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <h2>Right Click not allowed</h2>
+    </body>
+</html>
+
+Element State Events
+- onchange
+- onblur
+- onfocus
+
+TouchEvents
+- ontouchstart
+- ontouchend
+- ontouchmove
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>KeyEvents</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+           function GetDetails(e){
+               var para = document.querySelector("p");
+              switch(e.target.id){
+                  case "nike":
+                  para.innerHTML = "Nike Casuals - 4500.55 -  60% OFF";
+                  break;
+                  case "sony":
+                  para.innerHTML = "Sony Speaker - 7500.55 -  20% OFF";
+                  break;
+              }
+           }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <img ontouchstart="GetDetails(event)" id="nike" src="../public/images/shoe.jpg" width="100" height="100">
+        <img ontouchstart="GetDetails(event)" id="sony" src="../public/images/speaker.jpg" width="100" height="100">
+        <p></p>
+    </body>
+</html>

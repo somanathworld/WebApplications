@@ -1,0 +1,284 @@
+indexOf()        : It returns the index number of specified char.
+          If char not found then it returns -1.
+
+lastIndexOf()    : It returns the last occurance index number.
+
+          Welcome
+          indexOf("e")    1
+          lastIndexOf("e")    6
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>String</title>
+        <script>
+            function VerifyEmail(){
+                var email = document.getElementById("Email").value;
+                var error = document.getElementById("error");
+                if(email.indexOf("@")==-1) {
+                    error.innerHTML = "Please Include @ in Email";
+                } else {
+                    error.innerHTML="";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Your Email</legend>
+            <input type="text" onblur="VerifyEmail()" id="Email">
+            <div id="error"></div>
+        </fieldset>
+    </body>
+</html>
+
+- trim()    : It is used to remove the leading spaces in string.
+      [space before and after string]
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>String</title>
+        <script>
+           function VerifyPassword(){
+               var password = document.getElementById("Password").value;
+               if(password.trim()=="admin"){
+                   document.write("Login Success..");
+               } else {
+                   document.write("Invalid Password");
+               }
+           }
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Your Password</legend>
+            <input type="text" id="Password">
+            <button onclick="VerifyPassword()">Submit</button>
+        </fieldset>
+    </body>
+</html>
+
+- split()    : It splits the string into multiple strings.
+      It can split by referring to any delimeter [separator].
+
+Ex:
+<script>
+    var contacts = "John : 998448471, David: 999958482";
+    var [john, david] = contacts.split(',');
+    document.write(david);
+</script>
+
+Ex:
+<script>
+    var contacts = "John : 998448471, David: 999958482";
+    var result = contacts.split(',');
+    document.write(result[1]);
+</script>
+
+Summary: String Type
+- Single Quote
+- Double Quote
+- Back tick
+- ${ }  binding expression
+- Formatting functions
+    bold()
+    italics()
+    toUpperCase() etc..
+- Manipulation Functions
+    charAt()
+    startsWith()
+    indexOf()
+    match() etc..
+
+
+                    Boolean Type
+                   ===========
+- Boolean types are used in decision making.
+- Boolean type can handle only 2 values : true and false.
+- JavaScript boolean true can refer to 1  and false to 0.
+
+    true = 1
+    false = 0
+
+    true + true = ?  2
+
+Ex:
+<script>
+    var x = true;
+    if(x==true) {
+        document.write("X is true");
+    } else {
+        document.write("X is false");
+    }
+</script>
+
+Note: Dynamically we can use boolean in decision making and controlling elements behaviour like
+    - readonly
+    - disabled
+    - checked
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Boolean</title>
+        <script>
+            function VerifyUserName(){
+                var username = document.getElementById("UserName").value;
+                var password = document.getElementById("Password");
+                if(username=="") {
+                    password.disabled=true;
+                } else {
+                    password.disabled=false;
+                }
+            }
+            function VerifyPassword(){
+                var password = document.getElementById("Password").value;
+                if(password=="admin") {
+                    document.getElementById("btnLogin").disabled=false;
+                } else {
+                    document.getElementById("btnLogin").disabled=true;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Login</legend>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" onblur="VerifyUserName()" id="UserName"></dd>
+                <dt>Password</dt>
+                <dd><input type="password" onblur="VerifyPassword()" disabled id="Password"></dd>
+            </dl>
+            <button disabled id="btnLogin">Login</button>
+        </fieldset>
+    </body>
+</html>
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Boolean</title>
+        <script>
+            function VerifyUserName(){
+                var username = document.getElementById("UserName").value;
+               
+                if(username=="") {
+                    document.getElementById("passwordContainer").style.display ="none";
+                } else {
+                   document.getElementById("passwordContainer").style.display = "block";
+                }
+            }
+            function VerifyPassword(){
+                var password = document.getElementById("Password").value;
+                if(password=="admin") {
+                    document.getElementById("buttonContainer").style.display="block";
+                } else {
+                    document.getElementById("buttonContainer").style.display="none";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Login</legend>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" onblur="VerifyUserName()" id="UserName"></dd>
+                <div id="passwordContainer" style="display: none;">
+                    <dt>Password</dt>
+                    <dd><input type="password" onblur="VerifyPassword()" id="Password"></dd>
+                </div>
+            </dl>
+            <div id="buttonContainer" style="display: none;">
+                <button  id="btnLogin">Login</button>
+            </div>
+        </fieldset>
+    </body>
+</html>
+
+
+              Undefined Type
+              ============
+- Undefined indicates that value is not defined into a variable or reference.
+- You can use "undefined" keyword to verify value defined or not.
+
+Ex:
+<script>
+    var name = "Samsung TV";
+    var price;
+    if(price==undefined) {
+        document.write(`Name=${name}`);
+    } else {
+    document.write(`Name=${name}<br>Price=${price}`);
+    }
+</script>
+
+FAQ: What is undefined and not-defined?
+Ans : undefined is type, not-defined is reference error.
+
+    var x;
+    document.write("x=" + x);    x = undefined
+    document.write("y=" + y);     y is not defined.
+
+Note: Undefined is a type specified at compile time.
+
+    var x = prompt("Enter number");
+    document.write("x="+ x);          x = null
+
+         Null Type
+         ========
+- Null defines that value is not supplied during run time.
+- Null is no value.
+
+        var x  = " ";    - blank space - &nbsp;
+        var x = null;    - nothing
+
+prompt()
+     cancel        - null
+     ok - with value    - value
+     ok - without value    - " "
+
+Ex:
+<script>
+    var username = prompt("Enter Name");
+    if(username==null) {
+        document.write("You canceled..");
+    }else if(username=="") {
+        document.write("Please provide user name");
+    } else {
+        document.write("Hello ! " + username);
+    }
+</script>
+
+Summary:
+- number
+- string
+- boolean
+- null
+- undefined
+
+              Non-Primitive Types
+             ----------------------------
+- These are mutable types.
+- Their structure can change dynamically according to state and situation.
+- They don't have any fixed ranged for value.
+- Value range will change according to memory available.
+- JavaScript non-primitive types are
+    a) Array
+    b) Object
+    c) Map
+
+
+                 Array Type
+                ---------------
+- Arrays are used in computer programming to reduce overhead and complexity.
+- Arrays can reduce overhead by storing values in sequential order.
+- Arrays can reduce complexity by storing multiple values under one name.
+- Arrays can store various types of values.
+- Array size can change dynamically.

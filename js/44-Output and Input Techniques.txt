@@ -1,0 +1,279 @@
+Every Programming Language
+- Accepts input from user
+- Process the input
+- Generate a response
+- Render response as output
+
+Output Techniques
+===============
+1. alert()
+2. confirm()
+3. document.write()
+4. console.log(), error(), debug(), warn() etc..
+5. innerHTML
+6. outerHTML
+7. innerText
+
+
+alert():
+======
+ - It is used to display a message in message box that pops up in browser window.
+ - It will not allow to do any another task until or unless you confirm.
+ - It will not allow to cancel.
+
+Syntax:
+        alert("your message");
+        alert("line1\n line2");
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Output</title>
+        <script>
+            function DeleteClick(){
+                alert("Delete Record\nRecord will be deleted");
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Click Delete button to Delete Record</h2>
+        <button onclick="DeleteClick()">Delete</button>
+    </body>
+</html>
+
+confirm()
+=======
+- It is similar to alert but allows to cancel.
+- Cancel will not work directly, you have to define its functionality explicitly.
+- Confirm returns
+        true        on OK
+        false        on Cancel
+
+- You have to capture the result of confirm and compare
+
+                 flag = confirm("Your Message");
+        flag==true                 on OK
+        flag==false        on Cancel
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Output</title>
+        <script>
+            function DeleteClick(){
+               flag = confirm("Delete Record\nRecord will be deleted");
+               if(flag==true){
+                   alert("Record Deleted Successfully..");
+               } else {
+                   alert("You Canceled");
+               }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Click Delete button to Delete Record</h2>
+        <button onclick="DeleteClick()">Delete</button>
+    </body>
+</html>
+
+document.write()
+==============
+- It is used to display output on new screen.
+- You can use markup for output.
+
+Syntax:
+        document.write("Your Message");
+        document.write("<markup>");
+
+
+
+Ex: Custom Confirm Box
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Output</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <script>
+            function YesClick(){
+               document.write("<b><i>Record Deleted successfully..</b><i>");
+            }
+            function NoClick(){
+                document.write("You Canceled..");
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <div class="mt-2">
+            <button class="btn btn-danger" data-bs-target="#delete" data-bs-toggle="modal">Delete</button>
+            <div class="modal fade" id="delete">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Delete Record</h2>
+                            <button class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure want to delete?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="YesClick()" data-bs-dismiss="modal" class="btn btn-primary">Yes</button>
+                            <button onclick="NoClick()" data-bs-dismiss="modal" class="btn btn-danger">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+Console Methods:
+- Console is a tool provided in every browser
+- You can open developer tools and goto "console" category.
+- console.log(), error(), warn(), debug(), info() etc..
+
+
+Syntax:
+        console.log("message");
+        console.error("message");
+
+
+innerHTML and innerText:
+- These are the output properties used for any container like
+        <h2> <p> <div> <span> <dd> <td> etc..
+- innerHTML allows markup.
+- innerText is RC data type. [markup not allowed]
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Output</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <script>
+            function YesClick(){
+              document.getElementById("msg").innerHTML = "<b><i>Record Deleted Successfully..</b></i>";
+            }
+            function NoClick(){
+                document.getElementById("msg").innerText = "<b><i>You canceled..</b></i>";
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <div class="mt-2">
+            <button class="btn btn-danger" data-bs-target="#delete" data-bs-toggle="modal">Delete</button>
+            <div class="modal fade" id="delete">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Delete Record</h2>
+                            <button class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure want to delete?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="YesClick()" data-bs-dismiss="modal" class="btn btn-primary">Yes</button>
+                            <button onclick="NoClick()" data-bs-dismiss="modal" class="btn btn-danger">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <p id="msg"></p>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+outerHTML:
+- innerHTML can display the markup in the existing markup.
+- It keeps the parent container and adds markup as child.
+- outerHTML can replace the markup.
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Output</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <script>
+            function YesClick(){
+              document.getElementById("msg").outerHTML = "<h2>Record Deleted Successfully..</h2>";
+            }
+            function NoClick(){
+                document.getElementById("msg").innerText = "<b><i>You canceled..</b></i>";
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <div class="mt-2">
+            <button class="btn btn-danger" data-bs-target="#delete" data-bs-toggle="modal">Delete</button>
+            <div class="modal fade" id="delete">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Delete Record</h2>
+                            <button class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure want to delete?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button onclick="YesClick()" data-bs-dismiss="modal" class="btn btn-primary">Yes</button>
+                            <button onclick="NoClick()" data-bs-dismiss="modal" class="btn btn-danger">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <p id="msg"></p>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </body>
+</html>
+
+
+JavaScript Input Techniques:
+1. prompt()
+2. Form input elements
+
+
+prompt() :
+- It is used to display an input box in browser.
+- Input box will accept a string input.
+
+Syntax:
+ prompt("Message", "Default_Value");
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Input</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            function CreateClick(){
+               foldername  =  prompt("Enter Name","New_Name");
+               document.write("Hello ! " + foldername);
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+       <button onclick="CreateClick()" class="btn btn-link">Enter Your Name</button>
+    </body>
+</html>
