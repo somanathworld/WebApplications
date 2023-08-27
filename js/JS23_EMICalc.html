@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EMI calculator</title>
+        <link rel = "stylesheet" href = "../node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <link rel = "stylesheet" href = "../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+        <script>
+            function amountChange(){
+                document.getElementById("txtAmount").value = document.getElementById("amountRange").value;                
+            }
+            function yearChange(){
+                document.getElementById("txtYear").value = document.getElementById("yearRange").value;                
+            }
+            function rateChange(){
+                document.getElementById("txtRate").value = document.getElementById("rateRange").value;                
+            }
+
+            function calculateClick(){
+                var p = parseInt(document.getElementById("txtAmount").value);
+                var n = parseInt(document.getElementById("txtYear").value) * 12;
+                var r = parseFloat(document.getElementById("txtRate").value);
+
+                var result = [p*r*(1 + r)**n]/(1 + r)**(n-1)
+                
+                document.getElementById("result").innerHTML = result;
+            }
+        </script>
+    </head>
+    <body class="container-fluid">
+        <h2>Personal Loan Calculator</h2>
+        <div class="row">
+            <div class="col">
+                <div class="input-group">
+                    <label class="input-group-text">Amount you need : </label>
+                    <input type="number" value = "50000" id = "txtAmount" class="form-control"/>
+                </div>
+                <div class="mt-2">
+                    <input type = "range" value = "50000" min = "50000" max = "500000" id = "amountRange" class="form-range" onchange="amountChange()">
+                </div>   
+                <div class="d-flex justify-content-between">
+                    <span>&#8377;50,000</span>
+                    <span>&#8377;5,00,000</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <label class="input-group-text">For : </label>
+                    <input type="number" value = "1" id = "txtYear" class="form-control"/>
+                    <label class="input-group-text">Years</label>
+                </div>
+                <div class="mt-2">
+                    <input type = "range" value = "1" min = "1" max = "5" id = "yearRange" class="form-range" onchange="yearChange()">
+                </div>   
+                <div class="d-flex justify-content-between">
+                    <span>1 Year</span>
+                    <span>5 Years</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <label class="input-group-text">Interest rate : </label>
+                    <input type="number" value = "10.5" id = "txtRate" class="form-control"/>
+                </div>
+                <div class="mt-2">
+                    <input type = "range" value = "10.5" min = "10.5" max = "21" step="0.1" id = "rateRange" class="form-range" onchange="rateChange()">
+                </div>   
+                <div class="d-flex justify-content-between">
+                    <span>10.5%</span>
+                    <span>21%</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-4">
+                <button class="btn btn-primary" onclick = "calculateClick()">Calculate</button>
+            </div>
+            <div class="col-8">
+                <h1>Monthly Installment : <span id = "result"></span></h1>
+            </div>
+        </div>
+        <script type="text/javascript" src = "../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script type = "text/javascript" src = "../node_modules/jquery/dist/jquery.js"></script>
+    </body>
+</html>

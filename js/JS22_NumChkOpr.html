@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Even number check</title>
+        <script>
+            function verifyNumber(){
+                var num = parseInt(document.getElementById("txtEven").value);
+                var msg = document.getElementById("msg");
+                if(num % 2 == 0){
+                    msg.innerHTML = "";
+                }else{
+                    msg.innerHTML = "Not an even number".fontcolor("red");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Enter a number</legend>
+            <div>
+                <input type="text" id="txtEven" onblur="verifyNumber()"/>
+                <div id = "msg"></div>
+            </div>
+        </fieldset>
+    </body>
+</html>

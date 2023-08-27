@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Date Demo Page</title>
+        <script>
+            function dateClick(){
+                var days = ["Sunday", "Monday", "Tuesday", "wednessday", "Thursday", "Friday", "Saturday"];
+                var months = ["January", "February", "March", "April", "May"];
+                var mfd = new Date("2022-3-22 16:34:21");
+                document.getElementById("demo").innerHTML = `
+                    Weekday :   ${days[mfd.getDay()]} <br/>
+                    Month   :   ${months[mfd.getMonth()]} <br/>
+                    Date    :   ${mfd.getDate()} <br/>
+                    Year    :   ${mfd.getFullYear()} <br/>
+                    Date    :   ${mfd.toLocaleDateString()} <br/>
+                    Time    :   ${mfd.toLocaleTimeString()} <br/>
+                    Date    :   ${days[mfd.getDay()]}, ${mfd.getDate()}-${months[mfd.getMonth()]}-${mfd.getFullYear()}
+                `;
+            }
+        </script>       
+    </head>
+    <body>
+       <button onclick="dateClick()">Show Date</button>
+        <p id = "demo"></p>
+    </body>
+</html>

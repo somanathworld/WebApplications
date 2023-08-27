@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Accessing Array of Objects</title>
+        <link rel = "stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <script>
+            function bodyLoad(){
+                fetch("../data/products.json")
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(data){
+                    data.map(
+                        function(item){
+                            var div = document.createElement("div");
+                            div.style.width = "300px"
+                            div.className = "card m-2 p-2"
+                            div.innerHTML = `
+                                <img src = "${item.photo}" height = "150px" class = "card-img-top"/>
+                                <div class = "card-header">
+                                    <h4>${item.name}</h4>
+                                </div>
+                                <div class = "card-body">
+                                    <p>${item.price}</p>
+                                </div>
+                                <div class = "card-footer">
+                                    <button class = "btn btn-danger w-100">Add to Cart</button>
+                                </div>
+                            `                    
+                            document.getElementById("catalog").appendChild(div);
+                        }
+                    )
+                })
+            }
+        </script>
+    </head>
+    <body class="container-fluid" onload="bodyLoad()">
+        <h3 class="mt-2">Products Catalogue</h3>
+        <div id = "catalog" class = "d-flex justify-content-between">
+        </div>
+    </body>
+</html>

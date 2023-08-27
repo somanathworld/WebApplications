@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cascading Dropdown</title>
+        <link rel = "stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <link rel = "stylesheet" href = "../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+        <script>
+            var categories = ["Select a category","Electronics","Footwear","Fashion"];
+            var electronics = ["Select Electronics", "JBL Speaker", "Sql Developer"];
+            var footwear = ["Select Footwear", "Nike Casuals", "Sandels"];
+            var fashion = ["Select Fashion", "Winter Jacket", "Backpack"];
+            var products = [];
+
+            var data = [
+                {Name : "JBL Speaker", Price : 1999, Image : "../public/images/speaker.jpg"},
+                {Name : "Sql Developer", Price : 199, Image : "../public/images/sd.png"},
+                {Name : "Nike Casuals", Price : 2999, Image : "../public/images/shoe.jpg"},
+                {Name : "Sandels", Price : 999, Image : "../public/images/shoe.jpg"},
+                {Name : "Winter Jacket", Price : 1999, Image : "../public/images/bullet.gif"},
+                {Name : "Backpack", Price : 3999, Image : "../public/images/bullet2.gif"},
+            ];
+
+            function loadCategories(){
+                for(var category of categories){
+                    var option = document.createElement("option");
+                    option.text  = category;
+                    option.value = category;
+                    document.getElementById("lstCategories").appendChild(option);
+                }
+            }
+
+            function loadProducts(){
+                document.getElementById("lstProducts").innerHTML = "";
+                for(var product of products){
+                    var option = document.createElement("option");
+                    option.text  = product;
+                    option.value = product;
+                    document.getElementById("lstProducts").appendChild(option);
+                }
+            }
+
+            function categoryChanged(){
+                var category = document.getElementById("lstCategories").value;
+                switch(category){
+                    case "Electronics" :
+                        products = electronics;
+                        break;
+                    case "Footwear" : 
+                        products = footwear;
+                        break;
+                    case "Fashion" : 
+                        products = fashion;
+                        break;
+                    default : 
+                        products = ["Please Select a category"]
+                    break;
+                }
+                // console.log(products);
+                loadProducts();
+            }
+
+            var searchedProduct;            
+            function productChanged(){
+                var prodName = document.getElementById("lstProducts").value;
+                searchedProduct = data.find(function(product){
+//                    console.log(product.Name + ", "+prodName);
+                    return product.Name == prodName;
+                });
+
+                document.getElementById("preview").className = "d-block";
+                document.getElementById("pic").src = searchedProduct.Image;
+                document.getElementById("prodName").innerHTML = searchedProduct.Name;
+                document.getElementById("prodPrice").innerHTML = searchedProduct.Price;
+            }
+
+            cartItems = [];
+            function getCartCount(){
+                document.getElementById("count").innerHTML = cartItems.length;
+            }
+
+            function addToCartClicked(){
+                cartItems.push(searchedProduct);
+                getCartCount();
+            }
+
+            function bodyLoad(){
+                loadCategories();
+                getCartCount();
+            }
+
+            function showCartClick(){
+                document.getElementById("cart").style.display = "block";
+                document.querySelector("tbody").innerHTML = "";
+                for(var item of cartItems){
+                    var tr = document.createElement("tr");
+                    var tdName = document.createElement("td");
+                    var tdPrice = document.createElement("td");
+                    var tdImage = document.createElement("td");
+
+                    tdName.innerHTML = item.Name;
+                    tdPrice.innerHTML = item.Price;
+
+                    var image = document.createElement("img");
+                    image.width = "60";
+                    image.height = "60";
+                    image.src = item.Image;
+
+                    tdImage.appendChild(image);
+
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdPrice);
+                    tr.appendChild(tdImage);
+
+                    document.querySelector("tbody").appendChild(tr);
+                }
+            }
+        </script>
+    </head>
+    <body class="container-fluid" onload = "bodyLoad()">
+        <header class="bg-danger text-white text-center p-2 mt-2">
+            <h1><span class="bi bi-cart4"></span>Amazon Shopping</h1>
+        </header>
+        <section class="row">
+            <nav class="col-3">
+                <div class="mt-2">
+                    <label class="from-label" >Select category : </label>
+                    <div>
+                        <select id = "lstCategories" onchange = "categoryChanged()" class="form-select">
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label class="from-label">Select product : </label>
+                    <div>
+                        <select id = "lstProducts" class="form-select" onchange="productChanged()">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="form-label"><h3>Preview</h3></label>
+                    <div class="card d-none" id = "preview">
+                        <img id = "pic" class="card=img-top" height="150px">
+                        <div class="card-header" height = "120px">
+                            <h3 id = "prodName"></h3>
+                        </div>
+                        <div class="card-body">
+                            <p id = "prodPrice"></p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-danger w-100" onclick="addToCartClicked()"><span class="bi bi-cart4">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <main class="col-6">
+                <table id = "cart" style ="display: none;" class="table table-hover caption-top">
+                    <caption>Your Cart Item</caption>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+            </main>
+            <div class="col-3">
+                <div class="mt-3">
+                    <button class="btn btn-danger w-100" onclick="showCartClick()"><span class="bi bi-cart4"></span>[<span id = "count"></span>]Your Cart Items</button>                   
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript" src = "../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src = "../node_modules/jquery/dist/jquery.js"></script>
+    </body>
+</html>

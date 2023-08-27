@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Captcha Demo </title>
+        <link rel = "stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+        <style>
+            dd{
+                margin-bottom: 10px;
+            }
+        </style>
+        <script>
+            function captcha(){
+                var a = Math.random() * 10;
+                var b = Math.random() * 10;
+                var c = Math.random() * 10;
+                var d = Math.random() * 10;
+                var e = Math.random() * 10;
+
+                return `${Math.round(a)} ${Math.round(b)} ${Math.round(c)} ${Math.round(d)} ${Math.round(e)}`;
+            }
+
+            function getNewCode(){
+                document.getElementById("code").innerHTML = captcha();
+            }
+
+            function bodyLoad(){
+                document.getElementById("code").innerHTML = captcha();
+            }
+
+            function loginClicked(){
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                var code = document.getElementById("code").innerHTML;
+                var captchaCode = parseInt(document.getElementById("captchaCode").value);
+                var msg = document.getElementById("msg");
+
+                fetch("../data/users.json")
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(users){
+                    for(var user of users)
+                    {
+                        if(user.UserName==username && user.Password==password) {
+                            var orginalCode = parseInt(code.split(" ").join(""));
+
+                            if(orginalCode == captchaCode){
+                                document.write("<h2>Login Success</h2>");
+                            }else{
+                                msg.innerHTML = "Invalid Captcha";
+                                break;
+                            }
+                        } else {
+                            msg.innerHTML= "Invalid User Name / Password";
+                        }
+                    }
+                })
+            }
+        </script>
+    </head>
+    <body onload = "bodyLoad()">
+        <fieldset>
+            <legend>User Login</legend>
+            <dl>
+                <dt>UserName : </dt>
+                <dd><input type = "text" id = "username"/></dd>
+                <dt>Password : </dt>
+                <dd><input type = "text" id = "password"/></dd>
+                <dd>Verify Code : <button onclick = "getNewCode()"><span class="bi bi-arrow-clockwise"></span></button>
+                <dd id = "code"></dd>
+                <dd><input id = "captchaCode" type="text" size="6"></dd>
+            </dl>
+            <button onclick = "loginClicked()">Login</button>
+        </fieldset>
+        <h2 id = "msg" align = "center"></h2>
+    </body>
+</html>

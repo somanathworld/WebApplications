@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Button Toggle</title>
+        <script>
+            function toggleClick(){
+                var togBtn = document.getElementById("togBtn").value;
+                togBtn = (togBtn == "Hide Preview") ? "Show Preview" : "Hide Preview";
+                document.getElementById("togBtn").innerHTML = togBtn;
+                document.getElementById("togBtn").value = togBtn;
+
+                var displayValue = document.getElementById("container").style.display;
+                displayValue = (displayValue == "none") ? "block" : "none";
+                document.getElementById("container").style.display = displayValue;
+            }
+
+            function stockToggle(){
+                var stock = document.getElementById("stock");
+                document.getElementById("msg").innerHTML = (stock.checked)? "Available" : "Out of stock";
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="toggleClick()" id = "togBtn" value = "Hide Preview" style="padding : 5px; width : 200px">Hide Preview</button>
+        <div id = "container" style="display: block;">
+            <img src = "../public/images/shoe.jpg" width="200px" height="200px"/>
+        </div>
+
+        <div style="margin-top : 10px">
+            <input type = "checkbox" onchange="stockToggle()" id = "stock"><span id = "msg">Out of stock</span>
+        </div>
+    </body>
+</html>

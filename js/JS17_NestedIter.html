@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Nested Iteration</title>
+        <script>
+            fetch("../data/menu.json")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                for(var item of data){
+                    var liCategory = document.createElement("li");
+                    liCategory.innerHTML = item.Category;
+                    document.querySelector("ol").appendChild(liCategory);
+
+                    for(var productItem of item.Products){
+                        var ul = document.createElement("ul");
+                        var ulItems = document.createElement("li");                    
+                        ulItems.innerHTML = productItem;
+                        ul.appendChild(ulItems);
+                        liCategory.appendChild(ul);
+                    }
+                    
+                    var optGroup = document.createElement("optgroup");
+                    optGroup.label = item.Category;
+                    document.querySelector("select").append(optGroup);
+
+                    for(var prod of item.Products){
+                        var option = document.createElement("option");
+                        option.innerHTML = prod;
+                        option.value = prod;
+
+                        optGroup.append(option);
+                    }
+
+                }
+            })
+        </script>
+    </head>
+    <body>
+        <h3>Product List Data</h3>
+        <div>
+            <ol>
+
+            </ol>
+        </div>
+        <div>
+            <select>
+            </select>
+        </div>
+    </body>
+</html>

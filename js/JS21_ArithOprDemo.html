@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Arithmetic Operator Demo</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+    <script>
+        function loadProducts(id){
+            fetch(`http://fakestoreapi.com/products/${id}`)
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                document.getElementById("pic").src = data.image;
+                document.getElementById("title").innerHTML = data.title;
+                document.getElementById("price").innerHTML = data.price;
+                document.getElementById("rating").innerHTML = data.rating.rate + "<span class = 'bi bi-star-fill'></span>"
+            })
+        }
+        
+        function bodyLoad(){
+            loadProducts(1)
+        }
+
+        var productId = 1;
+        function nextClick(){
+            productId++;
+            loadProducts(productId);
+        }
+        function prevClick(){
+            productId--;
+            loadProducts(productId);
+        }
+
+        function startShow(){
+            productId++;
+            loadProducts(productId);
+        }
+
+        var show;
+        function playClick(){
+            show = setInterval(startShow,5000);
+            document.getElementById("status").innerHTML="Slide Show - Started";
+        }
+
+        function pauseClick(){
+            clearInterval(show);
+            document.getElementById("status").innerHTML="Slide Show - Paused";
+        }
+    </script>
+
+    <style>
+        #price{
+            position: fixed;
+            top : 200px;
+            right: 400px;
+            font-size: 25px;
+            font-weight: bold;
+            border: 2px solid black;
+            background-color: yellow;
+            padding : 2px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="container-fluid" onload="bodyLoad()">
+    <div class="d-flex justify-content-center">
+        <div class="card mt-2 p-2" style="width: 350px;">
+            <div class="card-header text-center">
+                <button onclick = "playClick()" class="btn btn-danger">
+                    <span class="bi bi-play"></span>
+                </button>
+                <button onclick = "pauseClick()" class="btn btn-danger">
+                    <span class="bi bi-pause"></span>
+                </button>
+                <p id = "status"></p>
+            </div>
+            <img id="pic" height="200px" class="card-img-top" />
+            <div class="card-header" style="height:200px">
+                <h4 id="title"></h4>
+            </div>
+            <div class="card-body">
+                <p id="price"></p>
+                <p id="rating"></p>
+            </div>
+            <div class="card-footer text-center">
+                <button onclick="prevClick()" class="btn btn-danger">
+                    <span class="bi bi-chevron-left"></span>
+                </button>
+                <button onclick="nextClick()" class="btn btn-danger">
+                    <span class="bi bi-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+</body>
+
+</html>

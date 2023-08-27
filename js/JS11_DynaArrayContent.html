@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Presenting Array Content Dynamically</title>
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .box {
+            margin-left: 25px;
+        }
+
+        ul{
+            list-style-type: none;
+            height: 50px;
+               border: 2px solid black;
+               padding: 10px;
+               overflow: auto;            
+        }
+    </style>
+    <script>
+        var categories = ["All", "Electronics", "Footwear", "Fashion", "Men's Fashion"];
+        function loadCategories(){
+            //empty already existing content to remove duplicates
+            document.querySelector("ol").innerHTML = "";
+            document.querySelector("select").innerHTML = "";
+            document.querySelector("tbody").innerHTML = "";
+            document.querySelector("ul").innerHTML = "";
+            document.querySelector("nav").innerHTML = "";
+            
+            for (var item of categories) {
+                var li = document.createElement("li");
+                li.innerHTML = item;
+                document.querySelector("ol").appendChild(li);
+
+                var option = document.createElement("option");
+                option.text = item;
+                option.value = item;
+                document.querySelector("select").appendChild(option);
+
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.innerHTML = item;
+                tr.appendChild(td);
+                document.querySelector("tbody").appendChild(tr);
+
+                var chkli = document.createElement("li");
+                chkli.innerHTML = `<input type = "checkbox"/>${item}`;
+                document.querySelector("ul").appendChild(chkli);
+
+                var div = document.createElement("div");
+                div.innerHTML = `<button style = "margin-bottom : 10px; width : 200px">${item}</button>`
+                document.querySelector("nav").appendChild(div);
+            }
+        }
+
+        function bodyLoadFun() {
+            loadCategories();
+        }
+
+        function addItem(){ 
+            var categoryName = document.getElementById("txtCategory").value;
+            if(categories.indexOf(categoryName) == -1){
+                //console.log(newItem);
+                categories.push(categoryName);
+                alert(`${categoryName} added to list.`);
+                loadCategories();
+                //empting text field
+                document.getElementById("txtCategory").value = "";
+            }else{
+                alert(`${categoryName} exists!!`)
+            }
+
+        }
+
+        function removeItem(){
+            var categoryName = document.querySelector("select").value;
+            var index = categories.indexOf(categoryName);
+            var flag = confirm(`Are you sure, want to delete : ${categoryName}`);
+            
+            if(flag){
+                categories.splice(index, 1);
+                loadCategories();
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyLoadFun()">
+    <div style = "margin-bottom: 40px;">
+        New Category : 
+        <input type = "text" id = "txtCategory"/>
+        <button onclick="addItem()">Add</button>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h3>Categories List</h3>
+            <ol>
+
+            </ol>
+        </div>
+        <div class="box">
+            <h3>Select Categorie</h3>
+            <select>
+
+            </select>
+            <div style =  "margin-top: 10px;">
+                <button onclick="removeItem()">Remove </button>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Categories Menu</h3>
+            <table border="1" width="200">
+                <thead>
+                    <tr>
+                        <th>Select Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="box">
+            <h3>Categories Checklist</h3>
+            <div>
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Nav Buttons</h3>
+            <nav>
+
+            </nav>
+        </div>
+    </div>
+</body>
+
+</html>

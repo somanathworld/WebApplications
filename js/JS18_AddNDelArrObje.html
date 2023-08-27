@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Adding And Deleting Element In Array</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+    <script>
+        var products = [];
+        var product = {};
+        var count = 0;
+
+        function loadProducts() {
+            document.querySelector("tbody").innerHTML = "";
+            for (var item of products) {
+                var tr = document.createElement("tr");
+                var tdName = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdShipTo = document.createElement("td");
+                var tdDetails = document.createElement("td");
+                var tdDelete = document.createElement("td");
+
+                tdName.innerHTML = item.name;
+                tdPrice.innerHTML = item.price;
+                tdShipTo.innerHTML = item.city;
+                tdDetails.innerHTML = `
+                    <button class = "btn btn-info" data-bs-target = "#viewMod" data-bs-toggle = "modal" onclick = "viewClick(${item.id})">
+                        <span class = "bi bi-eye"></span>
+                    </button>
+                `
+                tdDelete.innerHTML = `
+                    <button class = "btn btn-danger" onclick = "deleteClick(${item.id})">
+                        <span class = "bi bi-trash"></span>
+                    </button>
+                `
+                tr.appendChild(tdName);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdShipTo);
+                tr.appendChild(tdDetails);
+                tr.appendChild(tdDelete);
+
+                document.querySelector("tbody").appendChild(tr);
+            }
+        }
+
+        function bodyLoad() {
+            loadProducts();
+        }
+
+        function AddClick() {
+            product = {
+                "id": `${++count}`,
+                "name": document.getElementById("txtName").value,
+                "price": document.getElementById("txtPrice").value,
+                "city": document.getElementById("lstCities").value,
+                "desc": document.getElementById("txtDesc").value
+            }
+            products.push(product);
+            // console.log(products);
+            loadProducts();
+            document.getElementById("txtName").value = "";
+            document.getElementById("txtPrice").value = "";
+            document.getElementById("lstCities").value = "";
+            document.getElementById("txtDesc").value = "";
+        }
+
+        function viewClick(id) {
+            for (var item of products) {
+                if (item.id == id) {
+                    document.getElementById("mod_name").innerHTML = item.name;
+                    document.getElementById("mod_price").innerHTML = item.price;
+                    document.getElementById("mod_desc").innerHTML = item.desc;
+                }
+            }
+        }
+
+        function deleteClick(id){
+            // products = products.filter(function(item){
+            //     if(item.id != id){
+            //         return item
+            //     }
+            // });
+
+            var i = products.findIndex(function(value){
+                return value.id == id;
+            });
+            products.splice(i,1);
+
+            loadProducts();
+        }
+        document.getElementById("demo").innerHTML="a";
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyLoad()">
+    <div class="row">
+        <div class="col-3">
+            <div>
+                <h2>Add Products</h2>
+                <dl>
+                    <dt>Name</dt>
+                    <dd>
+                        <input type="text" id="txtName" class="form-control">
+                    </dd>
+                    <dt>Price</dt>
+                    <dd>
+                        <input type="number" id="txtPrice" class="form-control">
+                    </dd>
+                    <dt>Shipped To</dt>
+                    <dd>
+                        <select class="form-select" id="lstCities">
+                            <option>Delhi</option>
+                            <option>Hyd</option>
+                        </select>
+                    </dd>
+                    <dt>Description</dt>
+                    <dd>
+                        <textarea class="form-control" id="txtDesc"></textarea>
+                    </dd>
+                </dl>
+                <button onclick="AddClick()" class="btn btn-primary w-100">Add Product</button>
+            </div>
+        </div>
+        <div class="col-9">
+            <h2> Product List</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Shipped To</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="viewMod">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Product Details</h4>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <dl class="row">
+                        <dt class="col-3">Name : </dt>
+                        <dd id="mod_name" class="col-9"></dd>
+                        <dt class="col-3 ">Price : </dt>
+                        <dd id="mod_price" class="col-9"></dd>
+                        <dt class="col-3">Description : </dt>
+                        <dd id="mod_desc" class="col-9"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p id = "demo"></p>
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+</body>
+
+</html>

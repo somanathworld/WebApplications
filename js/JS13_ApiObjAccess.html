@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Access api response Object</title>
+        <link rel = "stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <script>
+            var productId = 1;
+            function productLoad(id){
+                fetch(`http://fakestoreapi.com/products/${id}`)
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(data){
+                    document.getElementById("img").src = data.image;
+                    document.getElementById("title").innerHTML = data.title;
+                    document.getElementById("price").innerHTML = `Rs. ${data.price}$`;
+                })
+            }
+
+            function bodyLoad(){
+                productLoad(productId);
+            }
+
+            function prevClick(){
+                --productId;
+                productLoad(productId);
+            }
+
+            function nextClick(){
+                ++productId;
+                productLoad(productId);
+            }
+            
+        </script>
+    </head>
+    <body class="container-fluid" onload="bodyLoad()">
+        <div class="card w-25 mt-2">
+            <img id = "img" class="card-img-top" height="200px">
+            <div class="card-header" style="height: 170px">
+                <h4 id = "title"></h3>
+            </div>
+            <div class="card-body">
+                <h5 id = price></h4>
+            </div>
+            <div class="card-footer">
+                <button onclick="prevClick()"> < </button>
+                <button onclick="nextClick()"> > </button>
+            </div>
+        </div>
+    </body>
+</html>

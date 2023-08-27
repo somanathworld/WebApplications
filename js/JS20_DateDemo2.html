@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Date demo </title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" /> 
+  <script>
+        function showDate(){
+            var now = new Date();
+            var days = ["Sun","Mon","Tue","Thr","Fri","Sat"];
+            var months = ["Jan", "Feb", "Mar", "Apr", "May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+            document.getElementById("date").innerHTML=`
+                ${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]}, ${now.getFullYear()} 
+            `;  
+        }
+        function showTime(){
+            var now = new Date();
+            document.getElementById("time").innerHTML = `
+                ${now.toLocaleTimeString()}
+            `;
+        }
+        function showMessage(){
+            var now = new Date();
+            var hours = now.getHours();
+            var msg = document.getElementById("msg");
+            var icon = document.getElementById("icon");
+            if(hours >=0 && hours <=12){
+                msg.innerHTML="Good Morning";
+                icon.className = "bi bi-brightness-alt-high";
+            }else if(hours>12 && hours<17){
+                msg.innerHTML="Good Afternoon";
+                icon.className = "bi bi-sun-fill";
+            }else{
+                msg.innerHTML="Good Evening"
+                icon.className = "bi bi-cloud-sun-fill";
+            }
+        }
+
+        function bodyLoad(){
+            showDate();
+            setInterval(showTime, 1000);
+            showMessage();
+        }
+    </script>
+    </head>
+    <body onload="bodyLoad()" class="container-fluid">
+        <div class="btn-toolbar bg-danger  mt-2 justify-content-between">
+            <div class="btn-group">
+                <btn class="btn btn-danger">Home</btn>
+                <btn class="btn btn-danger">Electronics</btn>
+            </div>
+            <div class="btn-group">
+                <btn class="btn btn-danger"><span id="date"></span></btn>
+                <btn class="btn btn-danger"><span id="time"></span></btn>
+            </div>
+        </div>
+        <div class="bg-danger text-white w-100 p-2 mt-2">
+            <span id = "icon"></span>
+            <span id = "msg"></span>
+        </div>
+    </body>
+</html>

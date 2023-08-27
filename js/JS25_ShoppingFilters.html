@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fake Store API demo</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+    <script>
+        function categoriesLoad() {
+            fetch("http://fakestoreapi.com/products/categories")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    data.unshift("ALL");
+                    for (var item of data) {
+                        var option = document.createElement("option");
+                        option.value = item;
+                        option.innerHTML = item.toUpperCase();
+                        document.getElementById("categoryList").appendChild(option);
+                    }
+                })
+        }
+
+        function productsLoad(url) {
+            document.getElementById("catalog").innerHTML = "";
+            fetch(url)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    for (var item of data) {
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2"
+                        div.style.width = "230px"
+                        div.innerHTML = `
+                            <img src = "${item.image}" height = "150px" class = "card-img-top"/>
+                            <div class = "card-header" style="height : 150px">
+                                <p>${item.title}</p>
+                            </div>
+                            <div class = "card-body">
+                                <h4>${item.price}</h4>
+                            </div>
+                            <div class = "card-footer">
+                                <button class = "btn btn-danger w-100 text-white p-2" onclick = "addToCartClick(${item.id})">
+                                    <span class = "bi bi-cart4"></span>Add to Cart
+                                </button>
+                            </div>
+                        `
+                        document.getElementById("catalog").appendChild(div);
+                    }
+                })
+        }
+
+        function bodyLoad() {
+            categoriesLoad();
+            productsLoad(`http://fakestoreapi.com/products`);
+        }
+
+        function categoryChange() {
+            var categoryName = document.getElementById("categoryList").value;
+            // alert(`http://fakestoreapi.com/products/category/${categoryName}`);
+            if (categoryName == "ALL") {
+                productsLoad(`http://fakestoreapi.com/products`);
+            } else {
+                productsLoad(`http://fakestoreapi.com/products/category/${categoryName}`);
+            }
+        }
+
+        var cartItems = [];
+        function getCartItemCount() {
+            document.getElementById("cartItemCount").innerHTML = cartItems.length;
+        }
+
+        function addToCartClick(id) {
+            fetch(`http://fakestoreapi.com/products/${id}`)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    cartItems.push(data);
+                    getCartItemCount();
+                    alert(`${data.title} Added to cart.`)
+                })
+        }
+
+        function showCart() {
+            document.querySelector("tbody").innerHTML = "";
+
+            for (var item of cartItems) {
+                var tr = document.createElement("tr");
+
+                var tdTitle = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdPreview = document.createElement("td");
+                var tdRemove = document.createElement("td");
+
+                tdTitle.innerHTML = item.title;
+                tdPrice.innerHTML = item.price;
+                tdPreview.innerHTML = `
+                <img src = ${item.image} width = "50px" height = "50px"/>
+            `;
+                tdRemove.innerHTML = `
+                <button class="btn btn-outline-danger" onclick = "removeItem('${item.title}')">
+                    <span class="bi bi-trash2-fill"></span>
+                </button>
+            `;
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdPreview);
+                tr.appendChild(tdRemove);
+
+                document.querySelector("tbody").appendChild(tr);
+            }
+        }
+
+        function removeItems() {
+            cartItems = [];
+            getCartItemCount();
+        }
+
+        function removeItem(title) {
+            cartItems = cartItems.filter(
+                function (item) {
+                    return item.title != title;
+                }
+            );
+            showCart();
+            getCartItemCount();
+        }
+
+        function loadFiltereProducts(url) {
+            fetch(url)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    for (var item of data) {
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2"
+                        div.style.width = "230px"
+                        div.innerHTML = `
+                            <img src = "${item.image}" height = "150px" class = "card-img-top"/>
+                            <div class = "card-header" style="height : 150px">
+                                <p>${item.title}</p>
+                            </div>
+                            <div class = "card-body">
+                                <h4>${item.price}</h4>
+                            </div>
+                            <div class = "card-footer">
+                                <button class = "btn btn-danger w-100 text-white p-2" onclick = "addToCartClick(${item.id})">
+                                    <span class = "bi bi-cart4"></span>Add to Cart
+                                </button>
+                            </div>
+                        `
+                        document.getElementById("catalog").appendChild(div);
+                    }
+                })
+        }        
+
+        var categoryFiltered = [];
+
+        function filterChanged(value){
+            document.getElementById("catalog").innerHTML = "";
+
+            var optElectronics = document.getElementById("optElectronics");
+            var optJewelery = document.getElementById("optJewelery");
+            var optMenClothing = document.getElementById("optMenClothing");
+            var optWomenClothing = document.getElementById("optWomenClothing");
+
+            if(optElectronics.value == value){
+                if(optElectronics.checked){
+                    categoryFiltered.push(value);
+                }else{
+                    categoryFiltered = categoryFiltered.filter(category => category != value)
+                }
+            }
+
+            if(optJewelery.value == value){
+                if(optJewelery.checked){
+                    categoryFiltered.push(value);
+                }else{
+                    categoryFiltered = categoryFiltered.filter(category => category != value)
+                }
+            }
+
+            if(optMenClothing.value == value){
+                if(optMenClothing.checked){
+                    categoryFiltered.push(value);
+                }else{
+                    categoryFiltered = categoryFiltered.filter(category => category != value)
+                }
+            }
+
+            if(optWomenClothing.value == value){
+                if(optWomenClothing.checked){
+                    categoryFiltered.push(value);
+                }else{
+                    categoryFiltered = categoryFiltered.filter(category => category != value)
+                }
+            }
+            console.log(categoryFiltered);  
+            for(var category of categoryFiltered){
+                loadFiltereProducts(`http://fakestoreapi.com/products/category/${category}`);
+            }            
+        }
+
+
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyLoad()">
+    <h3 class="bg-danger text-white text-center mt-2 p-2">Shopping | Fake Store </h3>
+    <section class="row mt-2">
+        <nav class="col-2">
+            <div>
+                <label class="form-label">Select Category</label>
+                <div>
+                    <select id="categoryList" class="form-select" onchange="categoryChange()">
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label>Filters</label>
+                <ul class="list-unstyled">
+                    <li><input type = "checkbox" value = "electronics" id = "optElectronics" onchange="filterChanged(this.value)"/> Electronics </li>
+                    <li><input type = "checkbox" value = "jewelery" id = "optJewelery" onchange="filterChanged(this.value)"/> Jewelery </li>
+                    <li><input type = "checkbox" value = "men's clothing" id = "optMenClothing" onchange="filterChanged(this.value)"/> Men's Clothing </li>
+                    <li><input type = "checkbox" value = "women's clothing" id = "optWomenClothing" onchange="filterChanged(this.value)"/> Women's Clothing </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="col-7" style="height: 550px; overflow: auto;">
+            <div id="catalog" class="d-flex overflow-auto flex-wrap ">
+            </div>
+        </main>
+        <div class="col-2">
+            <button onclick="showCart()" data-bs-target="#cart" data-bs-toggle="modal"
+                class="btn btn-danger text-white p-2 w-100">
+                <span class="bi bi-cart4"></span>[<span id="cartItemCount">0</span>] Your Cart Items
+            </button>
+            <div class="modal fade" id="cart">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Your Cart Items</h3>
+                            <button data-bs-dismiss="modal" class="btn btn-close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Preview</th>
+                                        <th align="right">
+                                            <span class="bi bi-trash-fill text-danger" onclick="removeItems()"></span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+</body>
+
+</html>

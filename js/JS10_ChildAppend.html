@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Appending Child Element</title>
+        <script>
+            function CreateClick(){
+                var pic = document.createElement("img");
+                pic.width = "100";
+                pic.height = "100"; 
+                pic.border = "1";
+                pic.src = "../public/images/speaker.jpg";
+                pic.style.marginTop = "10px";
+                document.getElementById("container").appendChild(pic);
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <button onclick="CreateClick()">Create Image</button>
+        </div>
+        <div id = "container"></div>
+    </body>
+</html>

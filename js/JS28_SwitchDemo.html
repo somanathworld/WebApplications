@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Switch Case Demo</title>
+        <link rel = "stylesheet" href = "../node_modules/bootstrap/dist/css/bootstrap.css"/>
+        <script>
+            var flag = "";
+            var regExp;
+            var plcHolder = "";
+
+            function countryChanged(){
+                var country = document.getElementById("lstCountry").value;
+                switch(country){
+                    case "IND" : 
+                        flag = "../public/images/ind.jpg";
+                        regExp = /\+91-\d{10}/;
+                        plcHolder = "India calling code : +91 and number 10 digits";
+                        break;
+                    case "USA" : 
+                        flag = "../public/images/usa.jpg";
+                        regExp = /\+1-\d{6}/;
+                        plcHolder = "USA calling code : +1 and number 6 digits";
+                        break;
+                    case "UK" :
+                        flag = "../public/images/uk.jpg";
+                        regExp = /\+44-\d{8}/;
+                        plcHolder = "UK calling code : +44 and number 8 digits";
+                        break;
+                    default :
+                        plcHolder = "Please select your country";
+                        break;
+                }
+                document.getElementById("flag").src = flag;
+                document.getElementById("txtMob").placeholder = plcHolder;
+//                document.getElementById("verifyBtn").removeAttribute("disabled");
+                document.getElementById("verifyBtn").disabled = false;
+            }
+
+            function verifyClicked(){
+                var mobile = document.getElementById("txtMob").value;
+                var msg = document.getElementById("msg");
+                if(mobile.match(regExp)){
+                    document.write("Register Successful...")
+                }else{
+                    msg.innerHTML = `Invalid Number <br/> ${plcHolder}`.fontcolor("red");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <section class="container-fluid">
+            <h2>Verify Mobile</h2>
+            <dl>
+                <dt>Select Country : </dt>
+                <dd class="input-group">
+                    <select id = "lstCountry" onchange="countryChanged()" class = "form-select">
+                        <option>Select your country</option>
+                        <option value="IND">IND</option>
+                        <option value="USA">USA</option>
+                        <option value="UK">UK</option>
+                    </select>
+                    <img id = "flag" width="80px" height="40px" class="input-group-text"/>
+                </dd>
+                <dt>Your Mobile : </dt>
+                <dd>
+                    <input type = "text" class="form-control" id = "txtMob"/>
+                </dd>
+            </dl>
+            <button onclick="verifyClicked()" id = "verifyBtn" class="btn btn-primary" disabled>Verify</button>            
+            <h5 id = "msg" align = "center"></h5>
+        </section>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Timer Event</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+    <script>
+        var count = 1;
+        function loadProducts() {
+            count++;
+            fetch(`http://fakestoreapi.com/products/${count}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("title").innerHTML = data.title;
+                    document.getElementById("pic").src = data.image;
+
+                })
+        }
+
+        var timerId;
+        function playClick() {
+            var status = document.getElementById("status");
+            var oprBtn = document.getElementById("oprBtn");
+            var oprIcon = document.getElementById("oprIcon");
+
+            if (status.innerHTML == "Slide Show - Started") {
+                status.innerHTML = "Slide Show - Paused";
+                oprIcon.className = "bi bi-play-btn";
+                oprBtn.className = "btn btn-success";
+                clearInterval(timerId);
+
+            } else {
+                status.innerHTML = "Slide Show - Started";
+                oprIcon.className = "bi bi-pause-btn";
+                oprBtn.className = "btn btn-danger";
+                timerId = setInterval(loadProducts, 4000);
+            }
+
+        }
+
+        function bodyLoad() {
+            loadProducts();
+        }
+    </script>
+</head>
+
+<body class="container-fluid" onload="bodyLoad()">
+    <div class="card mt-2">
+        <div class="card-header text-center">
+            <h2 id="title"></h2>
+            <p id="status"></p>
+        </div>
+        <div class="card-img-top text-center mt-2">
+            <img id="pic" width="75%" height="430px" />
+        </div>
+        <div class="card-footer text-center mt-2">
+            <button class="btn btn-success" id="oprBtn" onclick="playClick()">
+                <span class="bi bi-play-btn text-large p-2" style="font-size: 30px;" id="oprIcon"></span>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
