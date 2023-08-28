@@ -1,1 +1,37 @@
-
+17-08-2022  14:50       436,797,539 Lecture-1 Introduction to JavaScript.mp4
+17-08-2022  17:13       316,447,000 Lecture-10 String , Boolean, Null , Undefined and Arrays.mp4
+17-08-2022  17:13       234,838,601 Lecture-11 Array Declaration and Manipulation.mp4
+17-08-2022  17:11       195,444,881 Lecture-12 Array Manipulations.mp4
+17-08-2022  17:33       402,425,224 Lecture-13 Object Type.mp4
+17-08-2022  17:34       525,240,206 Lecture-14 Object Type - JSON data .mp4
+17-08-2022  17:33       409,546,915 Lecture-15  Fakestore Shopping App.mp4
+17-08-2022  17:53       552,394,217 Lecture-16  Adding and Deleting Item.mp4
+17-08-2022  17:51       420,146,975 Lecture-17 Map and date.mp4
+17-08-2022  17:50       387,116,666 Lecture-18 Operators and Data Example.mp4
+17-08-2022  17:50       366,862,445 Lecture-19 Arthematic Operators Example.mp4
+17-08-2022  14:49       390,077,259 Lecture-2 JavaScript Techniques.mp4
+17-08-2022  18:27       465,815,935 Lecture-20 Assignment and Comparison Operators.mp4
+17-08-2022  18:27       537,241,555 Lecture-21 Logical Operators.mp4
+17-08-2022  18:14       183,363,328 Lecture-22 Special Operators.mp4
+17-08-2022  18:27       471,561,856 Lecture-23 Statements.mp4
+17-08-2022  18:51       154,870,202 Lecture-24   Switch Selector.mp4
+17-08-2022  19:04       405,345,812 Lecture-25 Cascading Dropdown.mp4
+17-08-2022  19:05       479,703,830 Lecture-26 Looping Statements.mp4
+17-08-2022  19:04       385,325,624 Lecture-27 Loops, Iterations and Exception Handling.mp4
+17-08-2022  18:58       127,377,125 Lecture-28  Functions.mp4
+17-08-2022  19:09        90,037,390 Lecture-29  Function Return,Recursion.mp4
+17-08-2022  14:49       400,141,962 Lecture-3 JavaScript References.mp4
+17-08-2022  19:08       118,011,513 Lecture-30  JavaScript OOP.mp4
+17-08-2022  19:09        88,630,317 Lecture-31  Class in OOP.mp4
+17-08-2022  19:47        72,297,110 Lecture-32  OOP in JavaScript.mp4
+17-08-2022  19:51       468,020,907 Lecture-33  JavaScript Browser Objects.mp4
+17-08-2022  19:58       631,350,705 Lecture-34  Browser Objects and Events navigator object.mp4
+17-08-2022  19:58       379,406,970 Lecture-35  Browser Objects and Events.mp4
+17-08-2022  19:59       457,990,192 Lecture-36 Events.mp4
+17-08-2022  20:20       403,745,681 Lecture-37 Timer Events.mp4
+17-08-2022  16:28       403,175,481 Lecture-4 Output and Input Techniques.mp4
+17-08-2022  16:30       419,251,013 Lecture-5 Form Input.mp4
+17-08-2022  16:30       423,595,365 Lecture-6 Variables.mp4
+17-08-2022  16:57       421,874,151 Lecture-7 Variables and Data Types.mp4
+17-08-2022  16:58       462,489,428 Lecture-8.mp4
+17-08-2022  16:59       589,476,915 Lecture-9 String Manipulations Examples.mp4
