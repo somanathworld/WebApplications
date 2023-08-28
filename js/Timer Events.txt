@@ -1,0 +1,202 @@
+Timer Events
+- setInterval()
+- clearInterval()
+- setTimeout()
+- clearTimeout()
+
+setTimeout()    : It is a timer event, which loads a task into
+          memory and keeps it waiting for certain
+          duration of time.
+       
+           setTimeout(functionName, interval);
+
+clearTimeout()    : It removes the task from memory before
+          releasing into process.
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timer Events</title>
+        <script>
+            function Msg1(){
+                document.querySelector("h1").innerHTML = "Hello !";
+            }
+            function Msg2(){
+                document.querySelector("h1").innerHTML = "How are you?";
+            }
+            function Msg3(){
+                document.querySelector("h1").innerHTML = "Welcome to JavaScript";
+            }
+            var m1, m2, m3;
+            function bodyload(){
+               m1 = setTimeout(Msg1, 3000);
+               m2 =  setTimeout(Msg2, 5000);
+               m3 =  setTimeout(Msg3,9000);
+            }
+            function CancelClick(){
+                clearTimeout(m2);
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <h1 align="center"></h1>
+        <button onclick="CancelClick()">Cancel Message 2</button>
+    </body>
+</html>
+
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Timer Events</title>
+        <script>
+         
+            function Timer(){
+                var now = new Date();
+                document.querySelector("h1").innerHTML = now.toLocaleTimeString();
+            }
+            var time;
+            function bodyload(){
+                time = setInterval(Timer,1000);
+            }
+            function StopClick(){
+                clearInterval(time);  
+            }
+            function StartClick(){
+                bodyload();
+            }
+        </script>
+    </head>
+    <body onload="bodyload()">
+        <h1 align="center"></h1>
+        <button onclick="StopClick()">Stop Time</button>
+        <button onclick="StartClick()">Start Time</button>
+    </body>
+</html>
+
+
+Ex: Time Interval
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slide Show</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+        <script>
+            var count = 0;
+            function LoadProducts(){
+                count++;
+                fetch(`http://fakestoreapi.com/products/${count}`)
+                .then(response=> response.json())
+                .then(data=> {
+                    document.getElementById("title").innerHTML = data.title;
+                    document.getElementById("pic").src= data.image;
+                })
+            }
+            var timer;
+            function PlayClick(){
+                timer = setInterval(LoadProducts, 5000);
+                document.getElementById("status").innerHTML = "Slide Show - Started";
+            }
+            function PauseClick(){
+                clearInterval(timer);
+                document.getElementById("status").innerHTML = "Slide Show - Paused";
+            }
+            function bodyload(){
+                LoadProducts();
+            }
+        </script>
+    </head>
+    <body onload="bodyload()" class="container-fluid">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2 id="title"></h2>
+                <p id="status"></p>
+            </div>
+            <div class="card-body text-center">
+                <img id="pic" width="50%" height="200">
+            </div>
+            <div class="card-footer text-center">
+                <button onclick="PlayClick()" class="btn btn-success">
+                    <span class="bi bi-play-btn"></span>
+                </button>
+                <button onclick="PauseClick()" class="btn btn-danger">
+                    <span class="bi bi-pause-btn"></span>
+                </button>
+            </div>
+        </div>
+    </body>
+</html>
+
+Form Events:
+- onsubmit
+- onreset
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Submit</title>
+        <script>
+            function ResetClick(){
+                alert("Form Will Reset");
+            }
+            function SubmitClick(){
+                alert("Form will submit to API");
+               
+            }
+        </script>
+    </head>
+    <body>
+        <form onsubmit="SubmitClick()" onreset="ResetClick()">
+            Name : <input type="text" name="Name">
+            <button type="submit">Submit</button>
+            <button type="reset">Cancel</button>
+        </form>
+    </body>
+</html>
+
+FAQ: How to submit a form on any another element event?
+Ans:  By using  form  "submit()".
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Submit</title>
+        <script>
+           function CityChanged(){
+               frmHome.submit();
+           }
+        </script>
+    </head>
+    <body>
+        <form name="frmHome">
+            Name : <input type="text" name="Name">
+            City : <select name="City" onchange="CityChanged()">
+                <option>Delhi</option>
+                <option>Hyd</option>
+            </select>
+            <button type="submit">Submit</button>
+            <button type="reset">Cancel</button>
+        </form>
+    </body>
+</html>
+
+                   jQuery
+                  ======
+- jQuery is a Javascript library.
+- library is a set of pre-defined functions.
+- Write less and do more.
+
+    jQlite
+    react.js
+    rxjs
+    redux  
+    jquery
+
+- jQuery provides library for DOM manipulations and interactions.

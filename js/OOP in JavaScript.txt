@@ -1,0 +1,207 @@
+Constructor
+- Instantiation
+- It is a special type of sub-routine. [method]
+- It executes automantically for every object.
+- JavaScript constructor is defined as anonymous by using constructor keyword.
+
+Syntax:
+    class  className
+    {
+       constructor() {  
+
+       }
+    }
+
+- JavaScript class can't overload constructor.
+- Constructor can be parameterized, the values are passed at the time of allocating memory for class.
+
+                let  obj =  new className(values);
+                let  obj = new className;
+
+
+FAQ: If constructor is parameterized then when to pass values?
+Ans : At the time of initialization of memory for class.
+
+Ex:
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OOP</title>
+        <script>
+           class Database
+           {
+               constructor(dbName){
+                   alert(`Connected to ${dbName}`);
+               }
+               Insert(){
+                   document.write("Record Inserted");
+               }
+               Delete(){
+                   document.write("Record Deleted..");
+               }
+           }
+           
+           function InsertClick(){
+               let obj = new Database(document.getElementById("lstDatabase").value);
+               obj.Insert();
+           }
+           function DeleteClick(){
+               let obj = new Database(document.getElementById("lstDatabase").value);
+               obj.Delete();
+           }
+        </script>
+    </head>
+    <body>
+        <select id="lstDatabase">
+            <option>Oracle</option>
+            <option>MySql</option>
+        </select>
+        <button onclick="InsertClick()">Insert</button>
+        <button onclick="DeleteClick()">Delete</button>
+    </body>
+</html>
+
+             Code Reusability and Extensibility
+
+- Code reusability is the process of accessing the code from one class and using in another class.
+
+- You can acheive code reusability by using
+    a) Aggregation
+    b) Inheritance
+
+Aggregation:
+ - It is known as Object-To-Object communication.
+ - It is reffered as "Has-A-Relation"
+ - You can access the code of one class in another class by using object.
+ - Without creating any relation between classes you can access the members of one class in another class.
+
+Ex:
+<script>
+    class Base
+    {
+        Print(){
+            document.write("Base Class Print Method<br>");
+        }
+    }
+    class Derived
+    {
+        Print(){
+            let obj = new Base();
+            obj.Print();
+            document.write("Dervied Class Print Method");
+        }
+    }
+    let obj = new Derived();
+    obj.Print();
+</script>
+
+Inheritance
+- You can define relation between classes.
+- You can access members of one class in another class by using "super" keyword.
+- This is known as "Is-A-Relation".
+
+Ex:
+<script>
+    class Base
+    {
+        Print(){
+            document.write("Base Class Print Method<br>");
+        }
+    }
+    class Derived extends Base
+    {
+        Print(){
+            super.Print();
+            document.write("Dervied Class Print Method");
+        }
+    }
+    let obj = new Derived();
+    obj.Print();
+</script>
+
+
+Single Inheritance:
+- One Super Class is extended by one Derived class.
+
+<script>
+    class BankApp2020
+    {
+        PersonalBanking = "Personal Banking : General Users";
+        CorporateBanking = "Corporate Banking: Companies";
+        Print(){
+            document.write(`${this.PersonalBanking}<br>${this.CorporateBanking}<br>`);
+        }
+    }
+    class BankApp2021 extends BankApp2020
+    {
+        NRIBanking = "NRI Banking : NRI Users";
+        Loans = "Loans : Car, Personal, House Loans";
+        Print(){
+            super.Print();
+            document.write(`${this.NRIBanking}<br>${this.Loans}<br>`);
+        }
+    }
+    let Hdfc = new BankApp2021();
+    Hdfc.Print();
+</script>
+
+Multi Level Inheritance:
+- A derived class is again extendend.
+
+<script>
+    class BankApp2020
+    {
+        PersonalBanking = "Personal Banking : General Users";
+        CorporateBanking = "Corporate Banking: Companies";
+        Print(){
+            document.write(`${this.PersonalBanking}<br>${this.CorporateBanking}<br>`);
+        }
+    }
+    class BankApp2021 extends BankApp2020
+    {
+        NRIBanking = "NRI Banking : NRI Users";
+        Loans = "Loans : Car, Personal, House Loans";
+        Print(){
+            super.Print();
+            document.write(`${this.NRIBanking}<br>${this.Loans}<br>`);
+        }
+    }
+    class BankApp2022 extends BankApp2021
+    {
+        AGRI = "AGRI : Govt. Schemes from Bank";
+        Print(){
+            super.Print();
+            document.write(`${this.AGRI}<br>`);
+        }
+    }
+    let Hdfc = new BankApp2022();
+    Hdfc.Print();
+</script>
+
+
+OOP Rule for constructor:
+- If super and derived class have constructor then derived class constructor must call super class constructor.
+    "super()"
+
+<script>
+    class Super
+    {
+        constructor(){
+            document.write("Super Class Constructor<br>");
+        }
+    }
+    class Derived extends Super
+    {
+        constructor(){
+            super();
+            document.write("Derived Class Constructor");
+        }
+    }
+    let obj = new Derived();
+</script>
+
+FAQ:  Why multiple inheritance is not supported for class?
+Ans:   Constructor deadlock.
+
+
+                Polymorphism
