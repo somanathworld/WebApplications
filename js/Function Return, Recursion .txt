@@ -1,3 +1,77 @@
+
+JavaScript Functions
+- Functions are used for refactoring content.
+- Refactoring is the technique of extracting a function for set of statements.
+- So that you can reuse the statements.
+FAQ: What is difference between a function, method and procedure? Ans: function
+: It is intended to return a value.
+It is used for building expression that returns value.
+It is immutable. It can't change according to state and situation
+
+
+method
+It may or not return a value.
+It is mutable, can change according to situation. In JavaScript methods are defined in class only.
+procedure
+It is available in database programming. [Stored Procedure]
+It can return value or It can be void type. It can change according to situation.
+
+Configuring a function:
+Every function comprises of 3 phases
+a) Declaration
+b) Signature
+c) Definition
+- Declaration defines function keyword, name, paramsorder
+function PrintPage(params)
+- Signature defined function name and params
+PrintPage(params)
+
+Signature defines function name and params
+PrintPage(params)
+- Definition defines the statements to execute
+{
+statements;
+}
+Recorded with iTop Screen Recorder
+- A function is called by using its "Signature".
+
+function PrintPage(params) with IT
+{
+}
+PrintPage(value);
+
+Function Parameters
+==
+- Function can be parameter less. - Function can be parameterized.
+- Parameters are used to modify the function.
+Syntax:
+function Name(params)
+{
+}
+Name(value);
+- Function parameters are classified into 2 type
+a) Formal Parameters
+b) Actual Parameters
+- Formal Parameters are defined in function declaration.
+- Actual Parameters are defined while calling the function. Recorded with iTop Screen Recorder
+Syntax:
+function Name (formal Parameter)
+}
+Name(actualParameter)
+
+Verifying the number of parameters defined and the number of parameters passed is done with reference of "Arguments".
+
+Every parameter defined in function is mandatory.
+- The order of parameters is also having same order dependency.
+function Details(id, name)
+{
+}
+Recorded with iTop Screen Recorder
+Details("TV"); // TV is stored in id.
+name = undefined
+Details();
+// id, name = undefined
+
 Function Parameters
         Function with Return Value
          ====================
