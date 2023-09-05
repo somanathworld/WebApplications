@@ -1,0 +1,346 @@
+JSX in React Components
+
+- JSX stands for “JavaScript XML”.
+- JSX is a statically-typed object oriented programming language.
+
+- It is extending JavaScript to build “Robust” application. [Large
+Scale Application].
+- React is using JSX to handle interactions.
+- However, it not mandatory to use JSX. But it simplified your
+JavaScript.
+- JSX can extend HTML and make the markup dynamic.
+- The JSX dynamic expressions are defined using “{ }”
+- The JavaScript dynamic expression is defined using “${ }”
+
+Render Markup in JSX:
+- JSX can render markup by using function return type.
+- Return type of JSX must be an element.
+o &lt;div&gt;
+o &lt;p&gt;
+o &lt;h2&gt; etc.
+
+EX: HeaderComponent.js
+
+var title = &quot;Amazon Shopping - Online Store&quot;;
+
+export default function Title(){
+return &lt;h2&gt;{title}&lt;/h2&gt;;
+}
+
+Note: JSX can render only single line by using “return”.
+
+Rendering Multiple Lines in JSX:
+
+- JSX by default allow only one line.
+- If you want multiple lines then enclose in “( )” with a container
+as parent.
+Syntax:
+function Name() {
+return (
+&lt;div&gt;
+Your elements..
+&lt;/div&gt;
+);
+}
+Ex: HeaderComponent.js
+var title = &quot;Amazon Shopping - Online Store&quot;;
+export default function Title(){
+return (
+&lt;header&gt;
+&lt;h2&gt;{title}&lt;/h2&gt;
+&lt;p&gt;50% Sales - Electronics, Footwear, Fashion..&lt;/p&gt;
+&lt;/header&gt;
+);
+}
+
+Rendering with React Empty Container:
+- React Requires a container
+- Using a container may give abnormal presentation.
+
+- It is a burden to DOM.
+- We can use “React Fragment” to render content.
+- React Fragment will not generate any DOM element but in can
+encapsulate a set of DOM elements and render.
+- “&lt;React.Fragment&gt;” is used to render HTML elements
+- It is defined in “React” class of “react” library.
+import React from ‘react’;
+- You can use short hand technique
+&lt;&gt; start
+&lt;/&gt; end
+Ex: HeaderComponent.js
+import React from &#39;react&#39;;
+var title = &quot;Amazon Shopping&quot;;
+export default function Title(){
+return (
+&lt;React.Fragment&gt;
+&lt;h2&gt;{title}&lt;/h2&gt;
+&lt;p&gt;50% Sales - Electronics, Footwear, Fashion..&lt;/p&gt;
+&lt;/React.Fragment&gt;
+);
+}
+
+Ex: You can use “short hand” technique of React.Fragment
+var title = &quot;Amazon Shopping&quot;;
+export default function Title(){
+return (
+
+&lt; &gt;
+&lt;h2&gt;{title}&lt;/h2&gt;
+&lt;p&gt;50% Sales - Electronics, Footwear, Fashion..&lt;/p&gt;
+&lt;/ &gt;
+);
+}
+
+JSX Will not allow Void Element Syntax
+- HTML comprises 5 types of elements
+o Normal Elements
+o Void Elements
+o RC Data Elements
+o Raw Text Elements
+o Foreign Elements
+- Void Elements with not have “end” tag.
+&lt;img&gt; &lt;br&gt; &lt;hr&gt; &lt;link&gt; etc.
+- JSX will not allow void element syntax
+- Void elements require an end tag in JSX.
+&lt;img&gt; &lt;/img&gt;
+- You can also define as self-ending.
+&lt;img /&gt;
+Ex:
+import React from &#39;react&#39;;
+var title = &quot;Amazon Shopping&quot;;
+export default function Title(){
+return (
+&lt;React.Fragment&gt;
+
+&lt;h2&gt;{title}&lt;/h2&gt;
+&lt;img src=&quot;images/shoe.jpg&quot; width=&quot;100&quot; height=&quot;100&quot;
+alt=&quot;Nike Casuals&quot; /&gt;
+&lt;p&gt;50% Sales - Electronics, Footwear, Fashion..&lt;/p&gt;
+&lt;/React.Fragment&gt;
+);
+}
+
+JSX will not allow binding data to Attribute:
+- HTML elements are defined with attributes
+&lt;img id, class, name, src&gt;
+- Dynamically to handle them we need properties
+- Every attribute name is not same as property name
+- Hence in React JSX you have to bind to property name.
+&lt;img class=”img”&gt; // invalid
+&lt;img className=”img”&gt; //valid
+
+Ex:
+Index.html
+&lt;head&gt;
+&lt;style&gt;
+.img {
+border:2px solid red;
+box-shadow: 2px 2px 4px gray;
+}
+
+&lt;/style&gt;
+&lt;/head&gt;
+
+HeaderComponent.js
+import React from &#39;react&#39;;
+var title = &quot;Amazon Shopping&quot;;
+export default function Title(){
+return (
+&lt;React.Fragment&gt;
+&lt;h2&gt;{title}&lt;/h2&gt;
+&lt;img src=&quot;images/shoe.jpg&quot; className=&quot;img&quot; width=&quot;100&quot;
+height=&quot;100&quot; alt=&quot;Nike Casuals&quot; /&gt;
+&lt;p&gt;50% Sales - Electronics, Footwear, Fashion..&lt;/p&gt;
+&lt;/React.Fragment&gt;
+);
+
+Nested Iterations
+- You can define iteration inside another iterator.
+- Multilevel "map()"
+
+
+Ex:
+
+
+export default function NestedIterationsComponent()
+{
+    var categories = [
+        {Category: 'Electronics', Products:['Samsung TV', 'Mobile']},
+        {Category: 'Footwear', Products: ['Nike Casuals', 'Lee Cooper Boot']}
+     ];
+    return(
+        <>
+          <div className="container-fluid">
+              <h2>Nested Iterations</h2>
+              <ol>
+                  {
+                      categories.map(item => 
+                         <li key={item.Category}>{item.Category}
+                             <ul>
+                                 {
+                                     item.Products.map(product => 
+                                         <li key={product}>{product}</li>
+                                        )
+                                 }
+                             </ul>
+                         </li>
+                        )
+                  }
+              </ol>
+              <h2>Select a Product</h2>
+              <select>
+                  {
+                      categories.map(item => 
+                         <optgroup key={item.Category} label={item.Category}>
+                            {
+                                item.Products.map(product=>
+                                    <option key={product}>{product}</option>
+                                    )
+                            }
+                         </optgroup>
+                        )
+                  }
+              </select>
+          </div>
+        </>
+    )
+}
+
+
+Data Binding with Local Resources
+- Every react application maps static resource to "public" folder.
+- Go to "public" folder and create "images" sub-folder.
+- Add few images [React is case sensitive in accessing image]
+
+
+Syntax:
+   var  photo =  "images/shoe.jpg";
+
+
+   <img  src={photo} width="100" height="100">
+
+
+Ex:
+
+
+export default function NestedIterationsComponent()
+{
+    var products = [
+        {Name: 'JBL Speaker', Price: 4600.55, Photo: 'images/speaker.jpg'},
+        {Name: 'Nike Casuals', Price: 6000.55, Photo: 'images/shoe.jpg'}
+    ]
+    return(
+        <>
+          <div className="container-fluid">
+              <table className="table table-hover" >
+                 <thead>
+                     <tr>
+                         <th>Name</th>
+                         <th>Price</th>
+                         <th>Preview</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     {
+                         products.map(product=> 
+                             <tr>
+                                 <td>{product.Name}</td>
+                                 <td>{product.Price}</td>
+                                 <td>
+                                     <img alt="preview" src={product.Photo} width="100" height="100" />
+                                 </td>
+                             </tr>
+                            )
+                     }
+                 </tbody>
+              </table>
+          </div>
+        </>
+    )
+}
+
+
+Two Way Binding
+- React supports "one-way-binding".
+- One way binding is a technique used to read data from source and bind to UI.
+- React will not support Two Way Binding implicitly.
+
+
+FAQ: Why values are readonly?
+Ans:  You stored value in a Variable, and variables are immutable.
+
+
+FAQ: What is the solution?
+Ans:  Always use state to store values. State is mutable.
+
+
+
+
+     What is State?
+- Http is a state less protocol.
+- It works with the mechanism
+"Go-Get-Forget"
+
+
+Go - Establish connection with server
+Get - Fetch Data from server
+Forget - Disconnect from server
+
+
+- Stateless nature of HTTP is good for memory management.
+- It is not good for transporting data across requests.
+- So you need State Management Techniques
+- Session
+- Application
+- Hidden
+- Cookies
+
+- React JS 16+ version supports state in both function and class component.
+- React JS 16 below versions support state only for class component.
+
+
+Older Versions:
+- Function Component : Stateless Component
+- Class Component : Statefull Component
+
+
+New Version
+- All are statefull components
+
+
+- React JS function component can use state by using a Hook "useState()".
+
+
+
+
+      const [refGetter, refSetter ] = useState();
+
+
+
+
+Ex:
+import { useState } from "react";
+
+
+export default function NestedIterationsComponent()
+{
+    const [username, setUserName] = useState();
+    function UpdateName(event){
+        setUserName(event.target.value);
+    }
+    return(
+        <>
+          <div className="container-fluid">
+              <h2>User Details</h2>
+              User Name: 
+              <input type="text" name="username"  onKeyUp={UpdateName} />
+              <div>
+                  <p>Hello ! {username} </p>
+              </div>
+          </div>
+        </>
+    )
+}
+
+
+What are the features required to handle two way binding in React?
