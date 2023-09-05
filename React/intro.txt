@@ -1,1 +1,296 @@
+What are the challenges in modern web
+development?
+- Unified UX
+- Fluid UX
+- Loosely coupled and Extensible
+- Simplified deployment
+What is Solution?
+- SPA [Single Page Application]
 
+Can we build SPA using JavaScript and
+jQuery?
+- Yes
+- Lot of DOM manipulations
+- Lot of references
+- Lot of coding
+- Heavy UI
+- Slow in rendering
+- Navigation Issues
+
+Recommended
+
+- Angular
+- React
+- Vue
+- Knockout
+- Ember
+- BackBone
+
+What is difference between Angular and
+React?
+- Angular is a Framework
+o Framework can build application and
+can control the application flow.
+o Angular Deals with Framework like
+ MVC (Model View Control)
+ MVVM (Model-View View-Model)
+ MVP (Model-View- Presenter)
+
+- React is a library
+o Library can build application but can’t
+control the application flow.
+o It is to deal with only View [User
+Interface]
+
+When to use Angular and React?
+React
+- If you already have an application on your
+server side with all layers ready
+o UI
+o Business Layer
+o Database Layer
+- If you want to make your server-side UI
+more effective client side [SPA] then
+better use “React”
+- React uses Virtual DOM
+Angular
+- If you have a server-side application built
+with all layers
+- If you want to create an application for
+client-side environment
+- Client Application communicates with
+Server Application [Distributed
+Application]
+
+- Better use “Angular”
+- Angular uses DOM
+
+What is React?
+- JavaScript Library
+- Building User Interfaces
+- It deals with “View” in MVC like
+architecture
+
+Other JavaScript Libraries
+- jQuery
+- Vue
+- Redux
+- RxJS etc..
+
+What is DOM?
+- DOM [Document Object Model]
+
+- HTML Presents elements in a hierarchy
+called DOM.
+- HTML Parsing
+
+- Browser uses DOM and CSSDOM
+- DOM is related to HTML elements
+- CSSDOM is related to styles for elements.
+
+What is shadow DOM?
+- Shadow DOM is used for Web
+Components.
+- Web Component is a component for
+HTML, with presentation, styles and
+functionality.
+o UI with HTML
+o Styles with CSS
+o Functionality with JavaScript
+
+What is Virtual DOM?
+- It is copy of actual DOM in browser
+memory.
+- Client-Side DOM manipulations are
+handled by various technologies directly
+on the Actual DOM.
+- It will take some time to respond with the
+changes made and paint again on to
+browser.
+- Virtual DOM will update and paint the
+details immediately to application after
+that it really updates the DOM.
+- So user can view the rendered tree more
+faster than actual DOM.
+- It makes “React” faster in rendering
+output.
+
+What are the Features of React?
+- Component Based
+
+o You can re-use the components
+- Virtual DOM
+- Supports Modular Approach
+o Only the library required for specific
+situation will be loaded.
+o Application specific library.
+o Async approach
+- Faster in rendering
+- Reduces compatibility issues.
+o It supports various 3 rd party
+integrations, which can run on various
+environments.
+o Developer has wide range of choices
+to do any specific task.
+Ex: To Connect and Access data from
+API
+- jQuery Ajax
+- fetch
+- axios
+- whatwgfetch
+- XmlHttpRequestObject
+
+- Easy to learn to use.
+
+What are the issues with React?
+- Pace of development is very fast.
+o First Version 2013
+o Latest Version March 2021 - 17.0
+- Poor documentation
+- SEO Issues
+o Google Crawlers need “Indexing” of
+page.
+o They can’t Index a page which is
+dynamically changing in UI.
+
+- One Way Binding
+- Lot of GAP’s
+- Lot of 3 rd party integrations.
+
+Application Structure
+
+Resource Description
+node_modules It comprises of all libraries installed using
+
+NPM.
+You can access the library files from
+“node_modules”.
+
+public It comprises of static resources like
+
+- Html
+- Images
+- Text documents, PDF etc.
+src It comprises of dynamic resources like
+
+- JavaScript
+- TypeScript
+- CSS
+- Sass
+
+.gitignore It comprises of configuration of resources to
+
+ignore while publishing on to GIT.
+package.json It comprises of project meta data.
+
+- Version
+- Description
+- Keywords
+- Scripts
+
+- Dependencies
+
+package.lock.json It comprises package meta data
+Readme.md It is a help document for project.
+
+Public Folder
+
+favicon.ico Favicon for index page.
+Index.html It is the startup page.
+manifest.json It comprises of rules about the resources used in
+
+application.
+
+robots.txt It configures “User Agent” to run your application
+
+across all browsers.
+
+Summary
+- React Application starts with “index.html”
+- The logic for index page comes from “Index.js”
+- The default component used in index is “App”
+- ReactDOM.render() Renders Virtual DOM.
+
+FAQ: What is React.StrictMode?
+- StrictMode is a tool for highlighting potential problems in
+application, which includes
+o Identifying components with unsafe life cycle.
+o Warning about legacy string ref API usage.
+o Warning about deprecated DOM nodes.
+o Detecting unexpected side effects [Abnormal Behaviour].
+
+FAQ: What is reportWebVitals?
+- You can measure performance of your react app.
+- It identifies the issues and reports.
+o XSS [Cross Site Scripting Attack]
+
+o XSRF [Cross Site Request Forgery]
+o CORS [Cross Origin Resource Sharing]
+
+React Building Blocks
+
+- React is component based.
+- Components are considered as Building Blocks for react
+application.
+
+- Technically component comprises
+o Presentation
+o Logic
+o Styles
+- Presentation is defined in HTML.
+- Logic uses “JavaScript, TypeScript, JSX”.
+- Styles are defined with CSS.
+
+Component for React Application
+- React components are configured by using
+
+o JavaScript function
+o JavaScript Class
+- React components are classified into 2 types
+o Functional Components [using a function]
+o Class Components [using a class]
+- React 16+ version has introduced many new features for
+functional components, so that they can have the same
+behaviour as class components.
+- Hence from React 16+ version you must call them as
+o Function Component
+o Class Component
+- React 16+ version will recommend to use “Function”
+component rather than Class component.
+
+Function Component:
+- Function component is a JavaScript function that returns
+presentation and functionality.
+
+Syntax: Legacy Type
+function Name() {
+return “&lt;presentation”&gt;;
+}
+Syntax: Modern Type
+const Name = () =&gt; “&lt;presentation&gt;”;
+
+FAQ: Why function is configured as “const”, can’t we use var or let?
+- “const” indicates that initialization is mandatory.
+- “const” will not allow assigning and declaring.
+
+- A component must have a functionality defined when it is
+initialized into memory.
+- You can use var or let also. But not recommended
+
+const x; // invalid
+x = 10; // invalid
+
+Ex:
+- Go to “src” folder and add a new folder “components”
+- Add a new file “HeaderComponent.js”
+const Title = () =&gt; &quot;Welcome to React JS&quot;;
+export default Title;
+
+- Go to “Index.js”
+import Title from &#39;./components/HeaderComponent&#39;;
+ReactDOM.render(
+&lt;React.StrictMode&gt;
+&lt;Title /&gt;
+&lt;/React.StrictMode&gt;,
+document.getElementById(&#39;root&#39;)
+);
