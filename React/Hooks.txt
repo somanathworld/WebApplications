@@ -1,0 +1,682 @@
+FAQ: What is Conditional Rendering in React?
+Ans:  It is the process of rendering a component into page according to the state and situation. 
+         If condition matching it will render one component, if not then it will render another component.
+
+
+
+
+FAQ: What is difference between  "Willmount" and "Mounted" ?
+Ans:  Will mount loads into memory
+          Mounted renders successfully.
+
+
+
+
+  New Component will mount =>  existing component will unmount => New component mounted
+
+
+FAQ: What is difference between constructor and will mount method?
+Ans:  Contructor is for initialization
+          Mount is for assignment
+
+
+
+
+Ex:  Life Cycle Demo
+
+
+       "LifeCycleDemoComponent.js"
+        =======================
+
+
+import React from "react";
+
+
+class SuccessComponent extends React.Component
+{
+    componentWillMount(){
+        alert("Success Component will mount");
+    }
+    componentDidMount(){
+        alert("Success Component Mounted");
+    }
+    componentWillUnmount(){
+        alert("Success component will unmount");
+    }
+    render(){
+        return(
+            <h2>Login Success</h2>
+        )
+    }
+}
+
+
+
+
+class ErrorComponent extends React.Component
+{
+    componentWillMount(){
+        alert("Error component will mount");
+    }
+    componentDidMount(){
+        alert("Error Component Mounted");
+    }
+    componentWillUnmount(){
+        alert("Error component will unmount");
+    }
+    render(){
+        return(
+            <h2>Invalid Credentials</h2>
+        )
+    }
+}
+
+
+
+
+export default class LifeCycleDemoComponent extends React.Component
+{
+     constructor(props){
+         super(props);
+         this.state = {
+             userdetails : {
+                 username: 'john',
+                 password: 'john@12'
+             },
+             formDetails : {
+                username: '',
+                password: ''
+             },
+             msg: ''
+         }
+         this.handleUserName =  this.handleUserName.bind(this);
+         this.handPassword = this.handPassword.bind(this);
+         this.HandleLoginClick = this.HandleLoginClick.bind(this);
+     }
+
+
+     componentWillMount(){
+         this.setState({
+             msg: 'Provide Credentials'
+         })
+     }
+
+
+     handleUserName(e){
+          this.setState({
+              formDetails: {
+                  username: e.target.value,
+                  password: this.state.formDetails.password
+              }
+          })
+     }
+
+
+     handPassword(e) {
+         this.setState({
+             formDetails: {
+                 username: this.state.formDetails.username,
+                 password: e.target.value
+             }
+         })
+     }
+
+
+     HandleLoginClick(){
+         if(this.state.userdetails.username===this.state.formDetails.username && this.state.userdetails.password===this.state.formDetails.password) {
+             this.setState({
+                 msg: <SuccessComponent />
+             })
+         } else {
+             this.setState({
+                 msg: <ErrorComponent />
+             })
+         }
+     }
+
+
+     render(){
+         return(
+             <div className="container-fluid">
+                 <h2>User Login</h2>
+                 <dl>
+                     <dt>User Name</dt>
+                     <dd><input type="text" onChange={this.handleUserName} /></dd>
+                     <dt>Password</dt>
+                     <dd><input type="password" onChange={this.handPassword} /></dd>
+                 </dl>
+                 <button onClick={this.HandleLoginClick} >Login</button>
+                 <hr />
+                 <div>
+                     {this.state.msg}
+                 </div>
+             </div>
+         )
+     }
+}
+
+
+
+
+FAQ: What is difference between will mount and did mount?
+Ans:  Will mount is intended to do functionality at the time of loading memory.
+         Did mount is intended to do functionality at the time of rendering.
+
+
+
+
+       Reacts Hooks in Function Components
+       =============================
+- React 16+ version introduced Hooks into Function components
+- They are 100% backward compatible 
+- React function component hooks
+
+- useState
+- useContext
+- useEffect
+- useReducer  etc..
+
+
+
+
+                useEffect
+                -------------
+- It is responsible for managing mount and unmount.
+- useEffect directly configures mount phase.
+
+
+FAQ: How unmount is defined in function component?
+Ans:  "useEffect" hook can use "return()" for unmount.
+
+
+
+
+Syntax:
+useEffect(()=>{
+        // action on mount
+        return(()=>{
+                             //action on unmount
+        })
+},[])
+
+
+Ex:
+import { useEffect, useState } from "react";
+
+
+function SuccessComponent(){
+    useEffect(()=>{
+        alert('Success Component Mounted');
+        return(()=> {
+            alert("Success component unmounted");
+        }) 
+    },[])
+    return(
+        <h2>Login Success</h2>
+    )
+}
+function ErrorComponent(){
+    useEffect(()=>{
+        alert('Error Component Mounted');
+        return(()=> {
+            alert("Error component unmounted");
+        }) 
+    },[])
+    return(
+        <h2>Invalid Credentials</h2>
+    )
+}
+
+
+export default function FunctionLifeCycleComponent()
+{
+    const [msg, setMsg] = useState(null);
+
+
+    function SuccessClick(){
+        setMsg(<SuccessComponent />);
+    }
+
+
+    function ErrorClick(){
+        setMsg(<ErrorComponent/>)
+    }
+
+
+    return(
+        <div>
+            <h2>Main Component</h2>
+            <button onClick={SuccessClick}>Success</button>
+            <button onClick={ErrorClick}>Invalid</button>
+            <hr />
+            {msg}
+        </div>
+    )
+}
+
+
+                useState
+                =======
+- It configures internal state for component to store values.
+
+
+                const  [product, setProduct] = useState({});
+                const  [products, setProducts] = useState([]);
+                const  [isValid, setValid] = useState(false);
+
+
+useContext Hook
+- Context is the memory created for a component and made available for all other components that are rendered within the context for current component.
+
+
+- Context uses DI [Dependency Injection] mechanism
+- Context uses 
+a) Provider
+b) Injector
+
+
+- Provider is going to locate a value in memory.
+- Injector is going to inject the value into component.
+
+
+Step-1:  We have to create a context for component
+
+
+               const  [contextName] = React.CreateContext(null);
+
+
+
+
+Step-2:  We have assign value into context memory at Main Component
+
+
+                <contextName.provider   value={}>
+
+
+</contextName.provider>
+
+
+Step-3:  Inject the context value into any component that is running within the context of main component.
+
+
+const  [reference] = useContext(contextName);
+
+
+reference.value
+
+
+
+
+
+
+Ex:  ContextDemoComponent.js
+
+
+
+
+import React, {useContext, useState} from "react";
+
+
+var userDetailsContext = React.createContext(null);
+
+
+export default function ContextDemoComponent(){
+    const [userDetails] = useState({
+        UserName: 'john_nit',
+        Email: 'john_nit@gmail.com'
+    });
+    return(
+        <userDetailsContext.Provider value={userDetails}>
+            <div className="container-fluid" style={{height:'400px', backgroundColor:'lightyellow'}}>
+            <h2>Main Component - User: {userDetails.UserName}</h2>
+             <HomeComponent />
+            </div>
+        </userDetailsContext.Provider>
+    )
+}
+
+
+function HomeComponent(){
+    var userdetails = useContext(userDetailsContext);
+    return(
+        <div className="bg-danger text-white p-2">
+            <h2>Home Component - {userdetails.UserName}</h2>
+            <NavbarComponent />
+        </div>
+    )
+}
+
+
+function NavbarComponent(){
+    var userdetails = useContext(userDetailsContext);
+    return(
+        <div className="btn-toolbar bg-dark justify-content-between">
+            <div className="btn-group">
+                <h3>Navbar</h3>
+            </div>
+            <div className="btn-group">
+                {userdetails.Email}
+            </div>
+        </div>
+    )
+}
+
+
+Ex: Update Details
+
+
+import React, {useContext, useState} from "react";
+
+
+var userDetailsContext = React.createContext(null);
+
+
+export default function ContextDemoComponent(){
+    const [userDetails, setUserDetails] = useState({
+        UserName: '',
+        Email: ''
+    });
+    function HandleUserName(e){
+        setUserDetails({
+            UserName: e.target.value, 
+            Email: userDetails.Email
+        })
+    }
+    function HandleEmail(e) {
+        setUserDetails({
+            UserName: userDetails.UserName, 
+            Email: e.target.value
+        })
+    }
+    function HandleLogin(){
+        setUserDetails({
+            UserName: userDetails.UserName,
+            Email: userDetails.Email
+        })
+    }
+    return(
+        <userDetailsContext.Provider value={userDetails}>
+            <div className="container-fluid" style={{height:'400px', backgroundColor:'lightyellow'}}>
+            <h1>User Login</h1>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" onChange={HandleUserName} /></dd>
+                <dt>Email</dt>
+                <dd><input type="email" onChange={HandleEmail} /></dd>
+                <button onClick={HandleLogin}>Login</button>
+            </dl>
+            <h2>Main Component - User: {userDetails.UserName}</h2>
+             <HomeComponent />
+            </div>
+        </userDetailsContext.Provider>
+    )
+}
+
+
+function HomeComponent(){
+    var userdetails = useContext(userDetailsContext);
+    return(
+        <div className="bg-danger text-white p-2">
+            <h2>Home Component - {userdetails.UserName}</h2>
+            <NavbarComponent />
+        </div>
+    )
+}
+
+
+function NavbarComponent(){
+    var userdetails = useContext(userDetailsContext);
+    return(
+        <div className="btn-toolbar bg-dark justify-content-between">
+            <div className="btn-group">
+                <h3>Navbar</h3>
+            </div>
+            <div className="btn-group">
+                {userdetails.Email}
+            </div>
+        </div>
+    )
+}
+
+
+function Outer()
+{
+    var x  = 10;
+     function inner() 
+     {
+           var y = 20;
+           var z = x + y; is x accessible here?  Yes
+           return z;
+     }
+    return inner(); valid, return z value
+}
+
+FAQ: How a lower component set value into context of higher component?
+Ans: It can be done by accessing context of higher component.
+
+Ex:
+function HomeComponent(props){
+    const[userDetails, setUserDetails] = useState(userDetailsContext);
+    function HandleUpdate(){
+         setUserDetails({UserName: 'tom', Email: 'tom@yahoo.com'});
+       
+    }
+    return(
+        <userDetailsContext.Provider value={userDetails}>
+            <div className="bg-danger text-white p-2">
+            <h2>Home Component - {userDetails.UserName}</h2>
+            <button onClick={HandleUpdate}>Update Name</button>
+            <NavbarComponent />
+           </div>
+        </userDetailsContext.Provider>
+    )
+}
+
+FAQ: Can a lower component context update data into higher component?
+Ans: No. It can update into its child component.
+
+
+                            useReducer
+- It defines a state for component to store value and make the value available across multiple requestes.
+- Data will be retained across requestes of same component.
+- It can define application level memory for components. So that they can access and use across multiple requests.
+- React.js uses external library called "Redux" for application state.
+- React 16+ introduced a reducer, which is alternative for Redux.
+- Reducer comprises of 2 components
+        a) action
+        b) dispatch
+
+- action is used to define the actions to perform. [functionality]
+- dispatch is used as provider, locate and store value.
+- "Reducer" uses a single ton pattern.
+
+Note: Single Ton is a software design pattern, where object is created for the first request and the same object is used across multiple requests.
+
+- You can configure and use reducer by using "react" core library
+
+
+Syntax:
+Step-1:  Create a reducer
+
+ function reducer(state, action)
+ {
+        switch(action.type)
+        {
+                case 'type1':                 [like]
+        return  state;                 c++
+                case 'type2:
+        return state;
+                default:
+        return otherValue;
+        }
+ }
+
+Note: action  is the requests made for component. [multiple requests]
+
+Step-2: Dispatch the action for handling state
+
+            const [state, dispatch] = useReducer()
+
+            <button onClick={()=> dispatch({type:'Like'})}>
+            <button onClick={()=> dispatch({type:'dislike'})}>
+
+        "Reducer defines the action and value".
+
+
+        useReducer()
+        useReducer(reducer, intialState)
+       
+Ex:
+import { useState, useReducer, useEffect } from "react";
+
+const initialState = {count:0};
+
+function reducer(state, action){
+    switch(action.type)
+    {
+        case 'like':
+        return {count: state.count + 1};
+        case 'dislike':
+        return {count: state.count - 1};
+        default:
+        return 'Action Unkown';
+    }
+}
+
+export default function ReducerDemoComponent()
+{
+    const [state, dispatch] = useReducer(reducer, initialState);
+    useEffect(()=>{
+        alert("Component Mounted");
+        return()=> {
+            alert("Component UnMounted");
+        }
+    },[])
+    return(
+        <div className="container-fluid">
+            <h2>Reducer Demo -  {state.count} Like(s) </h2>
+            <button onClick={()=> dispatch({type:'like'})}>Like</button>
+            <button onClick={()=> dispatch({type:'dislike'})} >Dislike</button>
+        </div>
+    )
+}
+                           Cookies
+- Cookie is a simple text file
+- useCookie
+Cookies in React
+                       
+- Cookies are simple text files, which contain client details so that we can access and use across any component in application.
+- Cookies are 2 types
+        a) In memory cookie
+        b) Persistent cookie
+- In memory cookie is stored in browser memory and removed automatically when browser close.
+- Persistent cookie is store in client hard drive and removed as per specified time interval or when cookies are cleaned manually.
+
+
+FAQ: How to get status of cookies in browser?
+Ans:  By using Javascript browser object
+
+        "navigator.cookieEnabled"
+
+- React uses 3rd party library  "react-cookie"  to configure cookies in application.
+- It allows to
+        a) Create a cookie
+        b) Configure value into Cookie
+        c) Remove cookie
+- In order to use cookies in application you need a cookie provider.
+- The cookie provider for application
+
+        <CookiesProvider>
+
+        </CookiesProvider>
+
+FAQ: What is the role of cookie provider?
+Ans:  It uses DI mechanism to locate a cookie in memory.
+
+- To Set a cookie you need cookie set options
+
+       setCookie('cookiename', value, CookieSetOptions);
+
+    path?: string;
+    expires?: Date;
+    maxAge?: number;
+    domain?: string;
+    secure?: boolean;
+    httpOnly?: boolean;
+    sameSite?: boolean | 'none' | 'lax' | 'strict';
+    encode?: (value: string) => string;
+
+ 
+
+Ex:  
+1. "LoginComponent.js"
+
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+
+export default function LoginComponent(){
+    const [cookies, setCookie, removeCookie] = useCookies(['username']);
+    const [userdetails, setUserDetails] = useState({UserName:'', Password:''});
+
+
+    function HandleUserName(e){
+        setUserDetails({
+            UserName: e.target.value,
+            Password: userdetails.Password
+        })
+    }
+
+    function HandlePassword(e){
+        setUserDetails({
+            UserName: userdetails.UserName,
+            Password: e.target.Password
+        })
+    }
+
+    function HandleLogin(){
+        setCookie('username',userdetails.UserName, {path:'/', expires: new Date("2021-12-20")});
+        alert('Cookie Created');
+    }
+
+    useEffect(()=>{
+         if(cookies.username==undefined) {
+             //logic for redirection to login page
+         } else {
+            // logic for redirection to success page.
+         }
+    },[])
+
+    function HandleSignout(){
+        removeCookie('username');
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Admin Login - {cookies.username}  <button onClick={HandleSignout} className="btn btn-link">Signout</button></h2>
+            <dl>
+                <dt>User Name</dt>
+                <dd><input type="text" onChange={HandleUserName} /></dd>
+                <dt>Password</dt>
+                <dd><input type="password" onChange={HandlePassword} /></dd>
+            </dl>
+            <button onClick={HandleLogin} >Login</button>
+           
+        </div>
+    )
+}
+
+
+2. Index.js
+
+import { CookiesProvider } from 'react-cookie';
+import LoginComponent from './components/LoginComponent';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <CookiesProvider>
+      <LoginComponent/>
+    </CookiesProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
