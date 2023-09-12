@@ -1,0 +1,615 @@
+React Forms
+ - Form provides an UI for application from where user can interact.
+ - It allows to view, input, edit and delete.
+ - React uses all HTML form elements.
+
+Syntax:
+ <form  onSubmit={handleSubmit}>
+ <input type="text" onChange={(e)=> {setName(e.target.value)}}  value={Name}/>
+  <button type="submit"> Submit </button>
+</form>
+
+Ex: FormDemoComponent.js
+
+import { useState } from "react";
+
+export default function FormDemoComponent()
+{
+    const [Name, setName] = useState('');
+    const [Price, setPrice] = useState(0);
+    const [City, setCity] = useState('');
+    const [Stock, setStock] = useState(false);
+
+    function SubmitClick(){
+        document.write(`Name=${Name}<br>Price=${Price}<br>City=${City}<br>Stock=${(Stock==true)?"Available":"Out of Stock"}`);
+    }
+
+    return(
+        <div className="container-fluid">
+            <h2>Register Product</h2>
+            <form onSubmit={SubmitClick} >
+            <dl>
+                <dt>Name</dt>
+                <dd><input type="text" value={Name} onChange={(e)=>{setName(e.target.value)}} /></dd>
+                <dt>Price</dt>
+                <dd><input type="text" value={Price} onChange={(e)=>{setPrice(e.target.value)}} /></dd>
+                <dt>Shipped To</dt>
+                <dd>
+                    <select onChange={(e)=>{setCity(e.target.value)}} >
+                        <option value='Delhi'>Delhi</option>
+                        <option value='Hyderabad'>Hyd</option>
+                    </select>
+                </dd>
+                <dt>Stock</dt>
+                <dd className="form-switch">
+                    <input type="checkbox" checked={Stock} onChange={(e)=>{setStock(e.target.checked)}} className="form-check-input" /> Available
+                </dd>
+            </dl>
+             <button type="submit" >Register</button>
+            </form>
+        </div>
+    )
+}
+
+
+What are Generic Buttons?
+<input type="submit">        <button> </button>
+<input type="reset">                <button type="reset"></button>
+
+
+FAQ: How to prevent the default functionality of any Generic button?
+Ans:  e.preventDefault
+
+
+FAQ: Can we define a form with multiple submit buttons?
+Ans: Yes.
+
+
+FAQ: Why are form needs multiple submit buttons?
+Ans: It allows a single to handle different functionalities.
+        Like you can update, post, delete, etc..
+
+FAQ: How form know which submit clicked?
+Ans: e.target.element.buttonName
+
+                        3rd Party React Forms
+                        =================
+ - Formik
+ - Kendo Forms
+ - React-Form
+ - NewForms
+ - ValueLink
+ - etc..
+
+ > npm install formik --save
+
+Ex:
+import { useFormik } from "formik";
+
+export default function FormikDemoComponent()
+{
+    const formik = useFormik({
+        initialValues : {
+            Name: '',
+            Price: 0,
+            City: '',
+            Stock: false
+        },
+        onSubmit: values => {
+            alert(JSON.stringify(values));
+        }
+    })
+    return(
+        <div className="container-fluid">
+            <h2>Register Product</h2>
+            <form onSubmit={formik.handleSubmit} >
+            <dl>
+                <dt>Name</dt>
+                <dd><input type="text" name="Name" onChange={formik.handleChange} value={formik.values.Name} /></dd>
+                <dt>Price</dt>
+                <dd><input type="text" name="Price" onChange={formik.handleChange} value={formik.values.Price}  /></dd>
+                <dt>Shipped To</dt>
+                <dd>
+                    <select name="City" onChange={formik.handleChange}>
+                        <option value='Delhi'>Delhi</option>
+                        <option value='Hyderabad'>Hyd</option>
+                    </select>
+                </dd>
+                <dt>Stock</dt>
+                <dd className="form-switch">
+                    <input type="checkbox" name="Stock" onChange={formik.handleChange} checked={formik.values.Stock} className="form-check-input" /> Available
+                </dd>
+            </dl>
+             <button type="submit" name="register" >Register</button>
+         
+            </form>
+        </div>
+    )
+}
+
+
+Form Validations
+- Validation is the process of verifying user input.
+- Validation is required to ensure that contradictionary and unauthorized data is not get stored into database.
+- React can handle validations client side.
+- React can handle validations using 3rd party library like "formik and yup".
+- React requires JavaScript functions to validate, which includes
+  string, math, date, array, isNaN etc..
+
+Syntax: Formik Validation
+
+    const  formik = useFormik({
+             initialValues : { },
+             validate: validateFunction,
+             onSubmit: values => {
+              }
+     })
+   
+    const  validateFunction = userdetails => {
+                 const errors = { };
+         if(userdetails.Name) { errors.Name="" }
+         if(userdetails.Email) { errors.Email="" }
+                 return errors;
+     }
+
+EX:
+import { useFormik } from "formik";
+
+function ValidateUser(userdetails) {
+    const errors = {};
+     if(userdetails.Name=="") {
+        errors.Name = "User Name Required";
+     }
+     if(userdetails.Email.indexOf("@")<=2) {
+        errors.Email = "Invalid Email";
+     }
+     if(userdetails.Mobile.match(/\+91[0-9]{10}/)) {
+         errors.Mobile = '';
+     } else {
+         errors.Mobile = "Invalid Mobile";
+     }
+    return errors;
+}
+
+export default function ValidationDemoComponent()
+{
+    const formik = useFormik({
+        initialValues: {
+            Name: '',
+            Email: '',
+            Mobile: ''
+        },
+        validate: ValidateUser ,
+        onSubmit: values => {
+            alert(JSON.stringify(values));
+        }
+    })
+    return(
+        <div className="container-fluid">
+           <form onSubmit={formik.handleSubmit}>
+                <h2>Register User</h2>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" onBlur={formik.handleBlur} onChange={formik.handleChange} name="Name" /></dd>
+                    <dd>{formik.errors.Name}</dd>
+                    <dt>Email</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="Email" /></dd>
+                    <dd>{formik.errors.Email}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="Mobile" /></dd>
+                    <dd>{formik.errors.Mobile}</dd>
+                </dl>
+                <button className="btn btn-primary">Register</button>
+           </form>
+        </div>
+    )
+}
+
+
+Ex: Multiple Error Messages for a Field
+
+import { useFormik } from "formik";
+
+function ValidateUser(userdetails) {
+    const errors = {};
+     if(userdetails.Name=="") {
+        errors.Name = "User Name Required";
+     } else if(userdetails.Name.length<4) {
+         errors.Name = "User name too short..";
+     } else if(userdetails.Name.length>10) {
+         errors.Name = "User Name too long..";
+     }
+     if(userdetails.Email==""){
+         errors.Email = "Email Required";
+     } else if(userdetails.Email.indexOf("@")<=2) {
+        errors.Email = "Invalid Email";
+     }
+     if(userdetails.Mobile==""){
+         errors.Mobile = "Mobile Required";
+     } else if(userdetails.Mobile.match(/\+91[0-9]{10}/)) {
+         errors.Mobile = '';
+     } else {
+         errors.Mobile = "Invalid Mobile";
+     }
+    return errors;
+}
+
+export default function ValidationDemoComponent()
+{
+    const formik = useFormik({
+        initialValues: {
+            Name: '',
+            Email: '',
+            Mobile: ''
+        },
+        validate: ValidateUser ,
+        onSubmit: values => {
+            alert(JSON.stringify(values));
+        }
+    })
+    return(
+        <div className="container-fluid">
+           <form onSubmit={formik.handleSubmit}>
+                <h2>Register User</h2>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" onBlur={formik.handleBlur} onChange={formik.handleChange} name="Name" /></dd>
+                    <dd>{formik.errors.Name}</dd>
+                    <dt>Email</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="Email" /></dd>
+                    <dd>{formik.errors.Email}</dd>
+                    <dt>Mobile</dt>
+                    <dd><input type="text" onChange={formik.handleChange} name="Mobile" /></dd>
+                    <dd>{formik.errors.Mobile}</dd>
+                </dl>
+                <button className="btn btn-primary">Register</button>
+           </form>
+        </div>
+    )
+}
+
+                  Formik with Yup Library
+                  ==================
+- Yup provides validation schema.
+- Validation schema comprises of predefined validation functions.
+- You can validated without writing functions explicitly.
+- Yup provides pre-defined HTML validation functions.
+        required()
+        min()
+        max()
+        minlength()
+        maxlength()
+        pattern() etc..
+
+Install Yup library for project:
+
+ > npm install yup  --save
+
+- Yup is object based schema validation library.
+- It can validation schema at 2 level
+        a) Form State Validation
+        b) Input State Validation
+
+- Form State Validation is verifying all fields in the form.
+- Input state validation is verifying every field individually.
+- Yup comprises of
+        a) promise
+        b) set
+        c) map
+- Yup provides various schemas
+
+import {
+  BooleanSchema,
+  DateSchema,
+  MixedSchema,
+  NumberSchema,
+  ArraySchema,
+  ObjectSchema,
+  StringSchema,
+} from 'yup';
+
+- You can import all schemas and use with reference of "yup"
+
+import * as yup from 'yup';
+
+- Validation Schema required attributes to verfiy change in a field
+
+
+        formik.touched
+        formik.invalid
+        formik.valid
+
+Validation using Formik Validation Function
+Validation using Yup Library with Formik
+
+1. Install Yup for project
+        > npm install  yup --save
+
+2. Import yup related all schemas
+
+       import  * as yup from 'yup';
+
+3. Yup uses ValidationSchema Object
+
+        yup.object({
+             FieldName: yup.dataType().validationFunction();
+        })
+
+        DataType                 : string, number, boolean etc..
+        Validation Function        : min(), max(), required(), email() etc..
+
+4. Binding with HTML element
+
+        <input type="text"  {...formik.getFieldProps("FieldName")}>
+
+5. Formstate and Input state services
+       
+        touched                : element lost focus [blur]
+        dirty                : value modified
+        isInvalid                : invalid
+
+Syntax: Validation on touched
+       
+ {(formik.touched.Name && formik.errors.Name?formik.errors.Name:null)}
+
+
+Form State Validation :  It verfies all fields in a form.    {formik.state}
+Input State Validation : It verfies specified field.          {formik.error.fieldName}
+
+Ex: Yup Validation Schema
+
+"YupValidationDemo.js"
+
+import { useFormik } from "formik";
+import * as yup from 'yup';
+
+export default function YupDemoComponent()
+{
+    const formik = useFormik({
+        initialValues: {
+            Name: '',
+            Age: 0,
+            Email: ''
+        },
+        validationSchema: yup.object({
+            Name: yup.string()
+                     .required("User Name Required")
+                     .min(4, "Name too short..")
+                     .max(10,"Name too long.."),
+            Age: yup.number()
+                    .required("Age Required"),
+            Email: yup.string()
+                      .required("Email Required")
+                      .email("Invalid Email")
+        }),
+        onsubmit : values => {
+            alert(JSON.stringify(values));
+        }
+    })
+    return(
+        <div className="container-fluid">
+            <form  onSubmit={formik.handleSubmit} >
+                <h2>Register User</h2>
+                <dl>
+                    <dt>User Name</dt>
+                    <dd><input type="text" {...formik.getFieldProps("Name")} /></dd>
+                    <dd className="text-danger">
+                        {(formik.touched.Name && formik.errors.Name?formik.errors.Name:null )}
+                    </dd>
+                    <dt>Email</dt>
+                    <dd><input type="text" {...formik.getFieldProps("Email")} /></dd>
+                    <dd className="text-danger">
+                    {(formik.touched.Email && formik.errors.Email?formik.errors.Email:null )}
+                    </dd>
+                    <dt>Age</dt>
+                    <dd><input type="text" {...formik.getFieldProps("Age")}/></dd>
+                    <dd className="text-danger">
+                    {(formik.touched.Age && formik.errors.Age?formik.errors.Age:null )}
+                    </dd>
+                </dl>
+                <button>Register</button>
+            </form>
+        </div>
+    )
+}
+
+                        Formik Validation Components
+- Formik provides pre-defined components for designing
+        a) Form
+        b) Field
+        c) Error
+- Formik component are pre-defined with validation services.
+- Formik components are
+        1. Formik
+        2. Form
+        3. Field
+        4. ErrorMessage
+Syntax:
+        <Formik initialValues={} validationSchema={} onSubmit={} >
+              <Form>
+                   {
+                    <Field type="text/password/number/radio" name=""> </Field>
+                    <ErrorMessage name="fieldName"></ErrorMessage>
+                   }
+              </Form>
+        </Formik>
+
+Note:  Formik <Field> component uses
+        a) type         : various input types
+        b) as         : form elements other that input types
+
+        Syntax:
+         <Field as="select">
+           <option> Item1 </option>
+        </Field>
+
+Ex:  FormikValidationComponent.js
+
+import { useFormik, Formik, Field, Form, ErrorMessage } from "formik";
+import  * as yup from 'yup';
+
+export default function FormikValidationComponent()
+{
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <Formik
+             initialValues={
+                 {
+                     Name: '',
+                     Email: '',
+                     Age: 0,
+                     City:''
+                 }
+             }
+             
+             validationSchema={
+                yup.object({
+                    Name: yup.string().min(4,"Name too Short").max(10, "Name too long").required("Name Required"),
+                    Email: yup.string().required("Email Required").email("Invalid Email"),
+                    Age: yup.number().required("Age Required")
+                })
+             }
+
+             onSubmit={
+                 values=> {
+                     alert(JSON.stringify(values))
+                 }
+             }
+             
+            >
+                  <Form>
+                     {
+                            <div>
+                                 <dl>
+                                <dt>User Name</dt>
+                                <dd> <Field type="text" name="Name" ></Field> </dd>
+                                <dd className="text-danger"> <ErrorMessage name="Name"></ErrorMessage> </dd>
+                                <dt>Email</dt>
+                                <dd>
+                                    <Field type="text" name="Email" ></Field>
+                                </dd>
+                                <dd className="text-danger">
+                                    <ErrorMessage name="Email" ></ErrorMessage>
+                                </dd>
+                                <dt>Age</dt>
+                                <dd>
+                                    <Field type="text" name="Age"></Field>
+                                </dd>
+                                <dd className="text-danger">
+                                    <ErrorMessage name="Age"></ErrorMessage>
+                                </dd>
+                                <dt>Select City</dt>
+                                <dd>
+                                    <Field as="select" name="City">
+                                        <option>Delhi</option>
+                                        <option>Hyd</option>
+                                    </Field>
+                                </dd>
+                            </dl>
+                            <button>Submit</button>
+                            </div>
+                     }
+                  </Form>
+            </Formik>
+        </div>
+    )
+}
+
+Note:  FormState validation requires <Form> to return validation errors. So that you can validation all fields in a form.
+
+Syntax:
+         <Formik>
+           {
+               props => (
+                   <Form>
+                <Field type="" name=""> </Field>
+                   </Form>
+               )        
+           }
+        </Form>
+Syntax:
+    Form valid :  {(props.isValid==true)?"Valid":"Invalid"} <br />
+    Form Dirty :  {(props.dirty==true)?"Modified":"Not Modified"}
+
+
+
+Ex: FormState Validation
+
+import { useFormik, Formik, Field, Form, ErrorMessage } from "formik";
+import  * as yup from 'yup';
+
+export default function FormikValidationComponent()
+{
+    return(
+        <div className="container-fluid">
+            <h3>Register User</h3>
+            <Formik
+             initialValues={
+                 {
+                     Name: '',
+                     Email: '',
+                     Age: 0,
+                     City:''
+                 }
+             }
+             
+             validationSchema={
+                yup.object({
+                    Name: yup.string().min(4,"Name too Short").max(10, "Name too long").required("Name Required"),
+                    Email: yup.string().required("Email Required").email("Invalid Email"),
+                    Age: yup.number().required("Age Required")
+                })
+             }
+
+             onSubmit={
+                 values=> {
+                     alert(JSON.stringify(values))
+                 }
+             }
+             
+            >
+                {
+                    props => (
+                        <Form>
+                        {
+                               <div>
+                                    <dl>
+                                   <dt>User Name</dt>
+                                   <dd> <Field type="text" name="Name" ></Field> </dd>
+                                   <dd className="text-danger"> <ErrorMessage name="Name"></ErrorMessage> </dd>
+                                   <dt>Email</dt>
+                                   <dd>
+                                       <Field type="text" name="Email" ></Field>
+                                   </dd>
+                                   <dd className="text-danger">
+                                       <ErrorMessage name="Email" ></ErrorMessage>
+                                   </dd>
+                                   <dt>Age</dt>
+                                   <dd>
+                                       <Field type="text" name="Age"></Field>
+                                   </dd>
+                                   <dd className="text-danger">
+                                       <ErrorMessage name="Age"></ErrorMessage>
+                                   </dd>
+                                   <dt>Select City</dt>
+                                   <dd>
+                                       <Field as="select" name="City">
+                                           <option>Delhi</option>
+                                           <option>Hyd</option>
+                                       </Field>
+                                   </dd>
+                               </dl>
+                               <button disabled={(props.isValid==true)?false:true} >Submit</button>
+                             
+                               </div>
+                        }
+                     </Form>
+   
+                    )
+                }
+
+            </Formik>
+        </div>
+    )
+}
