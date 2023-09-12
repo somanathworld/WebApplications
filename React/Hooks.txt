@@ -560,10 +560,7 @@ export default function ReducerDemoComponent()
         </div>
     )
 }
-                           Cookies
-- Cookie is a simple text file
-- useCookie
-Cookies in React
+              Cookies in React
                        
 - Cookies are simple text files, which contain client details so that we can access and use across any component in application.
 - Cookies are 2 types
@@ -680,3 +677,5 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+
+                        Forms in React JS
