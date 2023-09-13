@@ -1,0 +1,710 @@
+Google Classroom
+Classroom
+REACT19112021-7:30PM
+React JS
+Home
+Calendar
+Enrolled
+To-do
+R
+REACT19112021-7:30PM
+React JS
+7
+7AM Angular - April
+Angular 9
+N
+NCR Campus CodeWars - 2020 | 2
+N
+NCR Campus CodeWars - 2020 | 4
+Archived classes
+Settings
+Routing in React
+Sudhakar Sharma
+•
+Dec 16, 2021
+React Routing
+- Router Version 5.2
+- Router Version 6.0   Latest
+
+        > npm install  react-router-dom@5.2  --save
+
+Syntax:
+        <Router>
+            <Route  path=""   component={} />         // outlet
+        </Router>
+
+Syntax:  Switch Selector
+
+        <Router>
+           <Switch>
+                <Route path="" exact   component={} />        // outlet
+           </Switch>
+        </Router>
+
+Ex:
+ElectronicsComponent.js
+
+
+export default function ElectronicsComponent(){
+    return(
+        <div className="container-fluid">
+            <h2>Electronics Home</h2>
+            <img src="images/laptop.PNG"  width="100" height="100"/>
+            <img src="images/neckband.PNG"  width="100" height="100"/>
+        </div>
+    )
+}
+
+FootwearComponent.js
+
+
+export default function FootwearComponent(){
+    return(
+        <div className="container-fluid">
+            <h2>Footwear Home</h2>
+            <img src="images/shoe.jpg"  width="100" height="100"/>
+            <img src="images/shoe1.jpg"  width="100" height="100"/>
+        </div>
+    )
+}
+
+HomeComponent.js
+
+
+export default function HomeComponent(){
+    return(
+        <div className="container-fluid">
+            <h2>Shopping Home</h2>
+            <p>Special Offers on Electronics and Footwear</p>
+        </div>
+    )
+}
+
+
+ShoppingIndexComponent.js
+
+// Routing with 5.2 Version
+
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import HomeComponent from './HomeComponent';
+import ElectronicsComponent from './ElectronicsComponent';
+import FootwearComponent from './FootwearComponent';
+
+export default function ShoppingIndexComponent(){
+    return(
+        <div className="container-fluid">
+            <header className="bg-danger text-white text-center p-2">
+                <h1> <span className="bi bi-cart4"></span> Shopping Online</h1>
+            </header>
+            <Router>
+                <div className="row">
+                    <div className="col-3">
+                        <ul>
+                            <li> <Link to="home">Home</Link> </li>
+                            <li> <Link to="electronics">Electronics</Link> </li>
+                            <li> <Link to="footwear">Footwear</Link> </li>
+                        </ul>
+                    </div>
+                    <div className="col-9">
+                         <Switch>
+                         <Route path="/" exact component={HomeComponent} />
+                         <Route path="/home" exact component={HomeComponent} />
+                         <Route path="/electronics" exact component={ElectronicsComponent} />
+                         <Route path="/footwear" exact component={FootwearComponent} />
+                         </Switch>
+                    </div>
+                </div>
+            </Router>
+        </div>
+    )
+}
+
+FAQ: What is wild card route?
+Ans:  It specifies the component to access when the requested path return 404.
+
+        <Route path="*"  component={ } />
+
+Ex:
+                <Switch>
+                            <Route path="*" exact component={NotFoundComponent} />
+                         </Switch>
+
+
+                             Route Parameters
+                            ===============
+- To query any content directly from URL we use Query String.
+
+                           /products?id=1&name=tv
+
+- Route uses route parameters
+
+      <Route   path="/products/:id/:name"  component={DetailsComponent}>
+
+- Route parameter are passed in URL not as querysting
+
+                /products/1/tv
+
+- Route uses "useParams()"  hook to access route parameters.
+
+- useParams() is an object with key and value reference
+
+                id        : 1
+                name        : tv
+
+        const  { id, name } = useParams();
+
+        const  { name }  = useParams("name");
+
+Ex:
+1. Add a new component
+        "DetailsComponent.js"
+
+import { useParams } from "react-router-dom";
+
+export default function DetailsComponent(){
+    const {id,name,price} = useParams();
+    return(
+        <div>
+            <h2>Details</h2>
+            <dl>
+                <dt>Id</dt>
+                <dd>{id}</dd>
+                <dt>Name</dt>
+                <dd>{name}</dd>
+                <dt>Price</dt>
+                <dd>{price}</dd>
+            </dl>
+        </div>
+    )
+}
+
+
+2. Goto ShoppingIndexComponent and add following route
+
+ <Route path="/details/:id/:name/:price" exact component={DetailsComponent} />
+
+routes.txt
+Text
+Class comments
+Material details
+		             Routing in React
+
+Web Development includes techniques like
+a) State Management
+b) Caching
+c) Model Binding
+d) Security
+e) Routing
+
+FAQ: What is Routing?
+Ans: Routing is a technique used in web application to configure SEO and User
+        Friendly URL's.
+
+        SEO Friendly url's allows crawlers [BOTS] to identify the exact location.
+        User Friendly url's allows the user to query any content easily.
+
+Without Routing URL
+================
+
+http://www.amazon.in/electronics.aspx?category=mobiles&model=samsung&minPrice=12000
+
+
+With Routing URL
+==============
+
+http://www.amazon.in/electronics/mobiles/samsung/12000
+
+
+- Routing uses "Ajax" calls, which allows to load content async.
+- Routing allows to load new content into page without reloading the page.
+- SPA uses routing technique, so that user can stay on one page and get access to everything on to the page without navigating out of page.
+- Routing makes the page fluid.
+- Routing can be defined 
+	a) Server Side
+	b) Client Side
+- Server Side routing is configured in API.
+
+       www.fakestoreapi.com/products/categories/electronics
+          
+- Client Side Routing is configured in Client Side Library or Framework.
+	[React, Angular, Vue etc.]
+
+
+		          React Routing 
+
+- You have to install routing library
+
+      > npm install  react-router-dom   --save
+
+- React routing library provides 
+
+        a) Router	: It is container that configures Route Table
+        b) Route	: It is used to configure every individual route in table.
+        c) Switch	: It is used to select exect requested route and ignore 
+		  others.
+        d) Link	: It is used to configure a Hyperlink, but it navigates 
+	                   using a route path not href.
+
+Syntax:
+	<Router>
+	   <Switch>
+	       <Route  path=""  component={}> </Route>
+	       <Route  path=""  component={}> </Route>
+	       <Route  path=""  component={}> </Route>
+	  </Switch>
+                </Router>
+
+ Note: <Switch> defines a container which is used as router outlet.
+            Router Outlet specifies where to display the resulting markup.
+
+            <Link> defines a hyperlink that navigates to specified route URL.
+
+            Syntax:
+	<Link  to="routePath"> Text / Image </Link>
+
+
+
+
+
+
+
+routes.txt
+Displaying routes.txt.
+
+React Routing
+- Router Version 5.2
+- Router Version 6.0   Latest
+
+        > npm install  react-router-dom@5.2  --save
+
+Syntax:
+        <Router>
+            <Route  path=""   component={} />         // outlet
+        </Router>
+
+Syntax:  Switch Selector
+
+        <Router>
+           <Switch>
+                <Route path="" exact   component={} />        // outlet
+           </Switch>
+        </Router>
+
+Ex:
+ElectronicsComponent.js
+
+
+export default function ElectronicsComponent(){
+    return(
+        <div className="container-fluid">
+            <h2>Electronics Home</h2>
+            <img src="images/laptop.PNG"  width="100" height="100"/>
+            <img src="images/neckband.PNG"  width="100" height="100"/>
+        </div>
+    )
+}
+
+FootwearComponent.js
+
+
+export default function FootwearComponent(){
+    return(
+        <div className="container-fluid">
+            <h2>Footwear Home</h2>
+            <img src="images/shoe.jpg"  width="100" height="100"/>
+            <img src="images/shoe1.jpg"  width="100" height="100"/>
+        </div>
+    )
+}
+
+HomeComponent.js
+
+
+export default function HomeComponent(){
+    return(
+        <div className="container-fluid">
+            <h2>Shopping Home</h2>
+            <p>Special Offers on Electronics and Footwear</p>
+        </div>
+    )
+}
+
+
+ShoppingIndexComponent.js
+
+// Routing with 5.2 Version
+
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import HomeComponent from './HomeComponent';
+import ElectronicsComponent from './ElectronicsComponent';
+import FootwearComponent from './FootwearComponent';
+
+export default function ShoppingIndexComponent(){
+    return(
+        <div className="container-fluid">
+            <header className="bg-danger text-white text-center p-2">
+                <h1> <span className="bi bi-cart4"></span> Shopping Online</h1>
+            </header>
+            <Router>
+                <div className="row">
+                    <div className="col-3">
+                        <ul>
+                            <li> <Link to="home">Home</Link> </li>
+                            <li> <Link to="electronics">Electronics</Link> </li>
+                            <li> <Link to="footwear">Footwear</Link> </li>
+                        </ul>
+                    </div>
+                    <div className="col-9">
+                         <Switch>
+                         <Route path="/" exact component={HomeComponent} />
+                         <Route path="/home" exact component={HomeComponent} />
+                         <Route path="/electronics" exact component={ElectronicsComponent} />
+                         <Route path="/footwear" exact component={FootwearComponent} />
+                         </Switch>
+                    </div>
+                </div>
+            </Router>
+        </div>
+    )
+}
+
+FAQ: What is wild card route?
+Ans:  It specifies the component to access when the requested path return 404.
+
+        <Route path="*"  component={ } />
+
+Ex:
+                <Switch>
+                            <Route path="*" exact component={NotFoundComponent} />
+                         </Switch>
+
+
+                             Route Parameters
+                            ===============
+- To query any content directly from URL we use Query String.
+
+                           /products?id=1&name=tv
+
+- Route uses route parameters
+
+      <Route   path="/products/:id/:name"  component={DetailsComponent}>
+
+- Route parameter are passed in URL not as querysting
+
+                /products/1/tv
+
+- Route uses "useParams()"  hook to access route parameters.
+
+- useParams() is an object with key and value reference
+
+                id        : 1
+                name        : tv
+
+        const  { id, name } = useParams();
+
+        const  { name }  = useParams("name");
+
+Ex:
+1. Add a new component
+        "DetailsComponent.js"
+
+import { useParams } from "react-router-dom";
+
+export default function DetailsComponent(){
+    const {id,name,price} = useParams();
+    return(
+        <div>
+            <h2>Details</h2>
+            <dl>
+                <dt>Id</dt>
+                <dd>{id}</dd>
+                <dt>Name</dt>
+                <dd>{name}</dd>
+                <dt>Price</dt>
+                <dd>{price}</dd>
+            </dl>
+        </div>
+    )
+}
+
+
+2. Goto ShoppingIndexComponent and add following route
+
+ <Route path="/details/:id/:name/:price" exact component={DetailsComponent} />
+
+Route Hooks
+- React Router library provides the following hooks
+
+a) useHistory()
+b) useLocation()
+c) useParams()
+d) useRouteMatch()
+
+- You need router hooks to handle browser objects.
+- React can't directly handle browser objects.
+
+FAQ: How JS DOM can handle redirection?
+Ans:  location.href
+<button onclick="location.href='home.html'" > Goto Home </button>
+
+FAQ: How JS DOM can access querystring?
+Ans:  location.search
+
+FAQ: How to access current URL and Path?
+Ans:  location.href = url
+         location.pathname = path
+
+FAQ: How to access the previous page used in browser?
+Ans:  history.go(-1)
+         history.forward()
+         history.back()
+         history.length
+
+                          useHistory
+- It is react-router hook that allows to access the browsing history.
+- It can access the collection of pages in history and push a new page or component.
+- It allows to dynamically navigate.
+- useHistory allows to access "locationState.History"
+- It gives access to router history and allows to push a new path
+
+Syntax:
+        let  history = useHistory();
+
+        history.push("/path");
+
+Ex:
+<button onClick={()=> history.push('/home')}> Go to Home</button>
+
+                      useLocation
+- It allows access the location object BOM.
+- The location details includes
+        a) pathname
+        b) href
+        c) seach [querystring]
+        d) hash
+        e) protocol
+        f) port
+
+Syntax:
+        let location = useLocation();
+        location.search  => returns the query string.
+
+                   useParams
+- It returns the route parameters
+- It is an object with key and value.
+- Parameter name is key and its value is reffered as parameter value.
+
+Syntax:
+        const {id, name, price} = useParams();
+
+                 useRouteMatch
+- It is used to access route path and url.
+- So that dynamically you can configure path and url for any route.
+
+            const { path, url }  = useRouteMatch();
+
+              {path}        "/details/:id/:name"
+
+              {url}        "details/1/tv"
+
+- path is used for creating dynamic <Route>.
+- url is used for creating dynamic <Link>.
+
+Summary:
+- useLocation()
+- useHistory()
+- useParams()
+- useRouteMatch()
+
+                Online Shopping Cart - SPA
+- Design Database in MongoDB
+- Server Side Code in Node.js
+- Middleware Express
+- Client Side React
+                         MERN
+Material UI
+- Provides component library for react applications.
+- It is native to react and built for react.
+- It provides templates, themes, etc..
+- It provides UI and UX components.
+- The latest version stable is  "5"
+       > npm install  @mui/material
+- The previous version is "4"
+      > npm install @material-ui/core
+
+
+UI        - User Interface
+UX        - User Experience [Behaviour for UI]
+        - Fluid UX
+        - Unified UX
+        - Lazy loading
+
+Ex: Data Grid  
+ UI  -  Rows, Columns, Colors, Pagination, Filter, Sorting etc..
+ UX -  Loading only the rows that can fit screen, virtual scrolling.
+
+Note: To control browser dependency issues with material UI, you need cssBaseline to configure.
+                transform : scale(), translate(), roate(), skew()
+                -webkit-transform: chrome, edge
+                -moz-transform
+                -o-transform
+                -ms-transform
+
+Syntax:
+          import   CssBaseline from  '@mui/material';
+          <CssBaseline />
+
+
+Approach for Decoding Material Components:
+
+1. Go to Components API and know about the component properties, methods, dependencies.
+        Ex:    Button API
+
+2. How to import a component library.
+ 
+           import Button from '@mui/material/Button';      - one
+           import { Button } from '@mui/material';         - different
+
+3. Know about the selector used for component.
+    Goto components category and select "button".
+    Goto demos and see the selector.
+
+        <Button> </Button>
+
+4. Go to API and View properties for Button  ["props"] tab
+
+        <Button   variant=""   color=""> </Button>
+
+5.  To know how to customize the button or override its properties
+      You can goto "inheritance" - Extensibility - Find the base class and edit.
+
+        Ex:  ButtonBase
+
+Upgrading to Material 5
+- Uninstall previous version
+        >npm uninstall @material-ui
+
+- Install the new version
+
+        > npm install  @mui/material
+        > npm install  @emotion/react  @emotion/styled
+
+- New Version Requires CssBaseline to reduce browser compatibility issues.
+
+import CssBaseline from '@mui/material/CssBaseline';
+
+<React.Fragment>                        <div> </div>  <> </>
+      <CssBaseline />
+      {/* The rest of your application */}
+</React.Fragment>
+
+
+Ex: Card
+
+  Bootstrap                vs                 mui
+  =================================================
+  .card                                        <Card>
+  .card-header                                <CardHeader>
+  .card-body                                <CardContent>
+  .card-footer
+  .card-img-top etc...  
+
+
+
+Ex: Icons  
+      font icons,                google api
+      fontawesome icons        fontawesome dependency
+      svg icons                svg dependency
+
+import { Button } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import Icon from '@mui/material/Icon';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
+
+import  axios  from 'axios';
+import { useState, useEffect } from 'react';
+
+export default function MaterialDemoComponent(){
+    const [products, setProducts] = useState([]);
+
+    useEffect(()=> {
+         axios.get('http://fakestoreapi.com/products&#39;)
+         .then(response => {
+             setProducts(response.data);
+         })
+    },[])
+    return(
+        <div>
+            <h2>Material UI - 5</h2>
+            <div style={{display:'flex', flexWrap:'wrap'}} >
+                {
+                    products.map(product=>
+                         <Card sx={{ maxWidth: 345 }} style={{width:'200px', margin:'15px'}} >
+                             <CardMedia
+                              component='img'
+                              alt={product.title}
+                              image={product.image}
+                             >
+                             </CardMedia>
+                             <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                 {product.title}
+                                 
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                 {product.description}
+
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button variant="contained"> <ShoppigCart></ShoppigCart>  Add to Cart</Button>
+                            </CardActions>
+                         </Card>
+                        )
+                }
+            </div>
+        </div>
+    )
+}
+
+                      Upgrade to route 6
+                      ==============
+1. Uninstall route 5
+        > npm uninstall  react-router-dom@5.2
+
+2. Install route 6
+
+        > npm install  react-router-dom
+
+3. Route 6 Provides Browser Router  Component  that reduces browser compatibility issues
+ 
+      import  {BrowserRouter}  from  'react-router-dom'
+
+        <BrowserRouter>
+              <Router>
+
+              </Router>
+        </BrowserRouter>
+
+4. Route 6 doesn't require <Switch>  you have to configure all routes in "<Routes>" collection
+
+         <Routes>
+            <Route />
+                    <Route />
+        </Routes>
+
+5. Route 6 will not access the component it uses component element.
+
+                  <Route  path=""  element={ <Component /> }>
+
+
+                         I-Shop Application
+- API
+- React App
+- Material 5
+- Router 6
