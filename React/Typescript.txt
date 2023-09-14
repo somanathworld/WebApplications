@@ -1,0 +1,1202 @@
+TypeScript
+- It is strictly typed language.
+- It is strongly typed language.
+- It follows "Duck Typing" technique.
+- It supports complete OOP.
+- JavaScript have no access modifiers, contracts, templates etc..
+- Microsoft - C#  - TypeScript 2003
+- TypeScript is built with typescript.
+- It can be used individually to build large scale applications.
+- "Anders Hejlberg" designed the architecture of TypeScript, C#.
+        "atScript"
+- Typescript is transcompiled into JavaScript.
+
+
+
+                 TypeScript Architecture
+- Core Compiler
+   checks syntax, keywords , input, output, parsing etc..
+
+- Standalone Compiler
+   translates typescript program into javascript.
+
+- Language Service
+   Un managed language service that provides support for compiler.
+
+- Managed Language Service
+   Language services which can run on every OS.
+
+- VS Shim  
+   It makes typescript platform neutral.
+
+- TS Server
+   It host, process, comples and executes typescript programs.
+
+- Editor
+   It contains configuration for typescript [tsconfig.json]
+
+Setup and Install TypeScript
+- Open Command Prompt
+
+     > npm  install  -g  typescript
+     > tsc   -v  
+
+TypeScript Program
+1. Every typescript program have extension ".ts"
+2. It is transcompiled using "tsc.ts"
+
+        > tsc    program.ts         => generate   program.js
+        > node  program.js
+
+
+                TypeScript Language Basics
+- Variables
+- Data Types
+- Operators
+- Statements
+- Functions
+
+Note: All are same as JavaScript.
+         Variables in TypeScript are strongly typed.
+
+   Syntax:
+        let variableName:dataType;
+        let name:number|string|boolean|null|undefined;   primitive
+               
+        let  name:number[]|string[] = [ ];                // non primitive
+        let  name:any = { };                        // object
+        let  name:any[] = [ { }, { } ];
+
+Note:
+1. TypeScript support "union of types"
+       
+     Syntax:
+        let username:string|number;
+        username = 10;
+        username = "A";
+
+2. TypeScript supports type inference
+    It can restrict the data type according to initialized value type without defining the data type.
+
+  Syntax:
+        let username = "B";
+        username = "A";
+        username = 10;        // invalid   - username:string
+
+3. TypeScript support array of same type and "Tuple", which allows any type of value.
+
+        let products:any[] = ["TV", true];
+
+     Tuple is allowed only with array meta character not constructor.
+     Tuple is allows in constructor assignment not initialization.
+
+        let products = [ ];
+        let products = new Array();
+
+
+                       Type Script OOP
+                       =============
+Contracts in OOP:
+- A contract defines the rules for designing a component.
+- Contracts are designed by using "interface".
+- A contract can contain only rules.
+- It can contain only declaration.
+
+Syntax:
+        interface   Name
+        {
+           rules;
+        }
+
+- A contract in typescript can contain optional rules. They are defined using null reference character "?"
+
+interface IProduct
+{
+    Name:string;
+    Price:number;
+    Stock:boolean;
+    Qty:number;
+    Vendor?:string;
+}
+
+let product:IProduct = {
+    Name: "Tv",
+    Price: 56000.55,
+    Stock: true,
+    Qty:2,
+}
+console.log(`Name=${product.Name}\nPrice=${product.Price}\nStock=${product.Stock}\nQty=${product.Qty}`);
+
+> tsc  index.ts
+> node index.js
+
+- A contract contains "readonly" rules.
+  Once initialized with value can't be re-assigned.
+
+Ex:
+interface IProduct
+{
+    Name:string;
+    readonly Price:number;
+    Stock:boolean;
+    Qty:number;
+    Vendor?:string;
+}
+
+let product:IProduct = {
+    Name: "Tv",
+    Price: 56000.55,
+    Stock: true,
+    Qty:2,
+}
+product.Name = "Samsung TV";
+
+console.log(`Name=${product.Name}\nPrice=${product.Price}\nStock=${product.Stock}\nQty=${product.Qty}`);
+
+
+Language Basics
+- Variables
+- DataTypes
+- Operators
+- Statements
+- Functions
+
+OOP
+- Contracts
+- Define Contract
+- Rules in Contract
+- Optional Rules "?"
+- Readonly Rules  "readonly"
+               
+                        Rules for Methods
+                          ==============
+- A contract a contain rules for methods.
+- Method rule must define only name and return type.
+- In a contract method can't have definition.
+- Only declaration of method is allowed.
+
+        Total():number { }        // invalid
+        Total():number;        // valid
+
+- You can define optional methods
+
+        Total?():number;
+
+Ex:
+interface IProduct
+{
+    Name:string;
+    Price:number;
+    Qty:number;
+    Total():number;
+    Print?():void;
+}
+let product:IProduct = {
+    Name: "Samsung TV",
+    Price: 45000.44,
+    Qty: 2,
+    Total(){
+       return this.Qty * this.Price;
+    },
+    Print(){
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}`);
+    }
+}
+product.Print();
+
+                         Extending Contracts
+                         ===============
+- You can extend a contract without disturbing existing contract.
+- It supports
+        a) Single
+        b) Multi Level
+        c) Multiple
+
+Syntax:
+        interface Contract1
+        {
+        }
+        interface Contract2 extends Contract1
+        {
+        }
+
+Ex:
+interface ES2015
+{
+    BasicOperators:string;
+    ExponentOperator:string;
+}
+interface ES2016 extends ES2015
+{
+    RestParameters:string;
+}
+interface ES2017 extends ES2016
+{
+    MapType:string;
+}
+let javascript:ES2017 = {
+    BasicOperators : "Arithematic, Logical, Relational",
+    ExponentOperator: "Exponent is with **",
+    RestParameters: "Rest Params Defined with ... ",
+    MapType: "Alternative for Object"
+}
+
+
+Ex: Multiple
+
+interface IProduct
+{
+    Name:string;
+    Price:number;
+}
+interface ICategory
+{
+    CategoryName:string;
+}
+
+interface IDetails extends IProduct, ICategory
+{
+    Print():void;
+}
+let tv:IDetails = {
+    Name: "Samsung TV",
+    Price: 56000.44,
+    CategoryName: "Electronics",
+    Print(){
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nCategoryName=${this.CategoryName}`);
+    }
+}
+tv.Print();
+
+Summary
+- Define Contract
+- Rules in Contract
+- Optional Rules in Contract
+- Readonly rules in contract
+- Rules for methods in contract
+- Extending Contracts
+
+
+                       Class in TypeScript
+                       ===============
+- Class members
+        a) Properties
+        b) Methods
+        c) Constructor
+        d) Accessors
+
+- TypeScript class supports 2 type members
+        a) Static
+        b) Non-Static
+
+Static Members:
+- Static refers to continous memory.
+- The memory allocated for first object will continue for next object.
+- It is good for continous operations.
+- It uses more memory.
+- It is less secured, memory leaks may happen.
+- The term "static" is used for defining static members.
+- The static members are accessible with in the class or outside class by using class name.                        
+
+Non-Static:
+- Non Static refers to discreet memory.
+- The memory is destroyed and allocated newly for every object.
+- It is good for disconnected operations.
+- It is safe and uses less memory.
+- It is not good  for continous operations.
+- Non static member is accessible by using "this" keyword within the class and by using instance of class, if it is outside class.
+- By Default every member in class is non-static.
+
+
+Ex:
+class Demo
+{
+    static s = 0;
+    n = 0;
+    constructor(){
+        Demo.s = Demo.s + 1;
+        this.n = this.n + 1;
+    }
+    Print(){
+        console.log(`s=${Demo.s} n=${this.n}`);
+    }
+}
+let obj1 = new Demo();
+obj1.Print();
+let obj2 = new Demo();
+obj2.Print();
+let obj3 = new Demo();
+obj3.Print();
+
+                    Access Modifiers in Class
+                   ====================
+- public
+- private
+- protected
+
+
+public                : Accessible within the class and outside class
+                  It is accessible with base class or derived class
+                  object.
+                  It is the default access modifier for every member.
+
+private                : Accessible only within the class.
+
+
+protected                : Accessible within the class.
+                 Accessible outside class, but with in derived class                  using dervied class object only.
+
+
+Ex:
+class Base
+{
+    public Name:string;
+    private Price:number = 45000.44;
+    protected Stock:boolean;
+    Print(){
+        console.log(`${this.Name} ${this.Price} ${this.Stock}`);
+    }
+}
+class Derived extends Base
+{
+    Print(){
+        let obj = new Derived();
+        obj.Name = "TV";
+        obj.Stock = true;
+        super.Print();
+    }
+}
+let obj = new Derived();
+obj.Name;                        // valid
+obj.Price;                        // invalid
+obj.Stock;                        // invaldi
+
+Note: The default access modifier is "public".
+
+
+                  Class Implements Contract
+                  =====================
+- Class is a component and template.
+- You can't directly design a component or template.
+- You have to implement a contract.
+- It can implement multiple contracts.
+
+Syntax:
+   interface  Contract
+   {
+   }
+   class  Component  implements  Contract
+   {
+   }
+
+Ex:
+interface ProductContract
+{
+    Name:string;
+    Price:number;
+    Qty:number;
+    Total():number;
+    Print():void;
+}
+interface CategoriesContract
+{
+    CategoryName:string;
+}
+class ProductComponent implements ProductContract, CategoriesContract
+{
+    public Name: string;
+    public Price: number;
+    public Qty: number;
+    public CategoryName: string;
+    Total(): number {
+        return this.Qty * this.Price;
+    }
+    Print(): void {
+        console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${this.Qty}\nTotal=${this.Total()}\nCategoyr=${this.CategoryName}`);
+    }
+}
+
+                   TypeScript Templates
+                   ================
+- Abstract classes are known as templates.
+- Templates are required for rollouts.
+- Abstract class hides the structure and provide only functionality.
+- Hence the process is known as Abstraction.
+- Abstract class can contain both
+        a) members implemented
+        b) members to implement.
+- The incomplete member is defined as "abstract".
+
+Ex:
+interface ProductContract
+{
+    Name:string;
+    Price:number;
+    Qty:number;
+    Total():number;
+    Print():void;
+}
+
+abstract class ProductTemplate implements ProductContract
+{
+    public Name: string = '';
+    public Price: number = 0;
+    public Qty: number = 0;
+    abstract Total():number;
+    abstract Print():void;
+}
+class ProductComponent extends ProductTemplate
+{
+    Name: "Samsung TV";
+    Price: 56000.54;
+    Qty : 2;
+    Total() {
+        return this.Qty * this.Price;
+    }  
+    Print(){
+        console.log(``);
+    }
+}
+
+
+Generics
+- Generics refer to typesafe content.
+- Initial data type for reference is not defined.
+- You can configure specific data type and restrict to the defined data type.
+- Generic is open to any type, but will restrict the data type if defined with sepcified data type.
+- Generic can used for
+        a) Property
+        b) Method
+        c) Function
+        d) Parameters
+        e) Class
+Syntax:
+
+function Print<T>(a:T){
+    console.log(`Type of a is ${typeof a}`);
+}
+Print<string>("John");
+Print<number>(40);
+Print<boolean>(true);
+
+
+Ex: Generic Method
+
+interface IOracle
+{
+    UserName:string;
+    Password:string;
+    Database:string;
+}
+interface IMySql
+{
+    host:string;
+    user:string;
+    password:string;
+    database:string;
+}
+interface IMongoDB
+{
+    url:string;
+}
+
+class Database
+{
+    connect<T>(connectionString:T){
+        for(var property in connectionString){
+            console.log(`${property} : ${connectionString[property]}`);
+        }
+    }
+}
+console.log(`------------oracle connection------------`);
+let oracle = new Database();
+oracle.connect<IOracle>({UserName: 'scott', Password:'tiger', Database:'empdb'});
+
+console.log(`------------MySql connection------------`);
+let mysql = new Database();
+mysql.connect<IMySql>({host: 'localhost', user:'root', password:'1234', database:'ishopdb'});
+
+console.log(`------------MongoDB connection------------`);
+let mongo = new Database();
+mongo.connect<IMongoDB>({url: 'mongodb://127.0.0.1:27017'});
+
+Ex: Generics for API Data
+
+interface IEmployee
+{
+    FirstName:string;
+    LastName:string;
+    Designation:string;
+}
+
+interface IProduct
+{
+    Name:string;
+    Price:number;
+}
+interface ICategory
+{
+    CategoryId:number;
+    CategoryName:string;
+}
+
+class Service
+{
+    GetAll<T>(collection:T[]){
+        for(var item of collection){
+            console.log(item);
+        }
+    }
+    GetOne<T>(data:T) {
+        for(var property in data){
+            console.log(`${property} : ${data[property]}`);
+        }
+    }
+}
+
+console.log(`-----------Products API--------------`);
+let obj = new Service();
+obj.GetAll<IProduct>([{Name:'TV', Price:46000.44},{Name:'Mobile',Price:130000}]);
+obj.GetOne<IProduct>({Name:'Shoe', Price: 6000.44});
+
+console.log(`--------Employees API------------`);
+let emp = new Service();
+emp.GetAll<IEmployee>([{FirstName:'tom', LastName:'hanks', Designation:'Manager'}]);
+
+Note: Generic type will not allow any operation directly on data, as the data type is unknow. You can't use operators on generic types. You have to use functions and method.
+               
+            Method(a:T, b:T) : T
+            {
+              return  a + b;                // invalid
+            }
+
+Ex:
+function sum(a,b) {
+    return a + b;
+}
+
+function Add<T>(a:T, b:T): T {
+    return sum(a,b);
+}
+
+console.log("Name=" + Add<string>("Tom","Hanks"));
+console.log("Addition=" + Add<number>(10,30));
+
+
+                        Generic Class and Property
+
+Ex:
+interface IOracle {
+    UserName:string;
+    Password:string;
+    Database:string;
+}
+
+class Database<T>
+{
+    constructor(connectionString:T){
+        for(var property in connectionString){
+            console.log(`${property} : ${connectionString[property]}`);
+        }
+    }
+    public DatabaseName:T;
+}
+
+let oracle = new Database<IOracle>({UserName:'scott', Password:'tiger', Database:'empdb'});
+oracle.DatabaseName = {
+    UserName: '',
+    Password: '',
+    Database: ''
+}
+
+
+Ex:
+
+class Demo<T>
+{
+    constructor(param:T){
+        console.log(`Param is ${typeof param}`);
+    }
+    public Property:T;
+    public Print(){
+        console.log(`Property is ${typeof this.Property}`);
+    }
+}
+let obj = new Demo<string>("John");
+obj.Property = "Manager";
+obj.Print();
+                       
+                         TypeScript Enum
+- Enum is a collection of constants.
+- You can define a set of named constants under one reference name.
+- Enumeration [Enum] can be a collection of constants
+        a) string
+        b) number
+        c) expression [boolean type not allowed]
+- Enum will not allow boolean type.
+- boolean value changes and is assined with true or false dynamically. And enum can't change dynamically.
+- Enum with numeric constants have auto implementation for value.
+
+Ex:
+enum StatusCodes
+{
+   A = 10,
+   B = 20,
+   C = A + B
+}
+console.log(StatusCodes.C);
+
+                             Modules
+Modules in TypeScript
+
+- Modules were introduced into JavaScript from ES5.
+- TypeScript uses JavaScript modules.
+- Module is like a component in any framework with collection
+various members.
+- Typically, a module comprises of classes, contracts, templates,
+and other members.
+- You can import the modules and export the modules to use in
+any application.
+- You can build a library which can be injected into any
+application.
+- Module System enables reusability of components, testability
+and maintainability.
+- Modules are executed with in their own scope not global.
+- The components defined in a module are by default not
+accessible outside the module scope.
+- You use export technique to export the component of current
+module so that they are accessing in another module.
+Syntax:
+demo.ts – Defines a module
+export class Product
+{
+}
+export interface IProduct
+{
+}
+- You have to import the module and use in any application
+Syntax:
+import { contract, class, template } from ‘./path/file’;
+- JavaScript uses “require” to import any module from its module
+systems.
+Syntax:
+
+var referenceName = require(“ModuleName”);
+- JavaScript uses various module system to manage module in
+application
+o Common JS
+o AMD [Asynchronous Module Distribution]
+- TypeScript can internally handle modules as it is supported with
+internal module systems.
+Ex:
+- Add a new folder into project “ModuleSystem”
+- Add following subfolders
+o Contracts
+o Templates
+o Components
+o App
+- Go to Contracts folder and following files
+CategoryContract.ts
+export interface ICategory
+{
+CategoryId:number;
+CategoryName:string;
+}
+ProductContract.ts
+export interface IProduct
+{
+Name:string;
+Price:number;
+Qty:number;
+Total():number;
+Print():void;
+}
+- Go to “Templates” folder and add a new file
+ProductTemplate.ts
+
+import { ICategory } from &#39;../Contracts/CategoryContract&#39;;
+import { IProduct } from &#39;../Contracts/ProductContract&#39;;
+export abstract class ProductTemplate implements ICategory,
+IProduct
+{
+public Name:string;
+public Price:number;
+public Qty:number;
+public CategoryName:string;
+public CategoryId:number;
+public abstract Total():number;
+public Print():void {
+console.log(`Name=${this.Name}\nPrice=${this.Price}\nQty=${t
+his.Qty}\nTotal=${this.Total()}\nCategory=${this.CategoryName
+}`);
+}
+}
+- Go to “Components” folder and add a new file
+ProductComponent.ts
+import { ProductTemplate } from
+&#39;../Templates/ProductTemplate&#39;;
+export class ProductComponent extends ProductTemplate
+{
+public Price:number = 0;
+public Qty:number = 0;
+public Total():number {
+return this.Qty * this.Price;
+}
+public Print():void {
+super.Print();
+}
+
+}
+- Go to “App” folder and add a new file
+ShoppingApp.ts
+import { ProductComponent } from
+&#39;../Components/ProductComponent&#39;;
+let tv = new ProductComponent();
+tv.Name = &quot;Samsung TV&quot;;
+tv.Price = 45000.54;
+tv.Qty = 2;
+tv.CategoryName = &quot;Electronics&quot;;
+console.log(`------TV Details-------`);
+tv.Print();
+let shoe = new ProductComponent();
+shoe.Name = &quot;Nike Casuals&quot;;
+shoe.Price = 3000.44;
+shoe.Qty = 3;
+shoe.CategoryName = &quot;Footwear&quot;;
+console.log(`--------Shoe Details-----`);
+shoe.Print();
+- Open “app” folder in terminal or command prompt and
+compile
+&gt; tsc shoppingapp.ts
+&gt; node shoppingapp.js
+
+Note: JavaScript uses “require.js” for handling modules.
+Syntax:
+var ProductComponent_1 =
+require(&quot;../Components/ProductComponent&quot;);
+
+FAQ: What is the purpose of “declare” for module
+components?
+- Declare is not a keyword.
+- Declare is a marker that is used to mark any variable or
+component so that it allows only declaration.
+- Initialization of values is not allowed on ambient declaration.
+Syntax:
+declare let x:number = 10; // invalid
+declare let x:number; // valid
+x = 10; // valid
+
+FAQ: What is the purpose of “default”?
+- You can export many components from a file.
+- Default is used to restrict any one component for exporting.
+- When you are trying to import the default component by using
+{}, it is not allowed.
+- You can just define its name in import.
+- Every file can have multiple default components.
+- Developer can import any one component there is no priority.
+Ex:
+ProjectContract.ts
+export default interface ICategory
+{
+CategoryId:number;
+}
+export default interface IProduct
+
+{
+Name:string;
+Price:number;
+}
+App.ts
+import ICategory from &#39;./ProjectContract&#39;; //valid
+import IProduct from &#39;./ProjectContract&#39;; // valid
+import { ICategory } from ‘./ProjectContract’; // invalid
+import { IProduct, ICategory } from ‘./ProjectContract’ // invalid
+
+Namespace
+
+- It is a collection of related type of sub namespaces and
+components.
+- Components include contracts, templates, classes etc.
+- We use namespace in building a library for application.
+- Namespace is container with set of components.
+- Components in Namespace have local access, they are
+not global.
+- You have to export components.
+Syntax:
+namespace NamespaceName
+{
+// contracts
+// template
+// classes
+}
+- You can import the namespace from any location and
+use in application.
+Syntax:
+/// &lt;reference path=”” /&gt;
+
+Ex:
+- Add following folders into “Project” main folder
+o Contracts
+o Templates
+o Components
+o App
+- Go to Contracts folder and add
+
+“ProductContract.ts”
+namespace Project
+{
+export namespace Contracts {
+export interface IProduct
+{
+Name:string;
+Price:number;
+Qty:number;
+Total():number;
+Print():void;
+}
+}
+}
+- Go to Templates folder and add
+ProductTemplate.ts
+/// &lt;reference path=&quot;../Contracts/ProductContract.ts&quot;
+/&gt;
+
+import contracts = Project.Contracts; //Aliasing of
+Namespace
+namespace Project
+{
+export namespace Templates
+{
+export abstract class ProductTemplate implements
+contracts.IProduct
+{
+public Name:string;
+
+public Price:number;
+public Qty:number;
+public Total():number {
+return this.Qty * this.Price;
+}
+public abstract Print():void;
+}
+}
+}
+- Go to “Components” folder and add
+ProductComponent.ts
+/// &lt;reference path=&quot;../Templates/ProductTemplate.ts&quot;
+/&gt;
+import templates = Project.Templates;
+
+namespace Project
+{
+export namespace Components
+{
+export class ProductComponent extends
+templates.ProductTemplate
+{
+public Name:string = &quot;&quot;;
+public Price:number = 0;
+public Qty:number = 0;
+public Total():number {
+return this.Qty * this.Price;
+}
+public Print():void {
+
+console.log(`Name=${this.Name}\nPrice=${this.Price}\n
+Qty=${this.Qty}\nTotal=${this.Total()}`);
+}
+}
+}
+}
+- Go to “App” folder and add
+ShoppingApp.ts
+/// &lt;reference
+path=&quot;../Components/ProductComponent.ts&quot; /&gt;
+
+import components = Project.Components;
+
+let tv = new components.ProductComponent();
+tv.Name=&quot;Samsung TV&quot;;
+tv.Price=45000.55;
+tv.Qty=2;
+tv.Print();
+
+TypeScript Configuration
+
+- “tsconfig.json” file in a directory indicates that the
+directory is root of TypeScript project.
+- It specifies the root files and the compiler options
+required to compile the project.
+- You can generate “tsconfig” file by using the following
+command in project root folder.
+C:\tsprograms&gt; tsc --init
+“tsconfig.json”
+{
+
+&quot;compilerOptions&quot;: {
+/* Visit https://aka.ms/tsconfig.json to read more
+about this file */
+
+/* Basic Options */
+// &quot;incremental&quot;: true, /* Enable
+incremental compilation */
+&quot;target&quot;: &quot;es5&quot;, /* Specify ECMAScript
+target version: &#39;ES3&#39; (default), &#39;ES5&#39;, &#39;ES2015&#39;, &#39;ES2016&#39;,
+&#39;ES2017&#39;, &#39;ES2018&#39;, &#39;ES2019&#39;, &#39;ES2020&#39;, or &#39;ESNEXT&#39;. */
+&quot;module&quot;: &quot;commonjs&quot;, /* Specify module
+code generation: &#39;none&#39;, &#39;commonjs&#39;, &#39;amd&#39;, &#39;system&#39;,
+&#39;umd&#39;, &#39;es2015&#39;, &#39;es2020&#39;, or &#39;ESNext&#39;. */
+// &quot;lib&quot;: [], /* Specify library files to be
+included in the compilation. */
+// &quot;allowJs&quot;: true, /* Allow javascript files
+to be compiled. */
+// &quot;checkJs&quot;: true, /* Report errors in .js
+files. */
+// &quot;jsx&quot;: &quot;preserve&quot;, /* Specify JSX code
+generation: &#39;preserve&#39;, &#39;react-native&#39;, or &#39;react&#39;. */
+// &quot;declaration&quot;: true, /* Generates
+corresponding &#39;.d.ts&#39; file. */
+// &quot;declarationMap&quot;: true, /* Generates a
+sourcemap for each corresponding &#39;.d.ts&#39; file. */
+// &quot;sourceMap&quot;: true, /* Generates
+corresponding &#39;.map&#39; file. */
+// &quot;outFile&quot;: &quot;./&quot;, /* Concatenate and emit
+output to single file. */
+
+// &quot;outDir&quot;: &quot;./&quot;, /* Redirect output
+structure to the directory. */
+// &quot;rootDir&quot;: &quot;./&quot;, /* Specify the root
+directory of input files. Use to control the output
+directory structure with --outDir. */
+// &quot;composite&quot;: true, /* Enable project
+compilation */
+// &quot;tsBuildInfoFile&quot;: &quot;./&quot;, /* Specify file to store
+incremental compilation information */
+// &quot;removeComments&quot;: true, /* Do not emit
+comments to output. */
+// &quot;noEmit&quot;: true, /* Do not emit
+outputs. */
+// &quot;importHelpers&quot;: true, /* Import emit
+helpers from &#39;tslib&#39;. */
+// &quot;downlevelIteration&quot;: true, /* Provide full
+support for iterables in &#39;for-of&#39;, spread, and
+destructuring when targeting &#39;ES5&#39; or &#39;ES3&#39;. */
+// &quot;isolatedModules&quot;: true, /* Transpile each
+file as a separate module (similar to
+&#39;ts.transpileModule&#39;). */
+
+/* Strict Type-Checking Options */
+&quot;strict&quot;: true, /* Enable all strict type-
+checking options. */
+// &quot;noImplicitAny&quot;: true, /* Raise error on
+expressions and declarations with an implied &#39;any&#39; type.
+*/
+
+// &quot;strictNullChecks&quot;: true, /* Enable strict null
+checks. */
+// &quot;strictFunctionTypes&quot;: true, /* Enable strict
+checking of function types. */
+// &quot;strictBindCallApply&quot;: true, /* Enable strict
+&#39;bind&#39;, &#39;call&#39;, and &#39;apply&#39; methods on functions. */
+// &quot;strictPropertyInitialization&quot;: true, /* Enable strict
+checking of property initialization in classes. */
+// &quot;noImplicitThis&quot;: true, /* Raise error on
+&#39;this&#39; expressions with an implied &#39;any&#39; type. */
+// &quot;alwaysStrict&quot;: true, /* Parse in strict
+mode and emit &quot;use strict&quot; for each source file. */
+
+/* Additional Checks */
+// &quot;noUnusedLocals&quot;: true, /* Report errors
+on unused locals. */
+// &quot;noUnusedParameters&quot;: true, /* Report
+errors on unused parameters. */
+// &quot;noImplicitReturns&quot;: true, /* Report error
+when not all code paths in function return a value. */
+// &quot;noFallthroughCasesInSwitch&quot;: true, /* Report
+errors for fallthrough cases in switch statement. */
+
+/* Module Resolution Options */
+// &quot;moduleResolution&quot;: &quot;node&quot;, /* Specify
+module resolution strategy: &#39;node&#39; (Node.js) or &#39;classic&#39;
+(TypeScript pre-1.6). */
+// &quot;baseUrl&quot;: &quot;./&quot;, /* Base directory to
+resolve non-absolute module names. */
+
+// &quot;paths&quot;: {}, /* A series of entries
+which re-map imports to lookup locations relative to the
+&#39;baseUrl&#39;. */
+// &quot;rootDirs&quot;: [], /* List of root folders
+whose combined content represents the structure of
+the project at runtime. */
+// &quot;typeRoots&quot;: [], /* List of folders to
+include type definitions from. */
+// &quot;types&quot;: [], /* Type declaration files
+to be included in compilation. */
+// &quot;allowSyntheticDefaultImports&quot;: true, /* Allow
+default imports from modules with no default export.
+This does not affect code emit, just typechecking. */
+&quot;esModuleInterop&quot;: true, /* Enables emit
+interoperability between CommonJS and ES Modules via
+creation of namespace objects for all imports. Implies
+&#39;allowSyntheticDefaultImports&#39;. */
+// &quot;preserveSymlinks&quot;: true, /* Do not resolve
+the real path of symlinks. */
+// &quot;allowUmdGlobalAccess&quot;: true, /* Allow
+accessing UMD globals from modules. */
+
+/* Source Map Options */
+// &quot;sourceRoot&quot;: &quot;&quot;, /* Specify the location
+where debugger should locate TypeScript files instead of
+source locations. */
+// &quot;mapRoot&quot;: &quot;&quot;, /* Specify the location
+where debugger should locate map files instead of
+generated locations. */
+
+// &quot;inlineSourceMap&quot;: true, /* Emit a single
+file with source maps instead of having a separate file.
+*/
+// &quot;inlineSources&quot;: true, /* Emit the source
+alongside the sourcemaps within a single file; requires &#39;--
+inlineSourceMap&#39; or &#39;--sourceMap&#39; to be set. */
+
+/* Experimental Options */
+// &quot;experimentalDecorators&quot;: true, /* Enables
+experimental support for ES7 decorators. */
+// &quot;emitDecoratorMetadata&quot;: true, /* Enables
+experimental support for emitting type metadata for
+decorators. */
+
+/* Advanced Options */
+&quot;skipLibCheck&quot;: true, /* Skip type checking
+of declaration files. */
+&quot;forceConsistentCasingInFileNames&quot;: true /* Disallow
+inconsistently-cased references to the same file. */
+}
+
+
+FAQ: Can we restrict types in react with JavaScript as Language?
+Ans:  Yes. But JavaScript can't restrict types. You have to use React JS           Prop Types.
+
+Install "prop-types" library:
+====================
+> npm install prop-types  --save
+
+Import "prop-types":
+================
+ import   PropTypes from  'prop-types';
+
+PropTypes are categorized into following:
+1. Basic Types
+        String                PropTypes.string        
+        Number                
+        Boolean
+        Symbol
+        Object
+        Anything                PropTypes.node
+
+ Syntax:
+     Product.propType = {
+           Id: PropTypes.number,
+           Name: PropTypes.string
+      }
+
+2. Collection Types
+        Array                       PropTypes.array
+        Array of Numbers    PropTypes.arrayOf([PropTypes.number])
+        Enum                      PropTypes.oneOfType([PropTypes.number])
+
+Syntax:
+        Product.propTypes = {
+            Cities: PropTypes.array,
+            Products: PropTypes.arrayOf(PropTypes.String)
+        }
+
+
+Ex:
+import PropTypes from 'prop-types';
+
+export default function TypeDemoComponent(props)
+{
+    return(
+        <div>
+            <dl>
+                <dt>Name</dt>
+                <dd>{props.Name}</dd>
+                <dt>Price</dt>
+                <dd>{props.Price}</dd>
+            </dl>
+        </div>
+    )
+}
+TypeDemoComponent.propTypes = {
+    Name: PropTypes.string,
+    Price: PropTypes.number
+}
+export function ProductIndexComponent(){
+    return(
+        <div>
+            <TypeDemoComponent Name='Samsung TV' Price={34000.44} ></TypeDemoComponent>
+        </div>
+    )
+}
+
+TypeScript Configuation:
+- It defines the rules for TypeScript when used in application.
+- You have to configure rules with "tsconfig.json".
+
+> tsc  -init
+
+TsLint  - Obsolete  - No longer in use.
+
+                tsconfig.json
+                tslint.json        // no longer in use
+                jslint
+
+                if(condition)        - Bad Code - not OK
+                  true;
+                else
+                  false;
+
+                if(condition)        - Good  - OK
+                {
+                 true;
+                }
+                else
+                {
+                 false;
+                }
+
+
+
+Create React Application using TypeScript as Language
+==========================================
+
+>npx  create-react-app   app-name  --template typescript
+
+
+import { useEffect, useState } from "react";
+
+export default function ProductsComponent()
+{
+    const [products, setProducts] = useState<any[]>([]);
+    const [categories, setCategories] = useState<string[]>([]);
+    useEffect(()=>{
+        fetch('http://fakestoreapi.com/products&#39;)
+        .then(response=> response.json())
+        .then(data=> {
+            setProducts(data)
+        })
+    },[])
+    return(
+        <div>
+            <h3>Products List</h3>
+            <ol>
+                {
+                    products.map(product=>
+                        <li>{product.title}</li>
+                        )
+                }
+            </ol>
+        </div>
+    )
+}
