@@ -702,9 +702,219 @@ export default function MaterialDemoComponent(){
 
                   <Route  path=""  element={ <Component /> }>
 
+React Router 6
+- BrowserRouter now can handle client side routing.
+- Switch is now used with "<Routes>"
+- Route is defined with <Route>
+- Link is defined with <Link>
 
-                         I-Shop Application
-- API
-- React App
-- Material 5
-- Router 6
+Syntax:
+   <BrowserRouter>
+     <Routes>
+        <Route />
+    </Routes>
+   </BrowserRouter>
+
+- Navigation is defined by using <Link>
+- Dynamic Navigation is defined using "useNavigate"
+
+Syntax:
+ import { useNavigate } from  'react-router-dom';
+
+ let navigate = useNavigate();
+ 
+ navigate('/path/param');
+
+- Route Parameters same in configuration and accessing
+
+Syntax:
+    <Route path="details/:id" element={<Details />}>
+
+    let params = useParams();
+    params.id;
+
+- Changes in Nested Routes
+
+Syntax:
+ <Route  path="Details"  element={<Details />}>
+        <Route path=":id"  element={<Product />} />
+ </Route>
+
+- New Router Outlet is available. It is used for rendering child routes.
+
+Syntax:
+        <Outlet />
+
+- Relative Links : Links that are defined without "/"
+
+     <Link to="details"> </Link>        add to relative path
+     <Link to="/details"> </Link>  add to absolute path
+
+- Route Config is regularly used for configuring a set of routes and implementing in project.
+
+Syntax:
+  let routes = [
+           {
+              path : "/",
+              element: <home />
+           },
+          {
+             path: '/details',
+             element: <details />
+          }
+     ]
+
+- Location  is defined by using "useLocation()"
+- History is defined by using "useHistory()"
+
+
+FAQ: Why 'element' instead of 'component' in route?
+Ans: Component is heavy , It required DI with provider and injector when every requested. It is slow in rendering.
+        Element is light weight, It is made as a part of Virtual DOM, renders faster.
+
+FAQ: Why <Routes> instead of <Switch> ?
+Ans:  <Routes> allows to configure and load routes collection dynamically using route config.
+         <Switch> is just a selector.
+
+       
+Ex:
+ > npm install react-router-dom@v6
+
+DemoIndexComponent.tsx
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import AboutComponent from "./AboutComponent";
+import HomeComponent from "./HomeComponent";
+
+export default function DemoIndexComponent()
+{
+    return(
+        <div>
+           <h2>Demo Index</h2>
+           <BrowserRouter>
+              <Link to="home">Home</Link>
+              <span>|</span>
+              <Link to="about">About</Link>
+              <Routes>
+                  <Route path="/" element={<HomeComponent />} ></Route>
+                  <Route path="/home" element={<HomeComponent />}></Route>
+                  <Route path="/about" element={<AboutComponent />} ></Route>
+              </Routes>
+           </BrowserRouter>
+        </div>
+    )
+}
+
+HomeComponent.tsx
+
+
+export default function HomeComponent()
+{
+    return(
+       <div>
+            <h2>Home Component</h2>
+            <p>THis is home page</p>
+       </div>
+    )
+}
+
+AboutComponent.tsx
+
+
+export default function AboutComponent()
+{
+    return(
+       <div>
+            <h2>About Component</h2>
+            <p>About us</p>
+       </div>
+    )
+}
+
+FAQ: What is difference between
+        <BrowserRouter>
+        <HashRouter>
+        <StaticRouter>
+        <NativeRouter>
+        <MemoryRouter>  ?
+
+BrowserRouter:  
+ - Client Side Routing
+ - Uses Browser location and history.
+ - It can keep clean URL's by accessing Location.
+ - It keeps navigation simple by using history.
+ - The URL can be sent to server.
+ - So that you can manage Server Side Render.
+
+HashRouter:
+ - It is used when you want only client side.
+ - It will not allow to send to server.
+
+NativeRouter:
+ - It is used for defining routes in React Native application
+ - Mobile UI, UX
+
+MemoryRouter
+- Memory router is not binded with history.
+- It uses browser memory to store the log and access from log.
+- Memory router is regularly used while testing application.
+
+
+FAQ: What about class component in TypeScript?
+Ans : It is similar to JSX. But TypeScript class component in react implements
+        React.Component<T, T> { }
+        React.Component<props, state>
+        {
+        }
+
+Syntax:
+import  React, { Component } from 'react';
+
+export default class ProductsComponent extends React.Component<{},{}> {
+    render(){
+        return(
+            <div>
+               
+            </div>
+        )
+    }
+}
+
+Ex: Properties and State in Class Component
+
+
+import  React, { Component } from 'react';
+
+interface IProperties {
+    Title:string;
+}
+
+interface IState {
+    ProductId: number,
+    Name?:string
+}
+
+export default class ProductsComponent extends React.Component<IProperties, IState> {
+    state: IState = {
+        ProductId : 2,
+        Name:'Samsung TV'
+    }
+    render(){
+        return(
+            <div>
+                <h2>{this.props.Title}</h2>
+                Id : {this.state.ProductId} <br />
+                Name: {this.state.Name} <br/>
+               
+            </div>
+        )
+    }
+}
+
+export function DemoComponent(){
+    return(
+        <div>
+            <ProductsComponent Title='Product Details' />
+        </div>
+    )
+}
